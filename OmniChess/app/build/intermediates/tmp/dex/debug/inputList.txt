@@ -1,0 +1,5 @@
+C:\Users\Matthew\AndroidStudioProjects\OmniChess\app\build\intermediates\classes\debug
+C:\Users\Matthew\AndroidStudioProjects\OmniChess\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-fc9b96691bc3a95bb00ea4df980cf248e438ee92.jar
+C:\Users\Matthew\AndroidStudioProjects\OmniChess\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-cfd4c02235a14c3579a0c4cbec2dc06349e26a5f.jar
+C:\Users\Matthew\AndroidStudioProjects\OmniChess\app\build\intermediates\pre-dexed\debug\classes-8db952b39ba1935bb9f137481d84225104973344.jar
+C:\Users\Matthew\AndroidStudioProjects\OmniChess\app\build\intermediates\pre-dexed\debug\classes-eaceb2c6d5266a2bd90b4c78ae5d5dbbebcec497.jar
