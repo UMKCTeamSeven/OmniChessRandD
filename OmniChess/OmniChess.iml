@@ -7,7 +7,9 @@
       </configuration>
     </facet>
     <facet type="android" name="Android">
-      <configuration />
+      <configuration>
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/app/src/main/AndroidManifest.xml" />
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
