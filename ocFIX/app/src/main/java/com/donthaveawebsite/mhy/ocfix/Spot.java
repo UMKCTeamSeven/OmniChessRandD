@@ -1,6 +1,4 @@
 package com.donthaveawebsite.mhy.ocfix;
-
-
 import android.widget.ImageView;
 
 public class Spot {
@@ -8,7 +6,7 @@ public class Spot {
     int y;
     int z;
     Piece piece;
-    int SpotState; //  1 is empty spot, 2 has piece, 3 hasselectedpiece
+    public int SpotState; //  1 is empty spot, 2 has piece, 3 hasselectedpiece
     ImageView appearance;
 
     public Spot(int x, int y, int z) //Object oriented will make this an easy project.
@@ -18,10 +16,8 @@ public class Spot {
         this.y = y;
         this.z = z;//Board number.
         piece = null;
-        SpotState = 1;
+        SpotState = 1; //flag for empty spot
     }
-
-
 
     public boolean isOccupied() //returns true if the spot has a piece
     {
@@ -30,10 +26,14 @@ public class Spot {
 
     }
 
-    public Piece releaseSpot() {//REMOVES A PIECE!!  Returns null
-        Piece releasedPiece = this.piece;
-        this.piece = null;
-        return releasedPiece;
+    public void placePiece(Piece piece)
+    {
+        this.piece = piece;
     }
+
+    public void releaseSpot() {//REMOVES A PIECE!!
+       this.piece = null;
+        //log in pieces taken later? Treasure chest of fallen pieces?
+       }
 
 }

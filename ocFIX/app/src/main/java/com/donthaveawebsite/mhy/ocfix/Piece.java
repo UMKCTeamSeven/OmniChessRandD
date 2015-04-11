@@ -1,6 +1,5 @@
 package com.donthaveawebsite.mhy.ocfix;
 
-
 public class Piece {
     private boolean available;
     private int x;
@@ -16,7 +15,6 @@ public class Piece {
         this.y = y;
         this.z = z;
     }
-
 
     public boolean isAvailable() {  //IE The can this piece move function
         return available;

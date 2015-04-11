@@ -27,11 +27,29 @@ public class Pawn extends Piece
     }
 
 
-    public boolean OnMove(Pawn pawn, Spot source, Spot destination)
+    public void OnMove(Pawn pawn, Spot source, Spot destination)
     {
-        //if (checkvalid()) to be implamented
-        mc++;
-        return true;
+        if (source == destination)
+        {
+            //exit selected mode
+            return;
+        }
+
+        Mover theMove = new Mover();
+        if (theMove.TryMove(pawn, source, destination)) {
+            mc++;
+            if (destination.isOccupied()) {
+                destination.releaseSpot();
+                destination.placePiece(pawn);
+            } else {
+                destination.placePiece(pawn);
+            }
+            //update view.
+        } else {
+            //return to selected mode
+        }
+    }
+
         //else
 //             if (relatedpiece)
 //             {

@@ -1,5 +1,4 @@
 package com.donthaveawebsite.mhy.ocfix;
-
 /**
  * Created by Matthew on 3/29/2015.
  */
@@ -27,6 +26,7 @@ public class IsValid
                     //pseudo code
 
                     //Still needs diagonal attacking, and en passant
+                    //Only works for pawns going from L to R
                     if (piece.getMC() == 0)
                     {
                         return (((Destination.x - 2) == Source.x) || ((Destination.x - 1) == Source.x));

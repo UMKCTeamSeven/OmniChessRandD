@@ -4,6 +4,10 @@ package com.donthaveawebsite.mhy.ocfix;
  * Created by Matthew on 4/11/2015.
  */
 public class Mover extends IsValid {
+
+    public Mover() {};
+
+
     public boolean TryMove(Piece piece, Spot Source, Spot Destination) throws NullPointerException
     {
         if (piece == null || Destination == null || Source == null)

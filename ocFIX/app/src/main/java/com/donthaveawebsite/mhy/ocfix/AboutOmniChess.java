@@ -1,5 +1,4 @@
 package com.donthaveawebsite.mhy.ocfix;
-
 import android.app.Activity;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -12,12 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 public class AboutOmniChess extends Activity {
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,15 +20,12 @@ public class AboutOmniChess extends Activity {
 
 
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_about_omni_chess, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
