@@ -29,20 +29,12 @@ public class IsValid
                     //Still needs diagonal attacking, and en passant
                     if (piece.getMC() == 0)
                     {
-                        if (((Destination.x - 2) == Source.x) || ((Destination.x - 1) == Source.x))
-                        {
-                            return true;
-                        }
-                            return false;
+                        return (((Destination.x - 2) == Source.x) || ((Destination.x - 1) == Source.x));
                     }
 
                     else
                     {
-                        if (Destination.x - 1 == Source.x)
-                        {return true;}
-                        return false;
-
-
+                        return (Destination.x - 1 == Source.x);
                     }
 
                 case king:
