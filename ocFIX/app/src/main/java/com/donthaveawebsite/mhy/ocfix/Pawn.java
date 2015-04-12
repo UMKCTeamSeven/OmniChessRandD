@@ -36,7 +36,13 @@ public class Pawn extends Piece
         }
 
         Mover theMove = new Mover();
+
+        try
+        {
+
+
         if (theMove.TryMove(pawn, source, destination)) {
+
             mc++;
             if (destination.isOccupied()) {
                 destination.releaseSpot();
@@ -45,10 +51,11 @@ public class Pawn extends Piece
                 destination.placePiece(pawn);
             }
             //update view.
-        } else {
-            //return to selected mode
-        }
-    }
+        } else {   } }        //end if block      //end try block   //return to selected mode TODO fill else block with return to selected mode
+        catch (NullPointerException objectmissing)
+        {  }
+
+      }
 
         //else
 //             if (relatedpiece)
@@ -58,7 +65,7 @@ public class Pawn extends Piece
 //             }
 
 
-}
+}//endclass
 
 
 
