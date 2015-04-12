@@ -38,6 +38,12 @@ public class Piece {
     public void setY(int y) {
         this.y = y;
     }
+    public int getZ() {
+        return z;
+    }
+    public void setZ(int z) {
+        this.z = z;
+    }
 
    // public boolean isValid(Board board, int fromX, int fromY, int toX, int toY){
    //     if(toX == fromX && toY == fromY)
