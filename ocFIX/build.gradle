@@ -1,6 +1,30 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply plugin: "jacoco"
 
+
+allprojects {
+    apply plugin: 'jacoco'
+}
+
+task codeCoverageReport(type: JacocoReport) {
+
+    // Gather execution data from all subprojects
+    // (change this if you e.g. want to calculate unit test/integration test coverage separately)
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    // Add all relevant sourcesets from the subprojects
+    subprojects.each {
+
+    }
+
+    reports {
+        xml.enabled true
+        html.enabled true
+        html.destination "${buildDir}/reports/jacoco"
+        csv.enabled false
+    }
+}
+
+// always run the tests before generating the report
 
 buildscript {
     repositories {
