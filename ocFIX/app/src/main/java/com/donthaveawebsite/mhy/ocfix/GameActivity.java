@@ -185,6 +185,8 @@ public class GameActivity extends Activity implements View.OnClickListener
         Assert.assertTrue(mStarting2.isOccupied() && mStarting2.piece == firstpawn); //verify that spot has the piece we think it has
         Assert.assertTrue(firstpawn.getX() == mStarting2.x && firstpawn.getY() == mStarting2.y && firstpawn.getZ() == mStarting2.z);  //verify that spot and piece coordinates match
 
+
+
         mStarting2.SpotState = 2;
         mStarting2.appearance = (ImageView) findViewById(R.id.StartingPoint);
             space1.appearance = (ImageView) findViewById(R.id.forward1);
