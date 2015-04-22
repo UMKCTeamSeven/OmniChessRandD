@@ -5,6 +5,7 @@ public class Piece {
     private int x;
     private int y;
     private int z; // for board id. Right now only one board.
+    private String color = "W";
     public int mc = 0;
 
     public Piece(boolean available, int x, int y, int z)
@@ -44,6 +45,7 @@ public class Piece {
     public void setZ(int z) {
         this.z = z;
     }
+    public void switchcolor() {if (this.color == "W") this.color ="B"; else this.color="W";}
 
    // public boolean isValid(Board board, int fromX, int fromY, int toX, int toY){
    //     if(toX == fromX && toY == fromY)
