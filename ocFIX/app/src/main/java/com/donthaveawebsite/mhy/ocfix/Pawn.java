@@ -5,8 +5,6 @@ package com.donthaveawebsite.mhy.ocfix;
  */
 public class Pawn extends Piece
 {
-    private boolean relatedpiece;
-    private int mc = 0;
     public Pawn (Boolean available, int x, int y, int z)
     {
         super(available, x, y, z);
@@ -14,18 +12,8 @@ public class Pawn extends Piece
 
     public boolean FirstMove(Pawn pawn)  //because they have special move rules.
     {
-        return mc == 0;
+        return pawn.getMC() == 0;
     }
-
-    public void SetRelated(boolean relatedpiece)
-    {
-        this.relatedpiece = relatedpiece;
-    }
-    public boolean GetRelated()
-    {
-        return relatedpiece;
-    }
-
 
     public void OnMove(Pawn pawn, Spot source, Spot destination)
     {
@@ -39,11 +27,9 @@ public class Pawn extends Piece
 
         try
         {
-
-
         if (theMove.TryMove(pawn, source, destination)) {
 
-            mc++;
+            pawn.setMC(pawn.getMC() + 1);
             if (destination.isOccupied()) {
                 destination.releaseSpot();
                 destination.placePiece(pawn);

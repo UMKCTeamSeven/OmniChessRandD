@@ -34,7 +34,6 @@ public class Spot {
     public void releaseSpot() {//REMOVES A PIECE!!
        this.piece = null;
         //log in pieces taken later? Treasure chest of fallen pieces?
-        Assert.assertTrue("Piece should be null now", this.piece == null);
-       }
+        }
 
 }

@@ -28,13 +28,16 @@ public class IsValid
                     //Still needs diagonal attacking, and en passant
                     //Only works for pawns going from L to R
                     if (piece.getMC() == 0)
-                    {
-                        return (((Destination.x - 2) == Source.x) || ((Destination.x - 1) == Source.x));
-                    }
+                    {   //Going up the board TODO reverse logic for going up the board.
+                        if (!Destination.isOccupied())
+                        return (((Destination.y - 2) == Source.y) || ((Destination.y - 1) == Source.y));
+                        else
+                        return ((Destination.x -1 == Source.x || Destination.x + 1 == Source.x) && ((Destination.y - 1) == Source.y));
+                    }   //above line is a diagonal attack
 
                     else
                     {
-                        return (Destination.x - 1 == Source.x);
+                        return ((Destination.y - 1 == Source.y) || ((Destination.x -1 == Source.x || Destination.x + 1 == Source.x) && ((Destination.y - 1) == Source.y)));
                     }
 
                 case king:
