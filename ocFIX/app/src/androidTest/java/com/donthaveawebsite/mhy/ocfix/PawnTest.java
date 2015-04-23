@@ -10,14 +10,15 @@ import junit.framework.Assert;
 public class PawnTest extends AndroidTestCase
 
 {
-
+    private IsValid isValid;
     private Mover theMove;
     private Pawn thepawn;
     private Spot thespot;
 
     public void setUp() {
-        thepawn = new Pawn(true, 0, 0, 0);
+
         theMove = new Mover();
+        thepawn = new Pawn(true, 0, 0, 0);
         thespot = new Spot(0,0,0);
         thespot.placePiece(thepawn);
     }
@@ -28,12 +29,34 @@ public class PawnTest extends AndroidTestCase
 
     }
 
-   public void PawnFirstMove()
+   public void testPawnFirstMove()
     {
-        Spot cango = new Spot(2,0,0);
+        Spot cango = new Spot(0,2,0);
         Assert.assertTrue(thepawn.FirstMove(thepawn));
+
+    }
+    public void testPawnMC()
+    {//Tests MC getter and setter
+        thepawn = new Pawn(true, 0, 0, 0);
+        thepawn.setMC(4);
+        Spot cantgo = new Spot(0,2,0);
+        Assert.assertFalse(thepawn.getMC() == 0);
+        Assert.assertTrue(thepawn.getMC() == 4);
+        Assert.assertFalse(thepawn.FirstMove(thepawn));
+
+     }
+    public void testPawnOnMove()
+    {
+        thepawn = new Pawn(true, 0, 0, 0);
+        thespot.placePiece(thepawn);
+        thepawn.setMC(4);
+        Spot cantgo = new Spot(0,2,0);
+        thepawn.OnMove(thepawn, thespot, thespot);  //moves piece to same location
+        thepawn.OnMove(thepawn, thespot, cantgo);
+        Assert.assertFalse(cantgo.isOccupied());
+        Spot cango = new Spot(0,1,0);
         thepawn.OnMove(thepawn,thespot,cango);
-        Assert.assertTrue(cango.isOccupied() && cango.piece == thepawn);
+        Assert.assertTrue(cango.isOccupied());
     }
 
 }

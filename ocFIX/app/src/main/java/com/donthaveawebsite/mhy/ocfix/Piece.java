@@ -1,6 +1,7 @@
 package com.donthaveawebsite.mhy.ocfix;
 
 public class Piece {
+    private Piece relatedpiece;
     private boolean available;
     private int x;
     private int y;
@@ -15,6 +16,15 @@ public class Piece {
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    public void SetRelated(Piece relatedpiece)
+    {
+        this.relatedpiece = relatedpiece;
+    }
+    public Piece GetRelated()
+    {
+        return relatedpiece;
     }
 
     public boolean isAvailable() {  //IE The can this piece move function
