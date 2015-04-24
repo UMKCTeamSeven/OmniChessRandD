@@ -15,10 +15,27 @@ public class IsValid
         queen,
         portal
     }
-    piecetype piecetype;
-         public boolean IsMoveValid(Piece piece, Spot Source, Spot Destination)
+    piecetype piecetypes;
+    //Constructors
+    public IsValid(){}
+
+    public IsValid(Piece piece)
+    {this.piecetypes = piece.type.piecetypes;}
+
+    public IsValid(piecetype piecetypes)
+    {this.piecetypes = piecetypes;}
+    //Methods
+    public boolean IsMoveValid(Piece piece, Spot Source, Spot Destination)
+    {
+        IsValid thetype = new IsValid(piece);
+        return thetype.Verify(piece, Source, Destination);
+    }
+
+
+
+        public boolean Verify(Piece piece, Spot Source, Spot Destination)
          {
-            switch(piecetype)
+            switch(piecetypes)
             {
                 case pawn:
                     //oh shit how does casting work in java
@@ -65,6 +82,7 @@ public class IsValid
 
             return false; //Default returns false, piece type not added, or shouldnt have been selected, off to the debug you go
          }
+
 
 
 }

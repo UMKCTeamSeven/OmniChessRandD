@@ -5,9 +5,12 @@ package com.donthaveawebsite.mhy.ocfix;
  */
 public class Pawn extends Piece
 {
+
+
     public Pawn (Boolean available, int x, int y, int z)
     {
         super(available, x, y, z);
+        this.type = new IsValid(IsValid.piecetype.pawn);
     }
 
     public boolean FirstMove(Pawn pawn)  //because they have special move rules.
@@ -24,10 +27,11 @@ public class Pawn extends Piece
         }
 
         Mover theMove = new Mover();
-
+        boolean moved = theMove.TryMove(pawn, source, destination);
         try
         {
-        if (theMove.TryMove(pawn, source, destination)) {
+        if (moved)
+        {
 
             pawn.setMC(pawn.getMC() + 1);
             if (destination.isOccupied()) {

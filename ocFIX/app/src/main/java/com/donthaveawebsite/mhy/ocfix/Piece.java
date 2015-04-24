@@ -6,6 +6,9 @@ public class Piece {
     private int x;
     private int y;
     private int z; // for board id. Right now only one board.
+
+    public IsValid type;
+
     private String color = "W";
     public int mc = 0;
 
@@ -16,6 +19,8 @@ public class Piece {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.type = null;
+
     }
 
     public void SetRelated(Piece relatedpiece)
@@ -56,6 +61,7 @@ public class Piece {
         this.z = z;
     }
     public void switchcolor() {if (this.color == "W") this.color ="B"; else this.color="W";}
+
 
    // public boolean isValid(Board board, int fromX, int fromY, int toX, int toY){
    //     if(toX == fromX && toY == fromY)
