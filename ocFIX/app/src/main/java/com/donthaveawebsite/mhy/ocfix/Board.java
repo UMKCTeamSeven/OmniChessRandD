@@ -1,7 +1,7 @@
 package com.donthaveawebsite.mhy.ocfix;
 
 public class Board {
-    private Spot[][] spots = new Spot[8][8]; //lets start with a 3 x 3 board
+    private Spot[][] spots = new Spot[8][8];
 
     public Board(int BoardID) {
         //super();

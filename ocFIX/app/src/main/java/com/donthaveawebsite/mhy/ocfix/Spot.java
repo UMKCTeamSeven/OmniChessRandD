@@ -29,10 +29,15 @@ public class Spot {
     public void placePiece(Piece piece)
     {
         this.piece = piece;
+        piece.setY(this.y);
+        piece.setX(this.x);
+        piece.setZ(this.z);
+        this.SpotState = 2;
     }
 
     public void releaseSpot() {//REMOVES A PIECE!!
-       this.piece = null;
+        this.piece = null;
+        this.SpotState = 1;
         //log in pieces taken later? Treasure chest of fallen pieces?
         }
 

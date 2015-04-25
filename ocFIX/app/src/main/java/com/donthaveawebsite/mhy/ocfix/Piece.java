@@ -26,6 +26,7 @@ public class Piece {
     public void SetRelated(Piece relatedpiece)
     {
         this.relatedpiece = relatedpiece;
+        relatedpiece.relatedpiece = this;
     }
     public Piece GetRelated()
     {
@@ -61,6 +62,8 @@ public class Piece {
         this.z = z;
     }
     public void switchcolor() {if (this.color == "W") this.color ="B"; else this.color="W";}
+    public String getcolor(Piece piece) {return this.color;}
+
 
 
    // public boolean isValid(Board board, int fromX, int fromY, int toX, int toY){
