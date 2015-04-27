@@ -6,7 +6,7 @@ public class Spot {
     int y;
     int z;
     Piece piece;
-    public int SpotState; //  1 is empty spot, 2 has piece, 3 hasselectedpiece
+    public int SpotState; //  1 is empty spot, 2 has piece, 3 hasselectedpiece 0 is validmove
     ImageView appearance;
 
     public Spot(int x, int y, int z) //Object oriented will make this an easy project.
@@ -17,6 +17,11 @@ public class Spot {
         this.z = z;//Board number.
         piece = null;
         SpotState = 1; //flag for empty spot
+    }
+
+    public Piece getpiece()
+    {
+        return this.piece;
     }
 
     public boolean isOccupied() //returns true if the spot has a piece

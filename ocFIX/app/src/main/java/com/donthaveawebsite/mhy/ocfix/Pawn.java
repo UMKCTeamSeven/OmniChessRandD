@@ -18,6 +18,7 @@ public class Pawn extends Piece
         return pawn.getMC() == 0;
     }
 
+    @Override
     public void OnMove(Pawn pawn, Spot source, Spot destination)
     {
         if (source == destination)

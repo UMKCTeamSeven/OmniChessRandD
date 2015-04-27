@@ -64,9 +64,13 @@ public class Piece {
     public void switchcolor() {if (this.color == "W") this.color ="B"; else this.color="W";}
     public String getcolor(Piece piece) {return this.color;}
 
+    public void OnMove(Pawn pawn, Spot source, Spot destination)
+    {
+
+    }
 
 
-   // public boolean isValid(Board board, int fromX, int fromY, int toX, int toY){
+    // public boolean isValid(Board board, int fromX, int fromY, int toX, int toY){
    //     if(toX == fromX && toY == fromY)
    //         return false; //cannot move nothing
   //      if(toX < 0 || toX > 7 || fromX < 0 || fromX > 7 || toY < 0 || toY > 7 || fromY <0 || fromY > 7)
