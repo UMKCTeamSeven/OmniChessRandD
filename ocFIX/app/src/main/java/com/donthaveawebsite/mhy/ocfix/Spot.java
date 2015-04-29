@@ -7,7 +7,9 @@ public class Spot {
     int z;
     Piece piece;
     public int SpotState; //  1 is empty spot, 2 has piece, 3 hasselectedpiece 0 is validmove
-    ImageView appearance;
+
+    private ImageView selector;
+    private ImageView appearance;
 
     public Spot(int x, int y, int z) //Object oriented will make this an easy project.
     {
@@ -38,6 +40,7 @@ public class Spot {
         piece.setX(this.x);
         piece.setZ(this.z);
         this.SpotState = 2;
+
     }
 
     public void releaseSpot() {//REMOVES A PIECE!!
@@ -46,4 +49,19 @@ public class Spot {
         //log in pieces taken later? Treasure chest of fallen pieces?
         }
 
+    public ImageView getAppearance() {
+        return appearance;
+    }
+
+    public void TieAppearance(ImageView appearance) {
+        this.appearance = appearance;
+    }
+
+    public ImageView getSelector() {
+        return selector;
+    }
+
+    public void TieSelector(ImageView selector) {
+        this.selector = selector;
+    }
 }
