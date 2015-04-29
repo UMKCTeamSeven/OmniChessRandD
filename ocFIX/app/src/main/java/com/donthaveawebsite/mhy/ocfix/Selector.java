@@ -3,9 +3,6 @@ package com.donthaveawebsite.mhy.ocfix;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created by Matthew on 4/25/2015.
- */
 public class Selector
 {
     public Selector()
@@ -31,13 +28,39 @@ public class Selector
             if(thetype.Verify(spotState.piece, spotState, dest))
             {
                 dest.SpotState = 0;
+                //update dest
             }
         }
 
         return true;
     }
 
+   public void Deselector(Piece piece , Spot spotState, List<Spot> spots)
+   {
+
+
+       if (spotState.SpotState != 3)
+       {return;}
+       IsValid thetype = new IsValid(piece);
+       for(Iterator<Spot> i = spots.iterator(); i.hasNext(); )
+       {
+           Spot dest = i.next();
+
+           if(thetype.Verify(spotState.piece, spotState, dest))
+           {
+               if(dest.isOccupied())
+               {dest.SpotState = 2;}
+               else
+               {dest.SpotState = 1;}
+               //update dest
+           }
+
+
+        }
+
+        
+   }
 
 
 
-}
+}//endclass
