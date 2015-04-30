@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -12,9 +14,11 @@ import java.util.Set;
 public class Updater extends Activity
 {    //Updates piece layer after move is validated, takes care of between move logic.
     private Set<Spot> spotcache;
+    //Constructors
+    private Set<Spot> validMoves = new HashSet();
     public Updater (List<Spot> toupdate)
     {
-        spotcache.addAll(toupdate);
+        spotcache = new HashSet<>(toupdate);
     }
 
     public boolean OnMoveUpdate(Spot source, Spot destination)
@@ -23,6 +27,20 @@ public class Updater extends Activity
         //update pieces layer
         //check logic alignment
     }
+
+    public boolean HighlightValid(Spot destination)
+    {
+        destination.getSelector().setImageResource(R.drawable.ni_greesquare);
+        this.validMoves.add(destination);
+        return true;
+    }
+    public boolean UnHighlightValid(Spot destination)
+    {
+        destination.getSelector().setImageResource(R.drawable.ni_tsquare);
+        this.validMoves.remove(destination);
+        return true;
+    }
+
 
     public boolean AfterMoverUpdate()
     {
