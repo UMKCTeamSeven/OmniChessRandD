@@ -52,6 +52,14 @@ public class GameActivity extends Activity
         Pawn testpawn = new Pawn(true,1,1,1);
         theboard.getSpot(1,1).placePiece(testpawn);
         theboard.getSpot(1,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+
+
+        theboard.getSpot(3,1).placePiece(testpawn);
+        theboard.getSpot(3,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+
+        theboard.getSpot(5,1).placePiece(testpawn);
+        theboard.getSpot(5,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+
     }
 
 
