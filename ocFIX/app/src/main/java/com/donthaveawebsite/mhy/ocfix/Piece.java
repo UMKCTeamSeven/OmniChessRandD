@@ -9,7 +9,7 @@ public class Piece {
 
     public IsValid type;
 
-    private String color = "W";
+    private String color = "B";
     public int mc = 0;
 
     public Piece(boolean available, int x, int y, int z)
