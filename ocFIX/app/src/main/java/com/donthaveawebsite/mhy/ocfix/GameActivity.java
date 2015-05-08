@@ -29,15 +29,17 @@ public class GameActivity extends Activity implements OnClickListener
         if (clickedspot == null) {return;}
 
         //Try Move
-        //if (clickedspot.SpotState == 0)
-      //  {
-           //
-       // }
+        if (clickedspot.SpotState == 0)
+        {
+
+        }
 
         //Deselect piece
         if (clickedspot != null && theselector.InSelectedMode() && clickedspot.SpotState == 3)
         {
+            clickedspot.SpotState = 2;
             theselector.Deselector(clickedspot.getpiece(), clickedspot, listenspots);
+
             return;
         }
         //Select piece
