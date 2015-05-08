@@ -14,7 +14,7 @@ public class GameActivity extends Activity implements OnClickListener
 {
     Selector theselector;
     List<Spot> listenspots;
-
+    Spot selectedpiecespot;
 
     public void onClick(View v)
     {Spot clickedspot = null;
@@ -31,12 +31,22 @@ public class GameActivity extends Activity implements OnClickListener
         //Try Move
         if (clickedspot.SpotState == 0)
         {
+            theselector.Deselector(selectedpiecespot.getpiece(), selectedpiecespot, listenspots);
+            selectedpiecespot.getpiece().OnMove(selectedpiecespot.getpiece(),selectedpiecespot, clickedspot);
+            selectedpiecespot.SpotState = 1;
+            clickedspot.getAppearance().setImageResource(selectedpiecespot.getAppearance().getResources().getIdentifier(selectedpiecespot.getAppearance().toString(),"id", getPackageName()));
+            selectedpiecespot.getAppearance().setImageResource(R.drawable.ni_tsquare);
+            selectedpiecespot = null;
+            clickedspot.SpotState = 2;
+
+
 
         }
 
         //Deselect piece
         if (clickedspot != null && theselector.InSelectedMode() && clickedspot.SpotState == 3)
         {
+            selectedpiecespot = null;
             clickedspot.SpotState = 2;
             theselector.Deselector(clickedspot.getpiece(), clickedspot, listenspots);
 
@@ -45,6 +55,7 @@ public class GameActivity extends Activity implements OnClickListener
         //Select piece
         if(theselector.Filter(clickedspot))
         {
+            selectedpiecespot = clickedspot;
             theselector.SelectedMode(clickedspot.getpiece(), clickedspot, listenspots);
             return;
         }

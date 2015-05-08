@@ -6,6 +6,7 @@ import java.util.List;
 public class Board {
 
     public List<Spot> spots = new ArrayList<Spot>();
+
     public Board(int BoardID, List<Spot> thespots)
     {
         spots = thespots;
