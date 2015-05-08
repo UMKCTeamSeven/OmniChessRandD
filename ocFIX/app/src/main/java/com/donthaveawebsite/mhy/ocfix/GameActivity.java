@@ -1,6 +1,7 @@
 package com.donthaveawebsite.mhy.ocfix;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,15 +33,14 @@ public class GameActivity extends Activity implements OnClickListener
         if (clickedspot.SpotState == 0)
         {
             theselector.Deselector(selectedpiecespot.getpiece(), selectedpiecespot, listenspots);
+            Drawable thepiece = selectedpiecespot.getAppearance().getDrawable();
+            clickedspot.getAppearance().setImageDrawable(thepiece);
             selectedpiecespot.getpiece().OnMove(selectedpiecespot.getpiece(),selectedpiecespot, clickedspot);
             selectedpiecespot.SpotState = 1;
-            clickedspot.getAppearance().setImageResource(selectedpiecespot.getAppearance().getResources().getIdentifier(selectedpiecespot.getAppearance().toString(),"id", getPackageName()));
             selectedpiecespot.getAppearance().setImageResource(R.drawable.ni_tsquare);
             selectedpiecespot = null;
             clickedspot.SpotState = 2;
-
-
-
+            return;
         }
 
         //Deselect piece
