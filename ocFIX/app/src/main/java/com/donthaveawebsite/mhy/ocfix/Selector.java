@@ -61,10 +61,7 @@ public class Selector
 
    public void Deselector(Piece piece , Spot spot, List<Spot> spots)
    {
-
-
-       if (spot.SpotState != 3)
-       {return;}
+       pieceselected = false;
        IsValid thetype = new IsValid(piece);
        for(Iterator<Spot> i = spots.iterator(); i.hasNext(); )
        {
@@ -73,9 +70,9 @@ public class Selector
            if(thetype.Verify(spot.piece, spot, dest))
            {
                if(dest.isOccupied())
-               {dest.SpotState = 2;}
+               {dest.SpotState = 2;}  //has piece
                else
-               {dest.SpotState = 1;}
+               {dest.SpotState = 1;}  //empty spot
                theupdater.UnHighlightValid(dest);
            }
 
