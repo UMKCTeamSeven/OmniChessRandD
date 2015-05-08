@@ -54,7 +54,9 @@ public class IsValid
 
                     else
                     {
-                        return ((Destination.y - 1 == Source.y) || ((Destination.x -1 == Source.x || Destination.x + 1 == Source.x) && ((Destination.y - 1) == Source.y)));
+                        if(!Destination.isOccupied())
+                            return ((Destination.y - 1 == Source.y) && Destination.x == Source.x);
+                        return ((Destination.y - 1 == Source.y) && ((Destination.x -1 == Source.x || Destination.x + 1 == Source.x)));
                     }
 
                 case king:

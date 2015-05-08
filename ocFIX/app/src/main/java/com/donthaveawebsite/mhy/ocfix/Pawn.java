@@ -19,7 +19,7 @@ public class Pawn extends Piece
     }
 
     @Override
-    public void OnMove(Pawn pawn, Spot source, Spot destination)
+    public void OnMove(Piece pawn, Spot source, Spot destination)
     {
         if (source == destination)
         {

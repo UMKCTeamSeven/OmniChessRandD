@@ -64,7 +64,7 @@ public class Piece {
     public void switchcolor() {if (this.color == "W") this.color ="B"; else this.color="W";}
     public String getcolor(Piece piece) {return this.color;}
 
-    public void OnMove(Pawn pawn, Spot source, Spot destination)
+    public void OnMove(Piece piece, Spot source, Spot destination)
     {
 
     }
