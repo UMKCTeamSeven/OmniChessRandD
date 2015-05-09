@@ -10,24 +10,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" /><![CDATA[
-
-
-
-
-        />
-
-
-
-
-
-    ]]>
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView22"
-        android:src="@drawable/ni_portal"
+        android:src="@drawable/ni_rookw"
         android:layout_marginTop="94dp"
         android:contentDescription="portal"
         android:clickable="true"

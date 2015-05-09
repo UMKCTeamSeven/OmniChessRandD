@@ -2,18 +2,18 @@ package com.donthaveawebsite.mhy.ocfix;
 
 public class Player
 {
-    private String color;
+    private char color;
     private boolean isTurn;
     private int score;
-    public Player(String color)
+    public Player(char color)
     {
         this.color = color;
         this.isTurn = false;
         this.score = 0;
     }
-    public void setTurn(boolean yourturn)
+    public void setTurn(boolean isTurn)
     {
-        this.isTurn = yourturn;
+        this.isTurn = isTurn;
     }
     public boolean IsTurn()
     {
@@ -23,7 +23,7 @@ public class Player
     {
         this.score += change;
     }
-    public String getColor()
+    public char getColor()
     {
         return this.color;
     }

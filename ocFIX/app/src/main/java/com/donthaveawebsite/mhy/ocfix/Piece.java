@@ -9,7 +9,7 @@ public class Piece {
 
     public IsValid type;
 
-    private String color = "B";
+    private char color = 'B';
     public int mc = 0;
 
     public Piece(boolean available, int x, int y, int z)
@@ -61,8 +61,8 @@ public class Piece {
     public void setZ(int z) {
         this.z = z;
     }
-    public void switchcolor() {if (this.color == "W") this.color ="B"; else this.color="W";}
-    public String getcolor(Piece piece) {return this.color;}
+    public void switchcolor() {if (this.color == 'W') this.color ='B'; else this.color='W';}
+    public char getcolor(Piece piece) {return this.color;}
 
     public void OnMove(Piece piece, Spot source, Spot destination)
     {

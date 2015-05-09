@@ -17,6 +17,7 @@ public class GameActivity extends Activity implements OnClickListener
     List<Spot> listenspots;
     Spot selectedpiecespot;
 
+
     public void onClick(View v)
     {Spot clickedspot = null;
         for(Iterator<Spot> i = listenspots.iterator(); i.hasNext(); )
@@ -40,6 +41,7 @@ public class GameActivity extends Activity implements OnClickListener
             selectedpiecespot.getAppearance().setImageResource(R.drawable.ni_tsquare);
             selectedpiecespot = null;
             clickedspot.SpotState = 2;
+            theselector.getCurrentPlayerColor();
             return;
         }
 
@@ -102,6 +104,22 @@ public class GameActivity extends Activity implements OnClickListener
         Pawn testpawn = new Pawn(true,1,1,1);
         Pawn testpawn2 = new Pawn(true,3,1,1);
         Pawn testpawn3 = new Pawn(true,5,1,1);
+        Pawn whitetestpawn = new Pawn(true,  2, 7,1);
+        Pawn whitetestpawn2 = new Pawn(true, 4, 7,1);
+        Pawn whitetestpawn3 = new Pawn(true, 5, 7,7);
+
+        whitetestpawn.switchcolor();
+        whitetestpawn2.switchcolor();
+        whitetestpawn3.switchcolor();
+
+        theboard.getSpot(2,7).placePiece(whitetestpawn);
+        theboard.getSpot(2,7).getAppearance().setImageResource(R.drawable.ni_pawnw);
+
+        theboard.getSpot(4,7).placePiece(whitetestpawn2);
+        theboard.getSpot(4,7).getAppearance().setImageResource(R.drawable.ni_pawnw);
+
+        theboard.getSpot(5,7).placePiece(whitetestpawn3);
+        theboard.getSpot(5,7).getAppearance().setImageResource(R.drawable.ni_pawnw);
 
         theboard.getSpot(1,1).placePiece(testpawn);
         theboard.getSpot(1,1).getAppearance().setImageResource(R.drawable.ni_pawn);
@@ -113,12 +131,18 @@ public class GameActivity extends Activity implements OnClickListener
         theboard.getSpot(5,1).placePiece(testpawn3);
         theboard.getSpot(5,1).getAppearance().setImageResource(R.drawable.ni_pawn);
 
-        Player white = new Player("W");
-        Player black = new Player("B");
+
+
+
+
+
+        Player white = new Player('W');
+        Player black = new Player('B');
         black.setTurn(true);
         List<Player> players = new ArrayList<Player>();
         //For now just the black player will be added
         players.add(black);
+        players.add(white);
         listenspots = ourspots;
         theselector = new Selector(players, ourspots);
 
