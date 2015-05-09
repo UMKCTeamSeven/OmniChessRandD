@@ -14,14 +14,20 @@ public class Selector
         this.players = players;
         theupdater = new Updater(toupdate);
     }
-    public String getCurrentPlayerColor()
+    public Player getCurrentPlayerColor()
     {             //Todo change method so it is not dependant on the amount of players
-        if (players.get(0).IsTurn())
+        if (this.players.get(0).IsTurn())
         {
-            return players.get(0).getColor();
+            players.get(0).setTurn(false);
+            players.get(1).setTurn(true);
+            return players.get(1);
+
         }
         else
-            return players.get(1).getColor();
+            players.get(1).setTurn(false);
+            players.get(0).setTurn(true);
+            return players.get(0);
+
     }
     //updates control layer when pieces are selected and deselected
     public boolean Filter(Spot spot)
@@ -31,9 +37,12 @@ public class Selector
         //Occupied and not available
         if (spot.isOccupied() && !spot.piece.isAvailable())
         {return false;}
-        //Occupied and is the piece of the player whose turn it is
-        return (spot.isOccupied() && spot.SpotState == 2 && spot.getpiece().getcolor(spot.getpiece()).equals(this.getCurrentPlayerColor()));
+         return VerifyPieceOwnership(spot);
 
+    }
+
+    private boolean VerifyPieceOwnership(Spot spot) {
+        return (spot.isOccupied() && spot.SpotState == 2 && ((players.get(0).IsTurn() && spot.getpiece().getcolor(spot.getpiece()) == players.get(0).getColor())|| (players.get(1).IsTurn() && spot.getpiece().getcolor(spot.getpiece()) == players.get(1).getColor())));
     }
 
     public boolean SelectedMode( Piece piece , Spot spot, List<Spot> spots)
