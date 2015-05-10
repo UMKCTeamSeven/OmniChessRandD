@@ -1,0 +1,18 @@
+Version 1.0 for alpha testing only
+test with the latest commit. 
+
+Current known issues : Ghost pieces.
+                       Occasional lock up in cases where 2 white pawns are next to each other in the same row. 
+                       Being able to select pieces that cannot move. 
+                       Being able to select and move ghost pieces. 
+                       
+                       Objective of the game : 1 player : get all the pieces to the other side
+                                                          This is possible
+                       
+                                               2 player : get all 3 of your pieces to the other side first
+                                               Tie condition is possible
+                                               both win conditions are possible
+                                                                
+                                                                
+                                                                If you find a new issue place it below
+                                                                
