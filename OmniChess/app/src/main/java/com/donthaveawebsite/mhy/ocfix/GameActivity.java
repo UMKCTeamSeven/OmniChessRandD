@@ -33,11 +33,12 @@ public class GameActivity extends Activity implements OnClickListener
         //Try Move
         if (clickedspot.SpotState == 0)
         {
+
             theselector.Deselector(selectedpiecespot.getpiece(), selectedpiecespot, listenspots);
             Drawable thepiece = selectedpiecespot.getAppearance().getDrawable();
             clickedspot.getAppearance().setImageDrawable(thepiece);
             selectedpiecespot.getpiece().OnMove(selectedpiecespot.getpiece(),selectedpiecespot, clickedspot);
-            selectedpiecespot.SpotState = 1;
+            selectedpiecespot.releaseSpot();
             selectedpiecespot.getAppearance().setImageResource(R.drawable.ni_tsquare);
             selectedpiecespot = null;
             clickedspot.SpotState = 2;

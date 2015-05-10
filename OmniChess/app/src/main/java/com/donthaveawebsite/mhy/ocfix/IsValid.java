@@ -78,8 +78,11 @@ public class IsValid
          }
 
     private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination) {
+
+        if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
+            return false;
         if ('B' == piece.getcolor(piece)) {
-            if (piece.getMC() == 0) {   //Going up the board TODO reverse logic for going up the board.
+            if (piece.getMC() == 0) {   //Going up the board
                 if (!Destination.isOccupied())
                     return ((((Destination.y - 2) == Source.y) || ((Destination.y - 1) == Source.y)) && Destination.x == Source.x && !Destination.isOccupied() );
                 else
@@ -96,7 +99,7 @@ public class IsValid
         }
         else //If ever 3+ colors make into switch
         {
-            if (piece.getMC() == 0) {   //Going up the board TODO reverse logic for going up the board.
+            if (piece.getMC() == 0) {   //Going down the board
                 if (!Destination.isOccupied())
                     return ((((Destination.y + 2) == Source.y) || ((Destination.y + 1) == Source.y)) && Destination.x == Source.x && !Destination.isOccupied());
                 else
