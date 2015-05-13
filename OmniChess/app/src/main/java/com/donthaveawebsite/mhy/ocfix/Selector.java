@@ -47,6 +47,43 @@ public class Selector
 
     public boolean SelectedMode( Piece piece , Spot spot, List<Spot> spots)
     {
+        return Select(piece, spot, spots);
+    }
+
+
+
+    public boolean InSelectedMode()
+    {
+        return pieceselected;
+    }
+
+   public void Deselector(Piece piece , Spot spot, List<Spot> spots)
+   {
+       Deselect(piece, spot, spots);
+   }
+
+
+    private void Deselect(Piece piece, Spot spot, List<Spot> spots) {
+        pieceselected = false;
+        IsValid thetype = new IsValid(piece);
+        for(Iterator<Spot> i = spots.iterator(); i.hasNext(); )
+        {
+            Spot dest = i.next();
+
+            if(thetype.Verify(spot.piece, spot, dest))
+            {
+                if(dest.isOccupied())
+                {dest.SpotState = 2;}  //has piece
+                else
+                {dest.SpotState = 1;}  //empty spot
+                theupdater.UnHighlightValid(dest);
+            }
+
+
+         }
+    }
+
+    private boolean Select(Piece piece, Spot spot, List<Spot> spots) {
         pieceselected = true;
         IsValid thetype = new IsValid(piece);
         spot.SpotState = 3;
@@ -62,35 +99,6 @@ public class Selector
 
         return true;
     }
-
-    public boolean InSelectedMode()
-    {
-        return pieceselected;
-    }
-
-   public void Deselector(Piece piece , Spot spot, List<Spot> spots)
-   {
-       pieceselected = false;
-       IsValid thetype = new IsValid(piece);
-       for(Iterator<Spot> i = spots.iterator(); i.hasNext(); )
-       {
-           Spot dest = i.next();
-
-           if(thetype.Verify(spot.piece, spot, dest))
-           {
-               if(dest.isOccupied())
-               {dest.SpotState = 2;}  //has piece
-               else
-               {dest.SpotState = 1;}  //empty spot
-               theupdater.UnHighlightValid(dest);
-           }
-
-
-        }
-
-
-   }
-
 
 
 }//endclass

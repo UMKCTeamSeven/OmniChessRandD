@@ -38,19 +38,8 @@ public class IsValid
             switch(piecetypes)
             {
                 case pawn:
-                    //oh shit how does casting work in java
-                    //This might have to change...
-                    //pseudo code
-
-                    //Still needs diagonal attacking, and en passant
-                    //Only works for pawns going from L to R
-
-
-                    return PawnLogicCheck(piece, Source, Destination);
-
-
-
-
+                //Does not have enpasant
+                return PawnLogicCheck(piece, Source, Destination);
                 case king:
                     //needs logic
                     break;

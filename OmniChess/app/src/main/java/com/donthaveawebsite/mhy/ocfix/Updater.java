@@ -65,7 +65,7 @@ public class Updater extends Activity  {    //Updates piece layer after move is 
             }
             if (spot.SpotState == 2)
             {
-                //get piece type
+                //get piece type and color
                 //make sure appearances match
             }
         }
