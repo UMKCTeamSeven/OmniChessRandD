@@ -32,11 +32,11 @@ public class PieceTest extends AndroidTestCase
     public void testPieceColor()
     {
         Piece num1 = new Piece (true,0,0,0);
-        Assert.assertTrue(num1.getcolor(num1) =="B");
+        Assert.assertTrue(num1.getcolor(num1) =='B');
         num1.switchcolor();
-        Assert.assertTrue(num1.getcolor(num1) =="W");
+        Assert.assertTrue(num1.getcolor(num1) =='W');
         num1.switchcolor();
-        Assert.assertTrue(num1.getcolor(num1) =="B");
+        Assert.assertTrue(num1.getcolor(num1) =='B');
     }
 
     public void testPieceXYZ()

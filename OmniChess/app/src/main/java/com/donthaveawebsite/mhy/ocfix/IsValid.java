@@ -44,8 +44,7 @@ public class IsValid
                     //needs logic
                     break;
                 case knight:
-                    //needs logic
-                    break;
+                    return KnightLogicCheck(piece, Source, Destination);
                 case bishop:
                     //needs logic
                     break;
@@ -65,6 +64,13 @@ public class IsValid
 
             return false; //Default returns false, piece type not added, or shouldnt have been selected, off to the debug you go
          }
+
+    private boolean KnightLogicCheck(Piece piece, Spot Source, Spot Destination) {
+        if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
+            return false;
+        return (    (( (Destination.x +1 == Source.x) || (Destination.x -1)  == Source.x) && ((Destination.y + 2 ==  Source.y) || Destination.y -2 == Source.y)) ||
+                ( (Destination.x + 2 == Source.x) || (Destination.x - 2)  == Source.x) && ((Destination.y + 1 ==  Source.y) || Destination.y - 1 == Source.y));
+    }
 
     private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination) {
 

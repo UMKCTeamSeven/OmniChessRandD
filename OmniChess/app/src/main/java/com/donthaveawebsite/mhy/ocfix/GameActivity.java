@@ -102,28 +102,31 @@ public class GameActivity extends Activity implements OnClickListener
            // String text = spot.getAppearance().toString() + " " + spot.getSelector().toString();
 
         }
-        Pawn testpawn = new Pawn(true,1,1,1);
+
         Pawn testpawn2 = new Pawn(true,3,1,1);
         Pawn testpawn3 = new Pawn(true,5,1,1);
-        Pawn whitetestpawn = new Pawn(true,  2, 7,1);
+
+        Knight whitetestknight = new Knight(true,  2, 7,1);
+        Knight testknight = new Knight(true,1,1,1);
+
         Pawn whitetestpawn2 = new Pawn(true, 4, 7,1);
         Pawn whitetestpawn3 = new Pawn(true, 5, 7,7);
 
-        whitetestpawn.switchcolor();
+        whitetestknight.switchcolor();
         whitetestpawn2.switchcolor();
         whitetestpawn3.switchcolor();
 
-        theboard.getSpot(2,7).placePiece(whitetestpawn);
-        theboard.getSpot(2,7).getAppearance().setImageResource(R.drawable.ni_pawnw);
+        theboard.getSpot(1,1).placePiece(testknight);
+        theboard.getSpot(1,1).getAppearance().setImageResource(R.drawable.ni_bknight);
+        theboard.getSpot(2,7).placePiece(whitetestknight);
+        theboard.getSpot(2,7).getAppearance().setImageResource(R.drawable.ni_wknight);
 
         theboard.getSpot(4,7).placePiece(whitetestpawn2);
         theboard.getSpot(4,7).getAppearance().setImageResource(R.drawable.ni_pawnw);
-
         theboard.getSpot(5,7).placePiece(whitetestpawn3);
         theboard.getSpot(5,7).getAppearance().setImageResource(R.drawable.ni_pawnw);
 
-        theboard.getSpot(1,1).placePiece(testpawn);
-        theboard.getSpot(1,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+
 
 
         theboard.getSpot(3,1).placePiece(testpawn2);
