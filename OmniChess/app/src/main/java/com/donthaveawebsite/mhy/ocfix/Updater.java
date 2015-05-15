@@ -25,11 +25,22 @@ public class Updater extends Activity  {    //Updates piece layer after move is 
         //update pieces layer
         //check logic alignment
     }
+    public boolean NoPossibleMoves()
+    {
+        return validMoves.isEmpty();
+    }
 
     public boolean HighlightValid(Spot destination)
-    {
+    {   if (destination.isOccupied())
+        {
+            destination.getSelector().setImageResource(R.drawable.ni_redsquare);
+            validMoves.add(destination);
+        }
+        else
+        {
         destination.getSelector().setImageResource(R.drawable.ni_greesquare);
         validMoves.add(destination);
+        }
         return true;
     }
     public boolean UnHighlightValid(Spot destination)

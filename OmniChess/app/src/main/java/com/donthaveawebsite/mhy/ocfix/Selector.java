@@ -62,6 +62,11 @@ public class Selector
        Deselect(piece, spot, spots);
    }
 
+    private void FastDeselect(Piece piece, Spot spot)
+    {
+        pieceselected = false;
+        spot.getSelector().setImageResource(R.drawable.ni_tsquare);
+    }
 
     private void Deselect(Piece piece, Spot spot, List<Spot> spots) {
         pieceselected = false;
@@ -81,6 +86,7 @@ public class Selector
 
 
          }
+        spot.getSelector().setImageResource(R.drawable.ni_tsquare);
     }
 
     private boolean Select(Piece piece, Spot spot, List<Spot> spots) {
@@ -95,8 +101,14 @@ public class Selector
                 dest.SpotState = 0;
                 theupdater.HighlightValid(dest);
             }
-        }
 
+        }
+        if (theupdater.NoPossibleMoves())
+        {
+            FastDeselect(piece, spot);
+            return false;
+        }
+        spot.getSelector().setImageResource(R.drawable.ni_bluesquare);
         return true;
     }
 
