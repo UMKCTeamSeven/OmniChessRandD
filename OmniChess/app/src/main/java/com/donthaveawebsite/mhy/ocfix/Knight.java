@@ -11,7 +11,7 @@ public class Knight extends Piece
         this.type = new IsValid(IsValid.piecetype.knight);
     }
 
-    public void OnMove(Piece knight, Spot source, Spot destination)
+    public void OnMove(Piece knight, Spot source, Spot destination, Board theboard)
     {
         if (source == destination)
         {
@@ -19,7 +19,7 @@ public class Knight extends Piece
             return;
         }
         Mover theMove = new Mover();
-        boolean moved = theMove.TryMove(knight, source, destination);
+        boolean moved = theMove.TryMove(knight, source, destination, theboard);
         try
         {
             if (moved)

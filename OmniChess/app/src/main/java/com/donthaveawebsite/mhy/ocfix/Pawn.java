@@ -19,7 +19,7 @@ public class Pawn extends Piece
     }
 
     @Override
-    public void OnMove(Piece pawn, Spot source, Spot destination)
+    public void OnMove(Piece pawn, Spot source, Spot destination, Board theboard)
     {
         if (source == destination)
         {
@@ -28,7 +28,7 @@ public class Pawn extends Piece
         }
 
         Mover theMove = new Mover();
-        boolean moved = theMove.TryMove(pawn, source, destination);
+        boolean moved = theMove.TryMove(pawn, source, destination, theboard);
         try
         {
         if (moved)

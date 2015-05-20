@@ -8,7 +8,7 @@ public class Mover extends IsValid {
     public Mover() {};
 
 
-    public boolean TryMove(Piece piece, Spot Source, Spot Destination) throws NullPointerException
+    public boolean TryMove(Piece piece, Spot Source, Spot Destination, Board theboard) throws NullPointerException
     {
         if (piece == null || Destination == null || Source == null) // if any of the parameters are null, something is very wrong
         {
@@ -16,7 +16,7 @@ public class Mover extends IsValid {
             throw objectmissing;
         }
         //if related piece call is move valid with Sorce.r and Destination.r here (To be imeplamented)
-        return(IsMoveValid(piece, Source, Destination));
+        return(IsMoveValid(piece, Source, Destination, theboard));
 
     }
 

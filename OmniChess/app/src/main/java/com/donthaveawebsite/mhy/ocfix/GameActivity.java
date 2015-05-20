@@ -16,6 +16,7 @@ public class GameActivity extends Activity implements OnClickListener
     Selector theselector;
     List<Spot> listenspots;
     Spot selectedpiecespot;
+    Board mainboard;
 
 
     public void onClick(View v)
@@ -34,10 +35,10 @@ public class GameActivity extends Activity implements OnClickListener
         if (clickedspot.SpotState == 0)
         {
 
-            theselector.Deselector(selectedpiecespot.getpiece(), selectedpiecespot, listenspots);
+            theselector.Deselector(selectedpiecespot.getpiece(), selectedpiecespot, listenspots, mainboard);
             Drawable thepiece = selectedpiecespot.getAppearance().getDrawable();
             clickedspot.getAppearance().setImageDrawable(thepiece);
-            selectedpiecespot.getpiece().OnMove(selectedpiecespot.getpiece(),selectedpiecespot, clickedspot);
+            selectedpiecespot.getpiece().OnMove(selectedpiecespot.getpiece(),selectedpiecespot, clickedspot, mainboard);
             selectedpiecespot.releaseSpot();
             selectedpiecespot.getAppearance().setImageResource(R.drawable.ni_tsquare);
             selectedpiecespot = null;
@@ -51,7 +52,7 @@ public class GameActivity extends Activity implements OnClickListener
         {
             selectedpiecespot = null;
             clickedspot.SpotState = 2;
-            theselector.Deselector(clickedspot.getpiece(), clickedspot, listenspots);
+            theselector.Deselector(clickedspot.getpiece(), clickedspot, listenspots, mainboard);
 
             return;
         }
@@ -59,7 +60,7 @@ public class GameActivity extends Activity implements OnClickListener
         if(theselector.Filter(clickedspot))
         {
             selectedpiecespot = clickedspot;
-            theselector.SelectedMode(clickedspot.getpiece(), clickedspot, listenspots);
+            theselector.SelectedMode(clickedspot.getpiece(), clickedspot, listenspots, mainboard);
             return;
         }
     }
@@ -102,7 +103,7 @@ public class GameActivity extends Activity implements OnClickListener
            // String text = spot.getAppearance().toString() + " " + spot.getSelector().toString();
 
         }
-
+    mainboard = theboard;
         Pawn testpawn2 = new Pawn(true,3,1,1);
         Pawn testpawn3 = new Pawn(true,5,1,1);
 
@@ -148,7 +149,7 @@ public class GameActivity extends Activity implements OnClickListener
         players.add(black);
         players.add(white);
         listenspots = ourspots;
-        theselector = new Selector(players, ourspots);
+        theselector = new Selector(players, ourspots, theboard);
 
 
     }

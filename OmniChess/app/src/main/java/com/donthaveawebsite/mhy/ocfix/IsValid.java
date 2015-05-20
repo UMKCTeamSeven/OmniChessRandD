@@ -25,21 +25,21 @@ public class IsValid
     public IsValid(piecetype piecetypes)
     {this.piecetypes = piecetypes;}
     //Methods
-    public boolean IsMoveValid(Piece piece, Spot Source, Spot Destination)
+    public boolean IsMoveValid(Piece piece, Spot Source, Spot Destination, Board theboard)
     {
         IsValid thetype = new IsValid(piece);
-        return thetype.Verify(piece, Source, Destination);
+        return thetype.Verify(piece, Source, Destination, theboard);
     }
 
 
 
-        public boolean Verify(Piece piece, Spot Source, Spot Destination)
+        public boolean Verify(Piece piece, Spot Source, Spot Destination, Board theboard)
          {
             switch(piecetypes)
             {
                 case pawn:
                 //Does not have enpasant
-                return PawnLogicCheck(piece, Source, Destination);
+                return PawnLogicCheck(piece, Source, Destination, theboard);
                 case king:
                     //needs logic
                     break;
@@ -72,14 +72,14 @@ public class IsValid
                 ( (Destination.x + 2 == Source.x) || (Destination.x - 2)  == Source.x) && ((Destination.y + 1 ==  Source.y) || Destination.y - 1 == Source.y));
     }
 
-    private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination) {
+    private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
 
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
             return false;
         if ('B' == piece.getcolor(piece)) {
             if (piece.getMC() == 0) {   //Going up the board
                 if (!Destination.isOccupied())
-                    return ((((Destination.y - 2) == Source.y) || ((Destination.y - 1) == Source.y)) && Destination.x == Source.x && !Destination.isOccupied() );
+                    return ((((Destination.y - 2) == Source.y) || ((Destination.y - 1) == Source.y)) && Destination.x == Source.x && !Destination.isOccupied() && (!((theboard.getSpot(Source.x, (Source.y +1))).isOccupied())));
                 else
                     return ((Destination.x - 1 == Source.x || Destination.x + 1 == Source.x) && ((Destination.y - 1) == Source.y));
             }   //above line is a diagonal attack
@@ -96,7 +96,7 @@ public class IsValid
         {
             if (piece.getMC() == 0) {   //Going down the board
                 if (!Destination.isOccupied())
-                    return ((((Destination.y + 2) == Source.y) || ((Destination.y + 1) == Source.y)) && Destination.x == Source.x && !Destination.isOccupied());
+                    return ((((Destination.y + 2) == Source.y) || ((Destination.y + 1) == Source.y)) && Destination.x == Source.x && !Destination.isOccupied() && (!((theboard.getSpot(Source.x, (Source.y -1))).isOccupied())));
                 else
                     return ((Destination.x - 1 == Source.x || Destination.x + 1 == Source.x) && ((Destination.y + 1) == Source.y));
             }   //above line is a diagonal attack

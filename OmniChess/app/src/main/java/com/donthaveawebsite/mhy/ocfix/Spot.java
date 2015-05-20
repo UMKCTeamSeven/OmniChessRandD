@@ -43,6 +43,8 @@ public class Spot {
 
     }
 
+
+
     public void releaseSpot() {//REMOVES A PIECE!!
         this.piece = null;
         this.SpotState = 1;
