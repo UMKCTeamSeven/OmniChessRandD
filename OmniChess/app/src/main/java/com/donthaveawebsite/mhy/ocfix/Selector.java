@@ -114,6 +114,7 @@ public class Selector
         if (theupdater.NoPossibleMoves())
         {
             FastDeselect(piece, spot);
+            spot.SpotState =2;
             return false;
         }
         spot.getSelector().setImageResource(R.drawable.ni_bluesquare);
