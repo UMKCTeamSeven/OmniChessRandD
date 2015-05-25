@@ -65,6 +65,19 @@ public class IsValid
             return false; //Default returns false, piece type not added, or shouldnt have been selected, off to the debug you go
          }
 
+    public boolean OneN(Piece piece, Spot Source, Spot Destination, Board theboard)
+    {
+        return !(theboard.getSpot(Source.x, (Source.y + 1)).isOccupied());
+    }
+
+    public boolean SpotSEmpty(Piece piece, Spot Source, Spot Destination, Board theboard)
+    {
+        return !(theboard.getSpot(Source.x, (Source.y - 1)).isOccupied());
+    }
+
+
+
+
     private boolean KnightLogicCheck(Piece piece, Spot Source, Spot Destination) {
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
             return false;

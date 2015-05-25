@@ -31,7 +31,33 @@ public class GameActivity extends Activity implements OnClickListener
         }
         if (clickedspot == null) {return;}
 
-        //Try Move
+        if (tryMove(clickedspot)) return;
+        if (deselectPiece(clickedspot)) return;
+        selectPiece(clickedspot);
+    }
+
+    private void selectPiece(Spot clickedspot) {
+        if(theselector.Filter(clickedspot))
+        {
+            selectedpiecespot = clickedspot;
+            theselector.SelectedMode(clickedspot.getpiece(), clickedspot, listenspots, mainboard);
+            return;
+        }
+    }
+
+    private boolean deselectPiece(Spot clickedspot) {
+        if (clickedspot != null && theselector.InSelectedMode() && clickedspot.SpotState == 3)
+        {
+            selectedpiecespot = null;
+            clickedspot.SpotState = 2;
+            theselector.Deselector(clickedspot.getpiece(), clickedspot, listenspots, mainboard);
+
+            return true;
+        }
+        return false;
+    }
+
+    private boolean tryMove(Spot clickedspot) {
         if (clickedspot.SpotState == 0)
         {
 
@@ -44,25 +70,9 @@ public class GameActivity extends Activity implements OnClickListener
             selectedpiecespot = null;
             clickedspot.SpotState = 2;
             theselector.getCurrentPlayerColor();
-            return;
+            return true;
         }
-
-        //Deselect piece
-        if (clickedspot != null && theselector.InSelectedMode() && clickedspot.SpotState == 3)
-        {
-            selectedpiecespot = null;
-            clickedspot.SpotState = 2;
-            theselector.Deselector(clickedspot.getpiece(), clickedspot, listenspots, mainboard);
-
-            return;
-        }
-        //Select piece
-        if(theselector.Filter(clickedspot))
-        {
-            selectedpiecespot = clickedspot;
-            theselector.SelectedMode(clickedspot.getpiece(), clickedspot, listenspots, mainboard);
-            return;
-        }
+        return false;
     }
 
     @Override
