@@ -2,6 +2,7 @@ package com.donthaveawebsite.mhy.ocfix;
 /**
  * Created by Matthew on 3/29/2015.
  */
+
 public class IsValid
         //determines if move is valid
 {
@@ -49,8 +50,8 @@ public class IsValid
                     //needs logic
                     break;
                 case rook:
-                    //needs logic
-                    break;
+                    return RookLogicCheck(piece, Source, Destination, theboard);
+
                 case queen:
                     //need logic
                     break;
@@ -65,16 +66,108 @@ public class IsValid
             return false; //Default returns false, piece type not added, or shouldnt have been selected, off to the debug you go
          }
 
-    public boolean OneN(Piece piece, Spot Source, Spot Destination, Board theboard)
+    public Spot OneN(Spot Source, Board theboard)
     {
-        return !(theboard.getSpot(Source.x, (Source.y + 1)).isOccupied());
+        return (theboard.getSpot(Source.x, (Source.y + 1)));
+    }
+    public Spot OneS(Spot Source, Board theboard)
+    {
+        return (theboard.getSpot(Source.x, (Source.y - 1)));
     }
 
-    public boolean SpotSEmpty(Piece piece, Spot Source, Spot Destination, Board theboard)
+    public Spot OneR(Spot Source, Board theboard)
     {
-        return !(theboard.getSpot(Source.x, (Source.y - 1)).isOccupied());
+        return (theboard.getSpot(Source.x + 1, (Source.y)));
+    }
+    public Spot OneL(Spot Source, Board theboard)
+    {
+        return (theboard.getSpot(Source.x - 1, (Source.y)));
     }
 
+
+
+
+    private boolean RookLogicCheck(Piece piece,Spot Source,Spot Destination, Board theboard)
+    {
+        if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
+            return false;
+
+        //H or V
+        if (Source.x - Destination.x == 0)//V
+        {
+
+            if(Source.y != Destination.y)
+            {
+               if (Source.y - Destination.y < 0) //going up the board
+               {
+                   Spot Sspot = Source;
+                   while(Sspot != Destination)
+                   {
+                      if (OneN(Sspot, theboard).isOccupied())
+                      {
+                          if (OneN(Sspot, theboard) == Destination)
+                          {return true;}
+                          return false;
+                      }
+                       Sspot = OneN(Sspot, theboard);
+                   }
+                   return true;
+               }
+                else
+               {
+                   Spot Sspot = Source;
+                   while(Sspot != Destination)
+                   {
+                       if (OneS(Sspot, theboard).isOccupied())
+                       {
+                           if (OneS(Sspot, theboard) == Destination)
+                           {return true;}
+                           return false;
+                       }
+                       Sspot = OneS(Sspot, theboard);
+                   }
+                   return true;
+               }
+
+            }
+
+
+        }
+        if (Source.y - Destination.y == 0)//H
+        {
+
+            if (Source.x != Destination.x) {
+                if (Source.x - Destination.x < 0)// going right
+                {
+                    Spot Sspot = Source;
+                    while (Sspot != Destination) {
+                        if (OneR(Sspot, theboard).isOccupied()) {
+                            if (OneR(Sspot, theboard) == Destination) {
+                                return true;
+                            }
+                            return false;
+                        }
+                        Sspot = OneR(Sspot, theboard);
+                    }
+                    return true;
+                } else {
+                    Spot Sspot = Source;
+                    while (Sspot != Destination) {
+                        if (OneL(Sspot, theboard).isOccupied()) {
+                            if (OneL(Sspot, theboard) == Destination) {
+                                return true;
+                            }
+                            return false;
+                        }
+                        Sspot = OneL(Sspot, theboard);
+                    }
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
 
 

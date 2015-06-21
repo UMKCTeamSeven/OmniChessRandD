@@ -120,8 +120,8 @@ public class GameActivity extends Activity implements OnClickListener
         Knight whitetestknight = new Knight(true,  2, 7,1);
         Knight testknight = new Knight(true,1,1,1);
 
-        Pawn whitetestpawn2 = new Pawn(true, 4, 7,1);
-        Pawn whitetestpawn3 = new Pawn(true, 5, 7,7);
+        Rook whitetestpawn2 = new Rook(true, 4, 7,1);
+        Rook whitetestpawn3 = new Rook(true, 5, 7,7);
 
         whitetestknight.switchcolor();
         whitetestpawn2.switchcolor();
@@ -133,9 +133,9 @@ public class GameActivity extends Activity implements OnClickListener
         theboard.getSpot(2,7).getAppearance().setImageResource(R.drawable.ni_wknight);
 
         theboard.getSpot(4,7).placePiece(whitetestpawn2);
-        theboard.getSpot(4,7).getAppearance().setImageResource(R.drawable.ni_pawnw);
+        theboard.getSpot(4,7).getAppearance().setImageResource(R.drawable.ni_rookw);
         theboard.getSpot(5,7).placePiece(whitetestpawn3);
-        theboard.getSpot(5,7).getAppearance().setImageResource(R.drawable.ni_pawnw);
+        theboard.getSpot(5,7).getAppearance().setImageResource(R.drawable.ni_rookw);
 
 
 
