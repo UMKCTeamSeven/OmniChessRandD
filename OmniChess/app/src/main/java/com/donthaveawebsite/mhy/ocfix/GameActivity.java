@@ -117,27 +117,47 @@ public class GameActivity extends Activity implements OnClickListener
         Pawn testpawn2 = new Pawn(true,3,1,1);
         Pawn testpawn3 = new Pawn(true,5,1,1);
 
-        Knight whitetestknight = new Knight(true,  2, 7,1);
-        Knight testknight = new Knight(true,1,1,1);
+        Knight whitetestknight = new Knight(true,  1, 7,1);
+        Knight testknight = new Knight(true,1,0,1);
 
-        Rook whitetestpawn2 = new Rook(true, 4, 7,1);
-        Rook whitetestpawn3 = new Rook(true, 5, 7,7);
+        Knight whiteknight = new Knight(true,  6, 7,1);
+        Knight blackknight = new Knight(true,6,0,1);
+
+
+        Rook whitetestrook2 = new Rook(true, 0, 7,1);
+        Rook whitetestrook3 = new Rook(true, 7, 7,7);
+
+        Rook blackrook = new Rook(true, 0,0, 1);
+        Rook blackrook2 = new Rook(true, 7,0, 1);
 
         whitetestknight.switchcolor();
-        whitetestpawn2.switchcolor();
-        whitetestpawn3.switchcolor();
+        whitetestrook2.switchcolor();
+        whitetestrook3.switchcolor();
+        whiteknight.switchcolor();
 
-        theboard.getSpot(1,1).placePiece(testknight);
-        theboard.getSpot(1,1).getAppearance().setImageResource(R.drawable.ni_bknight);
-        theboard.getSpot(2,7).placePiece(whitetestknight);
-        theboard.getSpot(2,7).getAppearance().setImageResource(R.drawable.ni_wknight);
+        theboard.getSpot(1,0).placePiece(testknight);
+        theboard.getSpot(1,0).getAppearance().setImageResource(R.drawable.ni_bknight);
+        theboard.getSpot(1,7).placePiece(whitetestknight);
+        theboard.getSpot(1,7).getAppearance().setImageResource(R.drawable.ni_wknight);
 
-        theboard.getSpot(4,7).placePiece(whitetestpawn2);
-        theboard.getSpot(4,7).getAppearance().setImageResource(R.drawable.ni_rookw);
-        theboard.getSpot(5,7).placePiece(whitetestpawn3);
-        theboard.getSpot(5,7).getAppearance().setImageResource(R.drawable.ni_rookw);
+        theboard.getSpot(6,0).placePiece(blackknight);
+        theboard.getSpot(6,0).getAppearance().setImageResource(R.drawable.ni_bknight);
+        theboard.getSpot(6,7).placePiece(whiteknight);
+        theboard.getSpot(6,7).getAppearance().setImageResource(R.drawable.ni_wknight);
 
 
+
+
+
+        theboard.getSpot(0,7).placePiece(whitetestrook2);
+        theboard.getSpot(0,7).getAppearance().setImageResource(R.drawable.ni_rookw);
+        theboard.getSpot(7,7).placePiece(whitetestrook3);
+        theboard.getSpot(7,7).getAppearance().setImageResource(R.drawable.ni_rookw);
+
+        theboard.getSpot(7,0).placePiece(blackrook2);
+        theboard.getSpot(7,0).getAppearance().setImageResource(R.drawable.ni_rook);
+        theboard.getSpot(0,0).placePiece(blackrook);
+        theboard.getSpot(0,0).getAppearance().setImageResource(R.drawable.ni_rook);
 
 
         theboard.getSpot(3,1).placePiece(testpawn2);

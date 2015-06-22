@@ -47,14 +47,11 @@ public class IsValid
                 case knight:
                     return KnightLogicCheck(piece, Source, Destination);
                 case bishop:
-                    //needs logic
-                    break;
+                    return BishopLogicCheck(piece, Source, Destination, theboard);
                 case rook:
                     return RookLogicCheck(piece, Source, Destination, theboard);
-
                 case queen:
-                    //need logic
-                    break;
+                    return (((BishopLogicCheck(piece,Source,Destination, theboard)) || (RookLogicCheck(piece, Source, Destination, theboard))));
                 case portal:
                     //Can't move portals, can't select portals either, HOW DID THIS HAPPEN? Go debug right meow
                     break;
@@ -82,6 +79,22 @@ public class IsValid
     public Spot OneL(Spot Source, Board theboard)
     {
         return (theboard.getSpot(Source.x - 1, (Source.y)));
+    }
+    public Spot OneLN(Spot Source, Board theboard)
+    {
+        return (theboard.getSpot(Source.x - 1, (Source.y + 1)));
+    }
+    public Spot OneLS(Spot Source, Board theboard)
+    {
+        return (theboard.getSpot(Source.x - 1, (Source.y -1)));
+    }
+    public Spot OneRS(Spot Source, Board theboard)
+    {
+        return (theboard.getSpot(Source.x + 1, (Source.y -1)));
+    }
+    public Spot OneRN(Spot Source, Board theboard)
+    {
+        return (theboard.getSpot(Source.x + 1, (Source.y + 1)));
     }
 
 
@@ -168,7 +181,13 @@ public class IsValid
 
         return false;
     }
+    private boolean BishopLogicCheck(Piece piece,Spot Source, Spot Destination, Board theboard)
+    {
+        if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
+            return false;
 
+        return false;
+    }
 
 
     private boolean KnightLogicCheck(Piece piece, Spot Source, Spot Destination) {
