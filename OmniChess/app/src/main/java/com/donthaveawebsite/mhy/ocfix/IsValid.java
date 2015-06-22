@@ -32,10 +32,8 @@ public class IsValid
         return thetype.Verify(piece, Source, Destination, theboard);
     }
 
-
-
         public boolean Verify(Piece piece, Spot Source, Spot Destination, Board theboard)
-         {
+         {  
             switch(piecetypes)
             {
                 case pawn:
@@ -80,23 +78,34 @@ public class IsValid
     {
         return (theboard.getSpot(Source.x - 1, (Source.y)));
     }
-    public Spot OneLN(Spot Source, Board theboard)
+
+
+    public Spot OneLN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
-        return (theboard.getSpot(Source.x - 1, (Source.y + 1)));
+            return (theboard.getSpot(Source.x - 1, (Source.y + 1)));
     }
-    public Spot OneLS(Spot Source, Board theboard)
+    public Spot OneLS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
-        return (theboard.getSpot(Source.x - 1, (Source.y -1)));
+            return (theboard.getSpot(Source.x - 1, (Source.y - 1)));
     }
-    public Spot OneRS(Spot Source, Board theboard)
+    public Spot OneRS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
-        return (theboard.getSpot(Source.x + 1, (Source.y -1)));
+            return (theboard.getSpot(Source.x + 1, (Source.y - 1)));
     }
-    public Spot OneRN(Spot Source, Board theboard)
+
+    public Spot OneRN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
         return (theboard.getSpot(Source.x + 1, (Source.y + 1)));
     }
 
+    public boolean IsEdge(Spot spot, Board theboard)
+    {
+        if ( (spot.x == 0 || spot.x == 7))
+        {return true;}
+        if ( (spot.y == 0 || spot.y == 7))
+        {return true;}
+        return false;
+    }
 
 
 
@@ -186,6 +195,96 @@ public class IsValid
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
             return false;
 
+        try
+        {
+            return  InBishopPath(Source, Destination, theboard);
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+
+        }
+           return false;
+    }
+
+    private Boolean InBishopPath(Spot Source, Spot Destination, Board theboard) {
+        if (Source.y - Destination.y < 0)
+        {
+            //NR or NL
+            if (Source.x - Destination.x < 0) //going NR
+            {
+                Spot Sspot = Source;
+                while (Sspot != Destination)
+                {
+                    if (IsEdge(Sspot, theboard)&& Sspot != Source)
+                        return false;
+                    if (OneRN(Sspot, theboard).isOccupied()) {
+                        if (OneRN(Sspot, theboard) == Destination) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    Sspot = OneRN(Sspot, theboard);
+                }
+                return true;
+            }
+            if (Source.x - Destination.x > 0) //going NL
+            {
+                Spot Sspot = Source;
+
+                while (Sspot != Destination)
+                {
+                    if (IsEdge(Sspot, theboard) && Sspot != Source)
+                        return false;
+                    if (OneLN(Sspot, theboard).isOccupied()) {
+                        if (OneLN(Sspot, theboard) == Destination) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    Sspot = OneLN(Sspot, theboard);
+                }
+                return true;
+            }
+        }
+        if (Source.y - Destination.y > 0)
+        {
+            //SR or SL
+            if (Source.x - Destination.x < 0) //going SR
+            {
+                Spot Sspot = Source;
+
+                while (Sspot != Destination) {
+                    if (IsEdge(Sspot, theboard) && Sspot != Source)
+                        return false;
+                    if (OneRS(Sspot, theboard).isOccupied()) {
+                        if (OneRS(Sspot, theboard) == Destination) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    Sspot = OneRS(Sspot, theboard);
+                }
+                return true;
+            }
+            if (Source.x - Destination.x > 0)
+            {
+                Spot Sspot = Source;
+
+                while (Sspot != Destination) {
+                    if (IsEdge(Sspot, theboard) && Sspot != Source)
+                        return false;
+                    if (OneLS(Sspot, theboard).isOccupied()) {
+                        if (OneLS(Sspot, theboard) == Destination) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    Sspot = OneLS(Sspot, theboard);
+                }
+                return true;
+            }
+
+        }
         return false;
     }
 

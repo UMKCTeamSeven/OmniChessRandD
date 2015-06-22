@@ -125,15 +125,23 @@ public class GameActivity extends Activity implements OnClickListener
 
 
         Rook whitetestrook2 = new Rook(true, 0, 7,1);
-        Rook whitetestrook3 = new Rook(true, 7, 7,7);
+        Rook whitetestrook3 = new Rook(true, 7, 7,1);
 
         Rook blackrook = new Rook(true, 0,0, 1);
         Rook blackrook2 = new Rook(true, 7,0, 1);
+
+        Bishop blackbish = new Bishop(true, 2,0,1);
+        Bishop blackbish2 = new Bishop(true, 5,0,1);
+
+        Bishop whitebish = new Bishop(true, 2,7,1);
+        Bishop whitebish2 = new Bishop(true, 5,7,1);
 
         whitetestknight.switchcolor();
         whitetestrook2.switchcolor();
         whitetestrook3.switchcolor();
         whiteknight.switchcolor();
+        whitebish.switchcolor();
+        whitebish2.switchcolor();
 
         theboard.getSpot(1,0).placePiece(testknight);
         theboard.getSpot(1,0).getAppearance().setImageResource(R.drawable.ni_bknight);
@@ -145,8 +153,15 @@ public class GameActivity extends Activity implements OnClickListener
         theboard.getSpot(6,7).placePiece(whiteknight);
         theboard.getSpot(6,7).getAppearance().setImageResource(R.drawable.ni_wknight);
 
+        theboard.getSpot(2,0).placePiece(blackbish);
+        theboard.getSpot(2,0).getAppearance().setImageResource(R.drawable.ni_bishop);
+        theboard.getSpot(5,0).placePiece(blackbish2);
+        theboard.getSpot(5,0).getAppearance().setImageResource(R.drawable.ni_bishop);
 
-
+        theboard.getSpot(2,7).placePiece(whitebish);
+        theboard.getSpot(2,7).getAppearance().setImageResource(R.drawable.ni_bishopw);
+        theboard.getSpot(5,7).placePiece(whitebish2);
+        theboard.getSpot(5,7).getAppearance().setImageResource(R.drawable.ni_bishopw);
 
 
         theboard.getSpot(0,7).placePiece(whitetestrook2);
