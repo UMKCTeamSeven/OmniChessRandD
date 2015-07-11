@@ -33,7 +33,7 @@ public class IsValid
     }
 
         public boolean Verify(Piece piece, Spot Source, Spot Destination, Board theboard)
-         {  
+         {
             switch(piecetypes)
             {
                 case pawn:
