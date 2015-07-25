@@ -51,7 +51,14 @@ public class GameActivity extends Activity implements OnClickListener
             selectedpiecespot = null;
             clickedspot.SpotState = 2;
             theselector.Deselector(clickedspot.getpiece(), clickedspot, listenspots, mainboard);
-
+            return true;
+        }
+        if (clickedspot != null && theselector.InSelectedMode() && clickedspot.SpotState == 2 && (selectedpiecespot.piece.getcolor(selectedpiecespot.piece) == clickedspot.piece.getcolor(clickedspot.piece)))
+        {
+            selectedpiecespot.SpotState = 2;
+            theselector.Deselector(selectedpiecespot.getpiece(), selectedpiecespot, listenspots, mainboard);
+            selectedpiecespot = null;
+            selectPiece(clickedspot);
             return true;
         }
         return false;
