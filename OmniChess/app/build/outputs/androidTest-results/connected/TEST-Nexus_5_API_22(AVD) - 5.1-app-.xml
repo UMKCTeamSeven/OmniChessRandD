@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="IsValidTest" tests="21" failures="3" errors="0" skipped="0" time="0.817" timestamp="2015-12-05T12:22:09" hostname="localhost">
+  <properties>
+    <property name="device" value="Nexus_5_API_22(AVD) - 5.1" />
+    <property name="flavor" value="" />
+    <property name="project" value="app" />
+  </properties>
+  <testcase name="testAndroidTestCaseSetupProperly" classname="IsValidTest" time="0.076" />
+  <testcase name="testVerify" classname="IsValidTest" time="0.0" />
+  <testcase name="testAndroidTestCaseSetupProperly" classname="com.donthaveawebsite.mhy.ocfix.ApplicationTest" time="0.0" />
+  <testcase name="testApplicationTestCaseSetUpProperly" classname="com.donthaveawebsite.mhy.ocfix.ApplicationTest" time="0.0" />
+  <testcase name="testAndroidTestCaseSetupProperly" classname="com.donthaveawebsite.mhy.ocfix.BoardTest" time="0.0" />
+  <testcase name="testBoardConstructor" classname="com.donthaveawebsite.mhy.ocfix.BoardTest" time="0.0" />
+  <testcase name="testAndroidTestCaseSetupProperly" classname="com.donthaveawebsite.mhy.ocfix.PawnTest" time="0.0" />
+  <testcase name="testPawnFirstMove" classname="com.donthaveawebsite.mhy.ocfix.PawnTest" time="0.0" />
+  <testcase name="testPawnMC" classname="com.donthaveawebsite.mhy.ocfix.PawnTest" time="0.125" />
+  <testcase name="testPawnOnMove" classname="com.donthaveawebsite.mhy.ocfix.PawnTest" time="0.025">
+    <failure>junit.framework.AssertionFailedError
+at com.donthaveawebsite.mhy.ocfix.PawnTest.testPawnOnMove(PawnTest.java:59)
+at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:191)
+at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:176)
+at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:555)
+at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1853)
+</failure>
+  </testcase>
+  <testcase name="testAndroidTestCaseSetupProperly" classname="com.donthaveawebsite.mhy.ocfix.PieceTest" time="0.0" />
+  <testcase name="testPieceAvailable" classname="com.donthaveawebsite.mhy.ocfix.PieceTest" time="0.0" />
+  <testcase name="testPieceColor" classname="com.donthaveawebsite.mhy.ocfix.PieceTest" time="0.1" />
+  <testcase name="testPieceXYZ" classname="com.donthaveawebsite.mhy.ocfix.PieceTest" time="0.026" />
+  <testcase name="testRelatedPieces" classname="com.donthaveawebsite.mhy.ocfix.PieceTest" time="0.151" />
+  <testcase name="testAndroidTestCaseSetupProperly" classname="com.donthaveawebsite.mhy.ocfix.SelectorTest" time="0.001" />
+  <testcase name="testSelectorFilter" classname="com.donthaveawebsite.mhy.ocfix.SelectorTest" time="0.019">
+    <failure>java.lang.IndexOutOfBoundsException: Invalid index 0, size is 0
+at java.util.ArrayList.throwIndexOutOfBoundsException(ArrayList.java:255)
+at java.util.ArrayList.get(ArrayList.java:308)
+at com.donthaveawebsite.mhy.ocfix.Selector.VerifyPieceOwnership(Selector.java:53)
+at com.donthaveawebsite.mhy.ocfix.Selector.Filter(Selector.java:48)
+at com.donthaveawebsite.mhy.ocfix.SelectorTest.testSelectorFilter(SelectorTest.java:25)
+at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:191)
+at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:176)
+at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:555)
+at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1853)
+</failure>
+  </testcase>
+  <testcase name="testSelectorSelectedMode" classname="com.donthaveawebsite.mhy.ocfix.SelectorTest" time="0.019">
+    <failure>java.lang.IndexOutOfBoundsException: Invalid index 0, size is 0
+at java.util.ArrayList.throwIndexOutOfBoundsException(ArrayList.java:255)
+at java.util.ArrayList.get(ArrayList.java:308)
+at com.donthaveawebsite.mhy.ocfix.Selector.VerifyPieceOwnership(Selector.java:53)
+at com.donthaveawebsite.mhy.ocfix.Selector.Filter(Selector.java:48)
+at com.donthaveawebsite.mhy.ocfix.SelectorTest.testSelectorSelectedMode(SelectorTest.java:47)
+at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:191)
+at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:176)
+at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:555)
+at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1853)
+</failure>
+  </testcase>
+  <testcase name="testAndroidTestCaseSetupProperly" classname="com.donthaveawebsite.mhy.ocfix.SpotTest" time="0.025" />
+  <testcase name="testPlacePiece" classname="com.donthaveawebsite.mhy.ocfix.SpotTest" time="0.0" />
+  <testcase name="testReleaseSpot" classname="com.donthaveawebsite.mhy.ocfix.SpotTest" time="0.0" />
+</testsuite>
