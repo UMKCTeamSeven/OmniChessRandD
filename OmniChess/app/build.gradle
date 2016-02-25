@@ -59,6 +59,7 @@ task jacocoTestReport(type:JacocoReport, dependsOn: "testDebug") {
     reports {
         xml.enabled = true
         html.enabled = true
+        html.destination "${buildDir}/reports/jacoco"
     }
 
 }

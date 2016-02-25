@@ -14,7 +14,7 @@ import java.util.List;
 public class SelectorTest extends AndroidTestCase
 
 {
-    public void testSelectorFilter()
+   /* public void testSelectorFilter()
     {   //Filter should return false if the spot is empty or the piece is unavailable.
         Pawn pawn = new Pawn(true, 0,0,0);
         Spot firstSpot = new Spot(0,0,0);
@@ -58,5 +58,5 @@ public class SelectorTest extends AndroidTestCase
 
         Assert.assertTrue(firstSpot.SpotState ==  3);
 
-    }
+    }*/
 }
