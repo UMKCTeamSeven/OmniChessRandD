@@ -10,7 +10,7 @@
         <string name="NEWGAME"> New Game </string>
         <string name="Exit"> Exit ? </string>
         <string name="title_activity_about_omni_chess">AboutOmniChess</string>
-        <string name="VERSION"> OmniChess Version 1.01 </string>
+        <string name="VERSION"> OmniChess Version 1.2 </string>
         <string name="AUTHOR"> Created by Matt Yale </string>
         <string name="ACHIEVEMENTS"> Achievements </string>
         <string name="directions">Click the center square!</string>
