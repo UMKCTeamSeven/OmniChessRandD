@@ -121,28 +121,94 @@ public class GameActivity extends Activity implements OnClickListener
 
         }
     mainboard = theboard;
-        Pawn testpawn2 = new Pawn(true,3,1,1);
-        Pawn testpawn3 = new Pawn(true,5,1,1);
 
+        //white pawns
+        Pawn whitepawn1 = new Pawn(true, 0,6,1);
+        Pawn whitepawn2 = new Pawn(true, 1,6,1);
+        Pawn whitepawn3 = new Pawn(true, 2,6,1);
+        Pawn whitepawn4 = new Pawn(true, 3,6,1);
+        Pawn whitepawn5 = new Pawn(true, 4,6,1);
+        Pawn whitepawn6 = new Pawn(true, 5,6,1);
+        Pawn whitepawn7 = new Pawn(true, 6,6,1);
+        Pawn whitepawn8 = new Pawn(true, 7,6,1);
+
+        whitepawn1.switchcolor();
+        whitepawn2.switchcolor();
+        whitepawn3.switchcolor();
+        whitepawn4.switchcolor();
+        whitepawn5.switchcolor();
+        whitepawn6.switchcolor();
+        whitepawn7.switchcolor();
+        whitepawn8.switchcolor();
+
+        theboard.getSpot(0, 6).placePiece(whitepawn1);
+        theboard.getSpot(0, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
+        theboard.getSpot(1, 6).placePiece(whitepawn2);
+        theboard.getSpot(1, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
+        theboard.getSpot(2, 6).placePiece(whitepawn3);
+        theboard.getSpot(2, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
+        theboard.getSpot(3, 6).placePiece(whitepawn4);
+        theboard.getSpot(3, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
+        theboard.getSpot(4, 6).placePiece(whitepawn5);
+        theboard.getSpot(4, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
+        theboard.getSpot(5, 6).placePiece(whitepawn6);
+        theboard.getSpot(5, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
+        theboard.getSpot(6, 6).placePiece(whitepawn7);
+        theboard.getSpot(6, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
+        theboard.getSpot(7, 6).placePiece(whitepawn8);
+        theboard.getSpot(7, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
+
+
+        //black pawns
+
+
+        Pawn testpawn1 = new Pawn(true,0,1,1);
+        Pawn testpawn2 = new Pawn(true,1,1,1);
+        Pawn testpawn3 = new Pawn(true,2,1,1);
+        Pawn testpawn4 = new Pawn(true,3,1,1);
+        Pawn testpawn5 = new Pawn(true,4,1,1);
+        Pawn testpawn6 = new Pawn(true,5,1,1);
+        Pawn testpawn7 = new Pawn(true,6,1,1);
+        Pawn testpawn8 = new Pawn(true,7,1,1);
+
+
+        theboard.getSpot(0, 1).placePiece(testpawn1);
+        theboard.getSpot(0,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+        theboard.getSpot(1, 1).placePiece(testpawn2);
+        theboard.getSpot(1,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+        theboard.getSpot(2, 1).placePiece(testpawn3);
+        theboard.getSpot(2,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+        theboard.getSpot(3, 1).placePiece(testpawn4);
+        theboard.getSpot(3,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+        theboard.getSpot(4, 1).placePiece(testpawn5);
+        theboard.getSpot(4,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+        theboard.getSpot(5, 1).placePiece(testpawn6);
+        theboard.getSpot(5,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+        theboard.getSpot(6, 1).placePiece(testpawn7);
+        theboard.getSpot(6,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+        theboard.getSpot(7, 1).placePiece(testpawn8);
+        theboard.getSpot(7,1).getAppearance().setImageResource(R.drawable.ni_pawn);
+
+
+        //knights
         Knight whitetestknight = new Knight(true,  1, 7,1);
         Knight testknight = new Knight(true,1,0,1);
-
         Knight whiteknight = new Knight(true,  6, 7,1);
         Knight blackknight = new Knight(true,6,0,1);
 
-
+        //rooks
         Rook whitetestrook2 = new Rook(true, 0, 7,1);
         Rook whitetestrook3 = new Rook(true, 7, 7,1);
-
         Rook blackrook = new Rook(true, 0,0, 1);
         Rook blackrook2 = new Rook(true, 7,0, 1);
 
+        //bishops
         Bishop blackbish = new Bishop(true, 2,0,1);
         Bishop blackbish2 = new Bishop(true, 5,0,1);
-
         Bishop whitebish = new Bishop(true, 2,7,1);
         Bishop whitebish2 = new Bishop(true, 5,7,1);
 
+        //white pieces need color swap
         whitetestknight.switchcolor();
         whitetestrook2.switchcolor();
         whitetestrook3.switchcolor();
@@ -150,43 +216,39 @@ public class GameActivity extends Activity implements OnClickListener
         whitebish.switchcolor();
         whitebish2.switchcolor();
 
-        theboard.getSpot(1,0).placePiece(testknight);
+
+
+        theboard.getSpot(1, 0).placePiece(testknight);
         theboard.getSpot(1,0).getAppearance().setImageResource(R.drawable.ni_bknight);
-        theboard.getSpot(1,7).placePiece(whitetestknight);
+        theboard.getSpot(1, 7).placePiece(whitetestknight);
         theboard.getSpot(1,7).getAppearance().setImageResource(R.drawable.ni_wknight);
 
-        theboard.getSpot(6,0).placePiece(blackknight);
+        theboard.getSpot(6, 0).placePiece(blackknight);
         theboard.getSpot(6,0).getAppearance().setImageResource(R.drawable.ni_bknight);
-        theboard.getSpot(6,7).placePiece(whiteknight);
+        theboard.getSpot(6, 7).placePiece(whiteknight);
         theboard.getSpot(6,7).getAppearance().setImageResource(R.drawable.ni_wknight);
 
-        theboard.getSpot(2,0).placePiece(blackbish);
+        theboard.getSpot(2, 0).placePiece(blackbish);
         theboard.getSpot(2,0).getAppearance().setImageResource(R.drawable.ni_bishop);
-        theboard.getSpot(5,0).placePiece(blackbish2);
+        theboard.getSpot(5, 0).placePiece(blackbish2);
         theboard.getSpot(5,0).getAppearance().setImageResource(R.drawable.ni_bishop);
 
-        theboard.getSpot(2,7).placePiece(whitebish);
+        theboard.getSpot(2, 7).placePiece(whitebish);
         theboard.getSpot(2,7).getAppearance().setImageResource(R.drawable.ni_bishopw);
-        theboard.getSpot(5,7).placePiece(whitebish2);
+        theboard.getSpot(5, 7).placePiece(whitebish2);
         theboard.getSpot(5,7).getAppearance().setImageResource(R.drawable.ni_bishopw);
 
 
-        theboard.getSpot(0,7).placePiece(whitetestrook2);
+        theboard.getSpot(0, 7).placePiece(whitetestrook2);
         theboard.getSpot(0,7).getAppearance().setImageResource(R.drawable.ni_rookw);
-        theboard.getSpot(7,7).placePiece(whitetestrook3);
+        theboard.getSpot(7, 7).placePiece(whitetestrook3);
         theboard.getSpot(7,7).getAppearance().setImageResource(R.drawable.ni_rookw);
 
-        theboard.getSpot(7,0).placePiece(blackrook2);
+        theboard.getSpot(7, 0).placePiece(blackrook2);
         theboard.getSpot(7,0).getAppearance().setImageResource(R.drawable.ni_rook);
-        theboard.getSpot(0,0).placePiece(blackrook);
+        theboard.getSpot(0, 0).placePiece(blackrook);
         theboard.getSpot(0,0).getAppearance().setImageResource(R.drawable.ni_rook);
 
-
-        theboard.getSpot(3,1).placePiece(testpawn2);
-        theboard.getSpot(3,1).getAppearance().setImageResource(R.drawable.ni_pawn);
-
-        theboard.getSpot(5,1).placePiece(testpawn3);
-        theboard.getSpot(5,1).getAppearance().setImageResource(R.drawable.ni_pawn);
 
 
 
