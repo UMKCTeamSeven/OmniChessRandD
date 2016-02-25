@@ -122,6 +122,17 @@ public class GameActivity extends Activity implements OnClickListener
         }
     mainboard = theboard;
 
+        //queens
+        Queen blackQ = new Queen(true,4,0,1);
+        Queen whiteQ = new Queen(true,4,7,1);
+        whiteQ.switchcolor();
+        theboard.getSpot(4,7).placePiece(whiteQ);
+        theboard.getSpot(4,7).getAppearance().setImageResource(R.drawable.ni_queenw);
+        theboard.getSpot(4,0).placePiece(blackQ);
+        theboard.getSpot(4,0).getAppearance().setImageResource(R.drawable.ni_queen);
+
+
+
         //white pawns
         Pawn whitepawn1 = new Pawn(true, 0,6,1);
         Pawn whitepawn2 = new Pawn(true, 1,6,1);
