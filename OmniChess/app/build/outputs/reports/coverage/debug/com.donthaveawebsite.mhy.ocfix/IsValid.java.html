@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>IsValid.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debug</a> &gt; <a href="index.source.html" class="el_package">com.donthaveawebsite.mhy.ocfix</a> &gt; <span class="el_source">IsValid.java</span></div><h1>IsValid.java</h1><pre class="source lang-java linenums">package com.donthaveawebsite.mhy.ocfix;
+/**
+ * Created by Matthew on 3/29/2015.
+ */
+
+public class IsValid
+        //determines if move is valid
+{
+<span class="pc" id="L9">    public enum piecetype</span>
+    {
+<span class="fc" id="L11">        pawn,</span>
+<span class="fc" id="L12">        king,</span>
+<span class="fc" id="L13">        knight,</span>
+<span class="fc" id="L14">        bishop,</span>
+<span class="fc" id="L15">        rook,</span>
+<span class="fc" id="L16">        queen,</span>
+<span class="fc" id="L17">        portal</span>
+    }
+    piecetype piecetypes;
+    //Constructors
+<span class="fc" id="L21">    public IsValid(){}</span>
+
+    public IsValid(Piece piece)
+<span class="fc" id="L24">    {this.piecetypes = piece.type.piecetypes;}</span>
+
+    public IsValid(piecetype piecetypes)
+<span class="fc" id="L27">    {this.piecetypes = piecetypes;}</span>
+    //Methods
+    public boolean IsMoveValid(Piece piece, Spot Source, Spot Destination, Board theboard)
+    {
+<span class="fc" id="L31">        IsValid thetype = new IsValid(piece);</span>
+<span class="fc" id="L32">        return thetype.Verify(piece, Source, Destination, theboard);</span>
+    }
+
+        public boolean Verify(Piece piece, Spot Source, Spot Destination, Board theboard)
+         {
+<span class="pc bpc" id="L37" title="7 of 8 branches missed.">            switch(piecetypes)</span>
+            {
+                case pawn:
+                //Does not have enpasant
+<span class="fc" id="L41">                return PawnLogicCheck(piece, Source, Destination, theboard);</span>
+                case king:
+                    //needs logic
+<span class="nc" id="L44">                    break;</span>
+                case knight:
+<span class="nc" id="L46">                    return KnightLogicCheck(piece, Source, Destination);</span>
+                case bishop:
+<span class="nc" id="L48">                    return BishopLogicCheck(piece, Source, Destination, theboard);</span>
+                case rook:
+<span class="nc" id="L50">                    return RookLogicCheck(piece, Source, Destination, theboard);</span>
+                case queen:
+<span class="nc bnc" id="L52" title="All 4 branches missed.">                    return (((BishopLogicCheck(piece,Source,Destination, theboard)) || (RookLogicCheck(piece, Source, Destination, theboard))));</span>
+                case portal:
+                    //Can't move portals, can't select portals either, HOW DID THIS HAPPEN? Go debug right meow
+<span class="nc" id="L55">                    break;</span>
+                default:
+                    break;
+
+            }
+
+<span class="nc" id="L61">            return false; //Default returns false, piece type not added, or shouldnt have been selected, off to the debug you go</span>
+         }
+
+    public Spot OneN(Spot Source, Board theboard)
+    {
+<span class="nc" id="L66">        return (theboard.getSpot(Source.x, (Source.y + 1)));</span>
+    }
+    public Spot OneS(Spot Source, Board theboard)
+    {
+<span class="nc" id="L70">        return (theboard.getSpot(Source.x, (Source.y - 1)));</span>
+    }
+
+    public Spot OneR(Spot Source, Board theboard)
+    {
+<span class="nc" id="L75">        return (theboard.getSpot(Source.x + 1, (Source.y)));</span>
+    }
+    public Spot OneL(Spot Source, Board theboard)
+    {
+<span class="nc" id="L79">        return (theboard.getSpot(Source.x - 1, (Source.y)));</span>
+    }
+
+
+    public Spot OneLN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
+    {
+<span class="nc" id="L85">            return (theboard.getSpot(Source.x - 1, (Source.y + 1)));</span>
+    }
+    public Spot OneLS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
+    {
+<span class="nc" id="L89">            return (theboard.getSpot(Source.x - 1, (Source.y - 1)));</span>
+    }
+    public Spot OneRS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
+    {
+<span class="nc" id="L93">            return (theboard.getSpot(Source.x + 1, (Source.y - 1)));</span>
+    }
+
+    public Spot OneRN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
+    {
+<span class="nc" id="L98">        return (theboard.getSpot(Source.x + 1, (Source.y + 1)));</span>
+    }
+
+    public boolean IsEdge(Spot spot, Board theboard)
+    {
+<span class="nc bnc" id="L103" title="All 4 branches missed.">        if ( (spot.x == 0 || spot.x == 7))</span>
+<span class="nc" id="L104">        {return true;}</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">        if ( (spot.y == 0 || spot.y == 7))</span>
+<span class="nc" id="L106">        {return true;}</span>
+<span class="nc" id="L107">        return false;</span>
+    }
+
+
+
+    private boolean RookLogicCheck(Piece piece,Spot Source,Spot Destination, Board theboard)
+    {
+<span class="nc bnc" id="L114" title="All 4 branches missed.">        if (Destination.isOccupied() &amp;&amp; (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color</span>
+<span class="nc" id="L115">            return false;</span>
+
+        //H or V
+<span class="nc bnc" id="L118" title="All 2 branches missed.">        if (Source.x - Destination.x == 0)//V</span>
+        {
+
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if(Source.y != Destination.y)</span>
+            {
+<span class="nc bnc" id="L123" title="All 2 branches missed.">               if (Source.y - Destination.y &lt; 0) //going up the board</span>
+               {
+<span class="nc" id="L125">                   Spot Sspot = Source;</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">                   while(Sspot != Destination)</span>
+                   {
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                      if (OneN(Sspot, theboard).isOccupied())</span>
+                      {
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                          if (OneN(Sspot, theboard) == Destination)</span>
+<span class="nc" id="L131">                          {return true;}</span>
+<span class="nc" id="L132">                          return false;</span>
+                      }
+<span class="nc" id="L134">                       Sspot = OneN(Sspot, theboard);</span>
+                   }
+<span class="nc" id="L136">                   return true;</span>
+               }
+                else
+               {
+<span class="nc" id="L140">                   Spot Sspot = Source;</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">                   while(Sspot != Destination)</span>
+                   {
+<span class="nc bnc" id="L143" title="All 2 branches missed.">                       if (OneS(Sspot, theboard).isOccupied())</span>
+                       {
+<span class="nc bnc" id="L145" title="All 2 branches missed.">                           if (OneS(Sspot, theboard) == Destination)</span>
+<span class="nc" id="L146">                           {return true;}</span>
+<span class="nc" id="L147">                           return false;</span>
+                       }
+<span class="nc" id="L149">                       Sspot = OneS(Sspot, theboard);</span>
+                   }
+<span class="nc" id="L151">                   return true;</span>
+               }
+
+            }
+
+
+        }
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        if (Source.y - Destination.y == 0)//H</span>
+        {
+
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            if (Source.x != Destination.x) {</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">                if (Source.x - Destination.x &lt; 0)// going right</span>
+                {
+<span class="nc" id="L164">                    Spot Sspot = Source;</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">                    while (Sspot != Destination) {</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">                        if (OneR(Sspot, theboard).isOccupied()) {</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">                            if (OneR(Sspot, theboard) == Destination) {</span>
+<span class="nc" id="L168">                                return true;</span>
+                            }
+<span class="nc" id="L170">                            return false;</span>
+                        }
+<span class="nc" id="L172">                        Sspot = OneR(Sspot, theboard);</span>
+                    }
+<span class="nc" id="L174">                    return true;</span>
+                } else {
+<span class="nc" id="L176">                    Spot Sspot = Source;</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">                    while (Sspot != Destination) {</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">                        if (OneL(Sspot, theboard).isOccupied()) {</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">                            if (OneL(Sspot, theboard) == Destination) {</span>
+<span class="nc" id="L180">                                return true;</span>
+                            }
+<span class="nc" id="L182">                            return false;</span>
+                        }
+<span class="nc" id="L184">                        Sspot = OneL(Sspot, theboard);</span>
+                    }
+<span class="nc" id="L186">                    return true;</span>
+                }
+            }
+        }
+
+<span class="nc" id="L191">        return false;</span>
+    }
+    private boolean BishopLogicCheck(Piece piece,Spot Source, Spot Destination, Board theboard)
+    {
+<span class="nc bnc" id="L195" title="All 4 branches missed.">        if (Destination.isOccupied() &amp;&amp; (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color</span>
+<span class="nc" id="L196">            return false;</span>
+
+        try
+        {
+<span class="nc" id="L200">            return  InBishopPath(Source, Destination, theboard);</span>
+        }
+<span class="nc" id="L202">        catch (ArrayIndexOutOfBoundsException e)</span>
+        {
+
+        }
+<span class="nc" id="L206">           return false;</span>
+    }
+
+    private Boolean InBishopPath(Spot Source, Spot Destination, Board theboard) {
+<span class="nc bnc" id="L210" title="All 2 branches missed.">        if (Source.y - Destination.y &lt; 0)</span>
+        {
+            //NR or NL
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            if (Source.x - Destination.x &lt; 0) //going NR</span>
+            {
+<span class="nc" id="L215">                Spot Sspot = Source;</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">                while (Sspot != Destination)</span>
+                {
+<span class="nc bnc" id="L218" title="All 4 branches missed.">                    if (IsEdge(Sspot, theboard)&amp;&amp; Sspot != Source)</span>
+<span class="nc" id="L219">                        return false;</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">                    if (OneRN(Sspot, theboard).isOccupied()) {</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">                        if (OneRN(Sspot, theboard) == Destination) {</span>
+<span class="nc" id="L222">                            return true;</span>
+                        }
+<span class="nc" id="L224">                        return false;</span>
+                    }
+<span class="nc" id="L226">                    Sspot = OneRN(Sspot, theboard);</span>
+                }
+<span class="nc" id="L228">                return true;</span>
+            }
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            if (Source.x - Destination.x &gt; 0) //going NL</span>
+            {
+<span class="nc" id="L232">                Spot Sspot = Source;</span>
+
+<span class="nc bnc" id="L234" title="All 2 branches missed.">                while (Sspot != Destination)</span>
+                {
+<span class="nc bnc" id="L236" title="All 4 branches missed.">                    if (IsEdge(Sspot, theboard) &amp;&amp; Sspot != Source)</span>
+<span class="nc" id="L237">                        return false;</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">                    if (OneLN(Sspot, theboard).isOccupied()) {</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">                        if (OneLN(Sspot, theboard) == Destination) {</span>
+<span class="nc" id="L240">                            return true;</span>
+                        }
+<span class="nc" id="L242">                        return false;</span>
+                    }
+<span class="nc" id="L244">                    Sspot = OneLN(Sspot, theboard);</span>
+                }
+<span class="nc" id="L246">                return true;</span>
+            }
+        }
+<span class="nc bnc" id="L249" title="All 2 branches missed.">        if (Source.y - Destination.y &gt; 0)</span>
+        {
+            //SR or SL
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            if (Source.x - Destination.x &lt; 0) //going SR</span>
+            {
+<span class="nc" id="L254">                Spot Sspot = Source;</span>
+
+<span class="nc bnc" id="L256" title="All 2 branches missed.">                while (Sspot != Destination) {</span>
+<span class="nc bnc" id="L257" title="All 4 branches missed.">                    if (IsEdge(Sspot, theboard) &amp;&amp; Sspot != Source)</span>
+<span class="nc" id="L258">                        return false;</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">                    if (OneRS(Sspot, theboard).isOccupied()) {</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">                        if (OneRS(Sspot, theboard) == Destination) {</span>
+<span class="nc" id="L261">                            return true;</span>
+                        }
+<span class="nc" id="L263">                        return false;</span>
+                    }
+<span class="nc" id="L265">                    Sspot = OneRS(Sspot, theboard);</span>
+                }
+<span class="nc" id="L267">                return true;</span>
+            }
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            if (Source.x - Destination.x &gt; 0)</span>
+            {
+<span class="nc" id="L271">                Spot Sspot = Source;</span>
+
+<span class="nc bnc" id="L273" title="All 2 branches missed.">                while (Sspot != Destination) {</span>
+<span class="nc bnc" id="L274" title="All 4 branches missed.">                    if (IsEdge(Sspot, theboard) &amp;&amp; Sspot != Source)</span>
+<span class="nc" id="L275">                        return false;</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">                    if (OneLS(Sspot, theboard).isOccupied()) {</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">                        if (OneLS(Sspot, theboard) == Destination) {</span>
+<span class="nc" id="L278">                            return true;</span>
+                        }
+<span class="nc" id="L280">                        return false;</span>
+                    }
+<span class="nc" id="L282">                    Sspot = OneLS(Sspot, theboard);</span>
+                }
+<span class="nc" id="L284">                return true;</span>
+            }
+
+        }
+<span class="nc" id="L288">        return false;</span>
+    }
+
+
+    private boolean KnightLogicCheck(Piece piece, Spot Source, Spot Destination) {
+<span class="nc bnc" id="L293" title="All 4 branches missed.">        if (Destination.isOccupied() &amp;&amp; (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color</span>
+<span class="nc" id="L294">            return false;</span>
+<span class="nc bnc" id="L295" title="All 16 branches missed.">        return (    (( (Destination.x +1 == Source.x) || (Destination.x -1)  == Source.x) &amp;&amp; ((Destination.y + 2 ==  Source.y) || Destination.y -2 == Source.y)) ||</span>
+                ( (Destination.x + 2 == Source.x) || (Destination.x - 2)  == Source.x) &amp;&amp; ((Destination.y + 1 ==  Source.y) || Destination.y - 1 == Source.y));
+    }
+
+    private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
+
+<span class="pc bpc" id="L301" title="3 of 4 branches missed.">        if (Destination.isOccupied() &amp;&amp; (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color</span>
+<span class="nc" id="L302">            return false;</span>
+<span class="pc bpc" id="L303" title="1 of 2 branches missed.">        if ('B' == piece.getcolor(piece)) {</span>
+<span class="pc bpc" id="L304" title="1 of 2 branches missed.">            if (piece.getMC() == 0) {   //Going up the board</span>
+<span class="nc bnc" id="L305" title="All 2 branches missed.">                if (!Destination.isOccupied())</span>
+<span class="nc bnc" id="L306" title="All 10 branches missed.">                    return ((((Destination.y - 2) == Source.y) || ((Destination.y - 1) == Source.y)) &amp;&amp; Destination.x == Source.x &amp;&amp; !Destination.isOccupied() &amp;&amp; (!((theboard.getSpot(Source.x, (Source.y +1))).isOccupied())));</span>
+                else
+<span class="nc bnc" id="L308" title="All 6 branches missed.">                    return ((Destination.x - 1 == Source.x || Destination.x + 1 == Source.x) &amp;&amp; ((Destination.y - 1) == Source.y));</span>
+            }   //above line is a diagonal attack
+
+            else {
+<span class="pc bpc" id="L312" title="1 of 2 branches missed.">                if (!Destination.isOccupied())</span>
+<span class="pc bpc" id="L313" title="3 of 6 branches missed.">                    return ((Destination.y - 1 == Source.y) &amp;&amp; Destination.x == Source.x &amp;&amp; !Destination.isOccupied());</span>
+
+
+<span class="nc bnc" id="L316" title="All 6 branches missed.">                return ((Destination.y - 1 == Source.y) &amp;&amp; ((Destination.x - 1 == Source.x || Destination.x + 1 == Source.x)));</span>
+            }
+        }
+        else //If ever 3+ colors make into switch
+        {
+<span class="nc bnc" id="L321" title="All 2 branches missed.">            if (piece.getMC() == 0) {   //Going down the board</span>
+<span class="nc bnc" id="L322" title="All 2 branches missed.">                if (!Destination.isOccupied())</span>
+<span class="nc bnc" id="L323" title="All 10 branches missed.">                    return ((((Destination.y + 2) == Source.y) || ((Destination.y + 1) == Source.y)) &amp;&amp; Destination.x == Source.x &amp;&amp; !Destination.isOccupied() &amp;&amp; (!((theboard.getSpot(Source.x, (Source.y -1))).isOccupied())));</span>
+                else
+<span class="nc bnc" id="L325" title="All 6 branches missed.">                    return ((Destination.x - 1 == Source.x || Destination.x + 1 == Source.x) &amp;&amp; ((Destination.y + 1) == Source.y));</span>
+            }   //above line is a diagonal attack
+
+            else {
+<span class="nc bnc" id="L329" title="All 2 branches missed.">                if (!Destination.isOccupied())</span>
+<span class="nc bnc" id="L330" title="All 4 branches missed.">                    return ((Destination.y + 1 == Source.y) &amp;&amp; Destination.x == Source.x);</span>
+<span class="nc bnc" id="L331" title="All 6 branches missed.">                return ((Destination.y + 1 == Source.y) &amp;&amp; ((Destination.x - 1 == Source.x || Destination.x + 1 == Source.x)));</span>
+        }
+    }
+
+
+}}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+
+        <string name="app_name">OmniChess</string>
+        <string name="hello_world">Hello world!</string>
+        <string name="action_settings">Settings</string>
+        <string name="LANDFRAGMAIN">In Landscape Fragment</string>
+        <string name="PORTFRAGMAIN">In Portrait Fragment</string>
+        <string name="OMNICHESS"> OmniChess </string>
+        <string name="NEWGAME"> New Game </string>
+        <string name="Exit"> Exit ? </string>
+        <string name="title_activity_about_omni_chess">AboutOmniChess</string>
+        <string name="VERSION"> OmniChess Version 1.01 </string>
+        <string name="AUTHOR"> Created by Matt Yale </string>
+        <string name="ACHIEVEMENTS"> Achievements </string>
+        <string name="directions">Click the center square!</string>
+
+    </resources>
+
