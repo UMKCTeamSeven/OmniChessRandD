@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Selector.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debug</a> &gt; <a href="index.source.html" class="el_package">com.donthaveawebsite.mhy.ocfix</a> &gt; <span class="el_source">Selector.java</span></div><h1>Selector.java</h1><pre class="source lang-java linenums">package com.donthaveawebsite.mhy.ocfix;
+
+import android.widget.ImageView;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Selector
+<span class="nc" id="L10">{   private List&lt;Player&gt; players = new ArrayList();</span>
+    private Updater theupdater;
+    private boolean pieceselected;
+    private Board board;
+<span class="nc" id="L14">    public Selector() {}</span>
+    public Selector(final List&lt;Player&gt;  players, List&lt;Spot&gt; toupdate, Board theboard )
+<span class="nc" id="L16">    {</span>
+<span class="nc" id="L17">        this.players = players;</span>
+<span class="nc" id="L18">        theupdater = new Updater(toupdate);</span>
+<span class="nc" id="L19">        this.board = theboard;</span>
+<span class="nc" id="L20">    }</span>
+    public Player getCurrentPlayerColor()
+    {             //Todo change method so it is not dependant on the amount of players
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (this.players.get(0).IsTurn())</span>
+        {
+<span class="nc" id="L25">            players.get(0).setTurn(false);</span>
+<span class="nc" id="L26">            players.get(1).setTurn(true);</span>
+           // whiteturnindicator
+<span class="nc" id="L28">        return players.get(1);</span>
+
+
+        }
+        else
+<span class="nc" id="L33">            players.get(1).setTurn(false);</span>
+<span class="nc" id="L34">            players.get(0).setTurn(true);</span>
+         //  blackturnindicator
+<span class="nc" id="L36">        return players.get(0);</span>
+
+
+    }
+    //updates control layer when pieces are selected and deselected
+    public boolean Filter(Spot spot)
+    {
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (pieceselected)</span>
+<span class="nc" id="L44">        {return false;}</span>
+        //Occupied and not available
+<span class="nc bnc" id="L46" title="All 4 branches missed.">        if (spot.isOccupied() &amp;&amp; !spot.piece.isAvailable())</span>
+<span class="nc" id="L47">        {return false;}</span>
+<span class="nc" id="L48">         return VerifyPieceOwnership(spot);</span>
+
+    }
+
+    private boolean VerifyPieceOwnership(Spot spot) {
+<span class="nc bnc" id="L53" title="All 12 branches missed.">        return (spot.isOccupied() &amp;&amp; spot.SpotState == 2 &amp;&amp; ((players.get(0).IsTurn() &amp;&amp; spot.getpiece().getcolor(spot.getpiece()) == players.get(0).getColor())|| (players.get(1).IsTurn() &amp;&amp; spot.getpiece().getcolor(spot.getpiece()) == players.get(1).getColor())));</span>
+    }
+
+    public boolean SelectedMode( Piece piece , Spot spot, List&lt;Spot&gt; spots, Board theboard)
+    {
+<span class="nc" id="L58">        return Select(piece, spot, spots, theboard);</span>
+    }
+
+
+
+    public boolean InSelectedMode()
+    {
+<span class="nc" id="L65">        return pieceselected;</span>
+    }
+
+   public void Deselector(Piece piece , Spot spot, List&lt;Spot&gt; spots, Board theboard)
+   {
+<span class="nc" id="L70">       Deselect(piece, spot, spots, theboard);</span>
+<span class="nc" id="L71">   }</span>
+
+    private void FastDeselect(Piece piece, Spot spot)
+    {
+<span class="nc" id="L75">        pieceselected = false;</span>
+<span class="nc" id="L76">        spot.getSelector().setImageResource(R.drawable.ni_tsquare);</span>
+<span class="nc" id="L77">    }</span>
+
+    private void Deselect(Piece piece, Spot spot, List&lt;Spot&gt; spots, Board theboard) {
+<span class="nc" id="L80">        pieceselected = false;</span>
+<span class="nc" id="L81">        IsValid thetype = new IsValid(piece);</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        for(Iterator&lt;Spot&gt; i = spots.iterator(); i.hasNext(); )</span>
+        {
+<span class="nc" id="L84">            Spot dest = i.next();</span>
+
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if(thetype.Verify(spot.piece, spot, dest, theboard))</span>
+            {
+<span class="nc bnc" id="L88" title="All 2 branches missed.">                if(dest.isOccupied())</span>
+<span class="nc" id="L89">                {dest.SpotState = 2;}  //has piece</span>
+                else
+<span class="nc" id="L91">                {dest.SpotState = 1;}  //empty spot</span>
+<span class="nc" id="L92">                theupdater.UnHighlightValid(dest);</span>
+            }
+
+
+<span class="nc" id="L96">         }</span>
+<span class="nc" id="L97">        spot.getSelector().setImageResource(R.drawable.ni_tsquare);</span>
+<span class="nc" id="L98">    }</span>
+
+    private boolean Select(Piece piece, Spot spot, List&lt;Spot&gt; spots, Board theboard) {
+<span class="nc" id="L101">        pieceselected = true;</span>
+<span class="nc" id="L102">        IsValid thetype = new IsValid(piece);</span>
+<span class="nc" id="L103">        spot.SpotState = 3;</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        for(Iterator&lt;Spot&gt; i = spots.iterator(); i.hasNext(); ) {</span>
+<span class="nc" id="L105">            Spot dest = i.next();</span>
+
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if(thetype.Verify(spot.piece, spot, dest, theboard))</span>
+            {
+<span class="nc" id="L109">                dest.SpotState = 0;</span>
+<span class="nc" id="L110">                theupdater.HighlightValid(dest);</span>
+            }
+
+<span class="nc" id="L113">        }</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (theupdater.NoPossibleMoves())</span>
+        {
+<span class="nc" id="L116">            FastDeselect(piece, spot);</span>
+<span class="nc" id="L117">            spot.SpotState =2;</span>
+<span class="nc" id="L118">            return false;</span>
+        }
+<span class="nc" id="L120">        spot.getSelector().setImageResource(R.drawable.ni_bluesquare);</span>
+<span class="nc" id="L121">        return true;</span>
+    }
+
+
+}//endclass
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

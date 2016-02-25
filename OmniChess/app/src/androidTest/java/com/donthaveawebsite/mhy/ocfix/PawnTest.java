@@ -14,6 +14,7 @@ public class PawnTest extends AndroidTestCase
     private Mover theMove;
     private Pawn thepawn;
     private Spot thespot;
+    private Board theboard;
 
     public void setUp() {
 
@@ -55,7 +56,7 @@ public class PawnTest extends AndroidTestCase
        // thepawn.OnMove(thepawn, thespot, cantgo);
         Assert.assertFalse(cantgo.isOccupied());
         Spot cango = new Spot(0,1,0);
-       // thepawn.OnMove(thepawn,thespot,cango);
+        thepawn.OnMove(thepawn,thespot,cango, theboard);
         Assert.assertTrue(cango.isOccupied());
     }
 

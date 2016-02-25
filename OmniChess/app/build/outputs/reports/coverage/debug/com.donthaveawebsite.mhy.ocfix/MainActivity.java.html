@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MainActivity.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debug</a> &gt; <a href="index.source.html" class="el_package">com.donthaveawebsite.mhy.ocfix</a> &gt; <span class="el_source">MainActivity.java</span></div><h1>MainActivity.java</h1><pre class="source lang-java linenums">package com.donthaveawebsite.mhy.ocfix;
+
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.support.v7.app.ActionBarActivity;
+        import android.view.Menu;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.widget.TextView;
+
+
+<span class="nc" id="L12">public class MainActivity extends ActionBarActivity implements View.OnClickListener {</span>
+    @Override
+    public void onClick(View v) {
+<span class="nc bnc" id="L15" title="All 4 branches missed.">        switch (v.getId()) {</span>
+
+            case R.id.EXITTEXT:
+<span class="nc" id="L18">                finish();</span>
+<span class="nc" id="L19">                break;</span>
+
+            case R.id.NEWGAMETEXT:
+<span class="nc" id="L22">                Intent intent = new Intent(v.getContext(), GameActivity.class);</span>
+<span class="nc" id="L23">                startActivity(intent);</span>
+<span class="nc" id="L24">                break;</span>
+
+            case R.id.ACHIEVETEXT:
+<span class="nc" id="L27">                intent = new Intent(v.getContext(), AchievementsActivity.class);</span>
+<span class="nc" id="L28">                startActivity(intent);</span>
+<span class="nc" id="L29">                break;</span>
+
+            default:
+                break;
+        }
+<span class="nc" id="L34">    }</span>
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+<span class="nc" id="L39">        super.onCreate(savedInstanceState);</span>
+
+<span class="nc" id="L41">        setContentView(R.layout.activity_main);</span>
+
+<span class="nc" id="L43">        TextView mExitText = (TextView) findViewById(R.id.EXITTEXT);</span>
+<span class="nc" id="L44">        mExitText.setOnClickListener(this);</span>
+
+<span class="nc" id="L46">        TextView mStartGameText = (TextView) findViewById(R.id.NEWGAMETEXT);</span>
+<span class="nc" id="L47">        mStartGameText.setOnClickListener(this);</span>
+
+<span class="nc" id="L49">        TextView mAchieve = (TextView) findViewById(R.id.ACHIEVETEXT);</span>
+<span class="nc" id="L50">        mAchieve.setOnClickListener(this);</span>
+<span class="nc" id="L51">    }</span>
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+<span class="nc" id="L57">        getMenuInflater().inflate(R.menu.menu_main, menu);</span>
+<span class="nc" id="L58">        return true;</span>
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+<span class="nc" id="L66">        int id = item.getItemId();</span>
+
+        //noinspection SimplifiableIfStatement
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (id == R.id.action_settings) {</span>
+<span class="nc" id="L70">            return true;</span>
+        }
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (id == R.id.about_settings) {</span>
+<span class="nc" id="L73">            Intent intent = new Intent(this, AboutOmniChess.class);</span>
+<span class="nc" id="L74">            startActivity(intent);</span>
+
+
+        }
+<span class="nc" id="L78">        return super.onOptionsItemSelected(item);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Pawn.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debug</a> &gt; <a href="index.source.html" class="el_package">com.donthaveawebsite.mhy.ocfix</a> &gt; <span class="el_source">Pawn.java</span></div><h1>Pawn.java</h1><pre class="source lang-java linenums">package com.donthaveawebsite.mhy.ocfix;
+
+/**
+ * Created by Matthew on 3/29/2015.
+ */
+public class Pawn extends Piece
+{
+
+
+    public Pawn (Boolean available, int x, int y, int z)
+    {
+<span class="fc" id="L12">        super(available, x, y, z);</span>
+<span class="fc" id="L13">        this.type = new IsValid(IsValid.piecetype.pawn);</span>
+<span class="fc" id="L14">    }</span>
+
+    public boolean FirstMove(Pawn pawn)  //because they have special move rules.
+    {
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        return pawn.getMC() == 0;</span>
+    }
+
+    @Override
+    public void OnMove(Piece pawn, Spot source, Spot destination, Board theboard)
+    {
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">        if (source == destination)</span>
+        {
+            //exit selected mode
+<span class="nc" id="L27">            return;</span>
+        }
+
+<span class="fc" id="L30">        Mover theMove = new Mover();</span>
+<span class="fc" id="L31">        boolean moved = theMove.TryMove(pawn, source, destination, theboard);</span>
+        try
+        {
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (moved)</span>
+        {
+
+<span class="fc" id="L37">            pawn.setMC(pawn.getMC() + 1);</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">            if (destination.isOccupied()) {</span>
+<span class="nc" id="L39">                destination.releaseSpot();</span>
+<span class="nc" id="L40">                destination.placePiece(pawn);</span>
+            } else {
+<span class="fc" id="L42">                destination.placePiece(pawn);</span>
+            }
+            //update view.
+        } else {   } }        //end if block      //end try block   //return to selected mode TODO fill else block with return to selected mode
+<span class="nc" id="L46">        catch (NullPointerException objectmissing)</span>
+<span class="fc" id="L47">        {  }</span>
+
+<span class="fc" id="L49">      }</span>
+
+        //else
+//             if (relatedpiece)
+//             {
+//            //logic to fetch related pieces source
+//            //return OnMove(pawn, source ,destination); //checks if the destination works for the related piece.
+//             }
+
+
+}//endclass
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
