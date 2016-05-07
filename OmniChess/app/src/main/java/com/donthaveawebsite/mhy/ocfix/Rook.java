@@ -4,7 +4,7 @@ public class Rook extends Piece
 {
     public Rook (boolean available, int x, int y, int z)
     {
-        super(available, x, y, z);
+        super(available, x, y, z, R.drawable.ni_rook);
         this.type = new IsValid(IsValid.piecetype.rook);
     }
 

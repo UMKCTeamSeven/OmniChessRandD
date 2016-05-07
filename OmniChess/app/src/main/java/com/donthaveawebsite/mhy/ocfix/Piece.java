@@ -12,7 +12,8 @@ public class Piece {
     private char color = 'B';
     public int mc = 0;
 
-    public Piece(boolean available, int x, int y, int z)
+    private int icon;
+    public Piece(boolean available, int x, int y, int z, int icon)
     {
         super();
         this.available = available;
@@ -20,6 +21,7 @@ public class Piece {
         this.y = y;
         this.z = z;
         this.type = null;
+        this.icon = icon;
 
     }
 
@@ -63,6 +65,8 @@ public class Piece {
     }
     public void switchcolor() {if (this.color == 'W') this.color ='B'; else this.color='W';}
     public char getcolor(Piece piece) {return this.color;}
+    public int getIcon() { return icon; }
+    public void setIcon(int icon) { this.icon = icon; }
 
     public void OnMove(Piece piece, Spot source, Spot destination, Board theboard)
     {

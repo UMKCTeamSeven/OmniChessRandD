@@ -7,9 +7,8 @@ import java.util.PriorityQueue;
  */
 public class Pawn extends Piece {
 
-
     public Pawn(Boolean available, int x, int y, int z) {
-        super(available, x, y, z);
+        super(available, x, y, z, R.drawable.ni_pawn);
         this.type = new IsValid(IsValid.piecetype.pawn);
     }
 
@@ -27,6 +26,8 @@ public class Pawn extends Piece {
             pawn = new Knight(true, pawn.getX(), pawn.getY(), pawn.getZ());
         } else if (PromotionSelection == 3) {
             pawn = new Queen(true, pawn.getX(), pawn.getY(), pawn.getZ());
+        } else {
+            return pawn;
         }
         return pawn;
     }
@@ -47,8 +48,13 @@ public class Pawn extends Piece {
                 if (destination.isOccupied()) {
                     destination.releaseSpot();
                     destination.placePiece(pawn);
-                } else if (!destination.isOccupied() && destination.y == 7 || destination.y == 0) { //need to check for y-axis for edge of board
-                    destination.placePiece(Promote(pawn, 0));
+                } else if (!destination.isOccupied() && (destination.y == 7 || destination.y == 0)) { //need to check for y-axis for edge of board
+                    pawn = Promote(pawn, 1);
+                    destination.placePiece(pawn);
+                    destination.getAppearance().setImageResource(pawn.getIcon());
+                    if (destination.y ==7) {
+                        pawn.switchcolor();
+                    }
                 } else {
                     destination.placePiece(pawn);
                 }

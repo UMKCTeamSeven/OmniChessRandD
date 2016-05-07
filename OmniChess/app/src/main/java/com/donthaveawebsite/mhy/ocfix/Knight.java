@@ -7,7 +7,7 @@ public class Knight extends Piece
 {
     public Knight (boolean available, int x, int y, int z)
     {
-        super(available, x, y, z);
+        super(available, x, y, z, R.drawable.ni_wknight);
         this.type = new IsValid(IsValid.piecetype.knight);
     }
 
