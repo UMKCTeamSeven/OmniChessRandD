@@ -19,18 +19,16 @@ public class Pawn extends Piece {
     }
 
     public Piece Promote(Piece pawn, int PromotionSelection) {
-        Piece promotedPawn = null;
         if (PromotionSelection == 0) {
-            promotedPawn = new Bishop(true, pawn.getX(), pawn.getY(), pawn.getZ());
+            pawn = new Bishop(true, pawn.getX(), pawn.getY(), pawn.getZ());
         } else if (PromotionSelection == 1) {
-            promotedPawn = new Rook(true, pawn.getX(), pawn.getY(), pawn.getZ());
+            pawn = new Rook(true, pawn.getX(), pawn.getY(), pawn.getZ());
         } else if (PromotionSelection == 2) {
-            promotedPawn = new Knight(true, pawn.getX(), pawn.getY(), pawn.getZ());
+            pawn = new Knight(true, pawn.getX(), pawn.getY(), pawn.getZ());
         } else if (PromotionSelection == 3) {
-            promotedPawn = new Queen(true, pawn.getX(), pawn.getY(), pawn.getZ());
-        } else
-            promotedPawn = pawn;
-        return promotedPawn;
+            pawn = new Queen(true, pawn.getX(), pawn.getY(), pawn.getZ());
+        }
+        return pawn;
     }
 
     @Override
@@ -49,7 +47,7 @@ public class Pawn extends Piece {
                 if (destination.isOccupied()) {
                     destination.releaseSpot();
                     destination.placePiece(pawn);
-                } else if (!destination.isOccupied() && pawn.getY() == 7 || pawn.getY() == 0) { //need to check for y-axis edge of board
+                } else if (!destination.isOccupied() && destination.y == 7 || destination.y == 0) { //need to check for y-axis for edge of board
                     destination.placePiece(Promote(pawn, 0));
                 } else {
                     destination.placePiece(pawn);
