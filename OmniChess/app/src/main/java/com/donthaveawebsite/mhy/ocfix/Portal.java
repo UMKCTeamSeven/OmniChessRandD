@@ -18,6 +18,14 @@ public class Portal extends Piece
         this.SetRelated(relatedPortal);
     }
 
+
+
+    @Override
+    public char getcolor(Piece piece)
+    {
+        return 'P';
+    }
+
     @Override
     public void OnMove(Piece portal, Spot source, Spot destination, Board theboard)
     {

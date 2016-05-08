@@ -50,6 +50,9 @@ public class Selector
     }
 
     private boolean VerifyPieceOwnership(Spot spot) {
+        //portal case
+        if (spot.isOccupied() && ((players.get(0).IsTurn() && spot.getpiece().getcolor(spot.getpiece()) == 'P')  || (players.get(1).IsTurn() && spot.getpiece().getcolor(spot.getpiece()) == 'P')   )            ) //true if portal
+            {return true;}
         return (spot.isOccupied() && spot.SpotState == 2 && ((players.get(0).IsTurn() && spot.getpiece().getcolor(spot.getpiece()) == players.get(0).getColor())|| (players.get(1).IsTurn() && spot.getpiece().getcolor(spot.getpiece()) == players.get(1).getColor())));
     }
 
