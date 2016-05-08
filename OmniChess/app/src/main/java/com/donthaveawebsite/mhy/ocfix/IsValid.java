@@ -38,6 +38,11 @@ public class IsValid
             {
                 case pawn:
                 //Does not have enpasant
+                
+                // If ( lastrow && PawnLogicCheck(piece, Source, Destination, theboard) )
+                                //promotionRoutine()
+                                
+                                
                 return PawnLogicCheck(piece, Source, Destination, theboard);
                 case king:
                     //needs logic
