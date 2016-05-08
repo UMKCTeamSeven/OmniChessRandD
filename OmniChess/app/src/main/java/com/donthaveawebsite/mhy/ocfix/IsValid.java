@@ -56,8 +56,8 @@ public class IsValid
                 case queen:
                     return (((BishopLogicCheck(piece,Source,Destination, theboard)) || (RookLogicCheck(piece, Source, Destination, theboard))));
                 case portal:
-                    //Can't move portals, can't select portals either, HOW DID THIS HAPPEN? Go debug right meow
-                    break;
+                    //portals can be moved to an empty space during your turn, but cost your turn. For testing mainly
+                    return portalLogicCheck(piece, Source, Destination, theboard);
                 default:
                     break;
 
@@ -68,38 +68,103 @@ public class IsValid
 
     public Spot OneN(Spot Source, Board theboard)
     {
+        if (theboard.getSpot(Source.x, (Source.y + 1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x, (Source.y + 1)).getpiece().getcolor(theboard.getSpot(Source.x, (Source.y + 1)).getpiece()) == 'P') {
+                return OneN(theboard.getSpot(theboard.getSpot(Source.x, (Source.y + 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x, (Source.y + 1)).getpiece().GetRelated().getY()), theboard);
+            }
+
+        }
+        //original logic before portals
         return (theboard.getSpot(Source.x, (Source.y + 1)));
     }
     public Spot OneS(Spot Source, Board theboard)
     {
+        if (theboard.getSpot(Source.x, (Source.y-1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x, (Source.y - 1)).getpiece().getcolor(theboard.getSpot(Source.x, (Source.y - 1)).getpiece()) == 'P') {
+                return OneS(theboard.getSpot(theboard.getSpot(Source.x, (Source.y - 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x, (Source.y - 1)).getpiece().GetRelated().getY()), theboard);
+            }
+        }
+
+
+        //original logic before portals
         return (theboard.getSpot(Source.x, (Source.y - 1)));
     }
 
     public Spot OneR(Spot Source, Board theboard)
     {
+        if (theboard.getSpot(Source.x + 1, (Source.y)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x + 1, (Source.y)).getpiece().getcolor(theboard.getSpot(Source.x + 1, (Source.y)).getpiece()) == 'P') {
+                return OneR(theboard.getSpot(theboard.getSpot(Source.x + 1, (Source.y)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x + 1, (Source.y)).getpiece().GetRelated().getY()), theboard);
+            }
+        }
+        //original logic before portals
         return (theboard.getSpot(Source.x + 1, (Source.y)));
     }
     public Spot OneL(Spot Source, Board theboard)
     {
+        if (theboard.getSpot(Source.x-1, (Source.y)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x - 1, (Source.y)).getpiece().getcolor(theboard.getSpot(Source.x - 1, (Source.y)).getpiece()) == 'P') {
+                return OneL(theboard.getSpot(theboard.getSpot(Source.x - 1, (Source.y)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x - 1, (Source.y)).getpiece().GetRelated().getY()), theboard);
+            }
+        }
+
+        //original logic before portals
         return (theboard.getSpot(Source.x - 1, (Source.y)));
     }
 
 
     public Spot OneLN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
+        if(theboard.getSpot(Source.x - 1, (Source.y + 1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().getcolor(theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece()) == 'P')
+            {
+                return OneLN(theboard.getSpot(theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().GetRelated().getY()), theboard);
+            }
+
+        }
+            //original logic before portals
             return (theboard.getSpot(Source.x - 1, (Source.y + 1)));
     }
-    public Spot OneLS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
-    {
+    public Spot OneLS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
+
+        if(theboard.getSpot(Source.x - 1, (Source.y - 1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().getcolor(theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece()) == 'P')
+            {
+                return OneLS(theboard.getSpot(theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().GetRelated().getY()), theboard);
+            }
+
+        }
+            //original logic before portals
             return (theboard.getSpot(Source.x - 1, (Source.y - 1)));
     }
     public Spot OneRS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
+        if (theboard.getSpot(Source.x + 1, (Source.y  -1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().getcolor(theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece()) == 'P') {
+                return OneRS(theboard.getSpot(theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().GetRelated().getY()), theboard);
+            }
+
+        }
+           //original logic before portals
             return (theboard.getSpot(Source.x + 1, (Source.y - 1)));
     }
 
     public Spot OneRN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
+        if (theboard.getSpot(Source.x + 1, (Source.y +1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().getcolor(theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece()) == 'P') {
+                return OneRN(theboard.getSpot(theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().GetRelated().getY()), theboard);
+            }
+        }
+        //original logic before portals
         return (theboard.getSpot(Source.x + 1, (Source.y + 1)));
     }
 
@@ -110,6 +175,18 @@ public class IsValid
         if ( (spot.y == 0 || spot.y == 7))
         {return true;}
         return false;
+    }
+
+    public boolean IsPortal(Spot spot)
+    {
+        return spot.getpiece().getcolor(spot.getpiece()) == 'P';
+    }
+
+    private boolean portalLogicCheck(Piece piece,Spot Source,Spot Destination, Board theboard)
+    {
+        if (Destination.isOccupied())
+            return false;
+        return true;
     }
 
 
