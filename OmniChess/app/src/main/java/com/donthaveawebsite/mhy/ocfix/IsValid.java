@@ -56,8 +56,8 @@ public class IsValid
                 case queen:
                     return (((BishopLogicCheck(piece,Source,Destination, theboard)) || (RookLogicCheck(piece, Source, Destination, theboard))));
                 case portal:
-                    //Can't move portals, can't select portals either, HOW DID THIS HAPPEN? Go debug right meow
-                    break;
+                    //portals can be moved to an empty space during your turn, but cost your turn. For testing mainly
+                    return portalLogicCheck(piece, Source, Destination, theboard);
                 default:
                     break;
 
@@ -110,6 +110,14 @@ public class IsValid
         if ( (spot.y == 0 || spot.y == 7))
         {return true;}
         return false;
+    }
+
+
+    private boolean portalLogicCheck(Piece piece,Spot Source,Spot Destination, Board theboard)
+    {
+        if (Destination.isOccupied())
+            return false;
+        return true;
     }
 
 
