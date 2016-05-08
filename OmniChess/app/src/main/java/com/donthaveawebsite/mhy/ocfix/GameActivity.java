@@ -88,11 +88,10 @@ public class GameActivity extends Activity implements OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-
-
-
         List<Spot> ourspots = new ArrayList<Spot>();
         Board theboard = new Board(1, ourspots);
+
+        //Makes Three layer board
         for(Iterator<Spot> i = ourspots.iterator(); i.hasNext(); )
         {
             StringBuilder dest = new StringBuilder(2);
@@ -106,8 +105,10 @@ public class GameActivity extends Activity implements OnClickListener
 
             String ps = "P"+ dest.toString();
             String ss = "S"+ dest.toString();
+
             int piecelayertier = this.getResources().getIdentifier(ps,"id", getPackageName());
             int selectorlayertier = this.getResources().getIdentifier(ss,"id",getPackageName());
+
             ImageView test =(ImageView)findViewById(piecelayertier);
 
             spot.TieAppearance((ImageView)findViewById(piecelayertier));
@@ -121,7 +122,7 @@ public class GameActivity extends Activity implements OnClickListener
 
         }
     mainboard = theboard;
-
+//Pieces
         //queens
         Queen blackQ = new Queen(true,4,0,1);
         Queen whiteQ = new Queen(true,4,7,1);
@@ -130,9 +131,6 @@ public class GameActivity extends Activity implements OnClickListener
         theboard.getSpot(4,7).getAppearance().setImageResource(R.drawable.ni_queenw);
         theboard.getSpot(4,0).placePiece(blackQ);
         theboard.getSpot(4,0).getAppearance().setImageResource(R.drawable.ni_queen);
-
-
-
         //white pawns
         Pawn whitepawn1 = new Pawn(true, 0,6,1);
         Pawn whitepawn2 = new Pawn(true, 1,6,1);
@@ -202,77 +200,80 @@ public class GameActivity extends Activity implements OnClickListener
 
 
         //knights
-        Knight whitetestknight = new Knight(true,  1, 7,1);
+        /*Knight whitetestknight = new Knight(true,  1, 7,1);
         Knight testknight = new Knight(true,1,0,1);
         Knight whiteknight = new Knight(true,  6, 7,1);
         Knight blackknight = new Knight(true,6,0,1);
-
+*/
         //rooks
-        Rook whitetestrook2 = new Rook(true, 0, 7,1);
+        /*Rook whitetestrook2 = new Rook(true, 0, 7,1);
         Rook whitetestrook3 = new Rook(true, 7, 7,1);
         Rook blackrook = new Rook(true, 0,0, 1);
-        Rook blackrook2 = new Rook(true, 7,0, 1);
+        Rook blackrook2 = new Rook(true, 7,0, 1);*/
 
-        //bishops
+       /* //bishops
         Bishop blackbish = new Bishop(true, 2,0,1);
         Bishop blackbish2 = new Bishop(true, 5,0,1);
         Bishop whitebish = new Bishop(true, 2,7,1);
-        Bishop whitebish2 = new Bishop(true, 5,7,1);
+        Bishop whitebish2 = new Bishop(true, 5,7,1);*/
 
-        //white pieces need color swap
+        /*//white pieces need color swap
         whitetestknight.switchcolor();
         whitetestrook2.switchcolor();
         whitetestrook3.switchcolor();
         whiteknight.switchcolor();
         whitebish.switchcolor();
-        whitebish2.switchcolor();
+        whitebish2.switchcolor();*/
 
 
 
-        theboard.getSpot(1, 0).placePiece(testknight);
-        theboard.getSpot(1,0).getAppearance().setImageResource(R.drawable.ni_bknight);
-        theboard.getSpot(1, 7).placePiece(whitetestknight);
-        theboard.getSpot(1,7).getAppearance().setImageResource(R.drawable.ni_wknight);
-
-        theboard.getSpot(6, 0).placePiece(blackknight);
-        theboard.getSpot(6,0).getAppearance().setImageResource(R.drawable.ni_bknight);
-        theboard.getSpot(6, 7).placePiece(whiteknight);
-        theboard.getSpot(6,7).getAppearance().setImageResource(R.drawable.ni_wknight);
-
-        theboard.getSpot(2, 0).placePiece(blackbish);
-        theboard.getSpot(2,0).getAppearance().setImageResource(R.drawable.ni_bishop);
-        theboard.getSpot(5, 0).placePiece(blackbish2);
-        theboard.getSpot(5,0).getAppearance().setImageResource(R.drawable.ni_bishop);
-
-        theboard.getSpot(2, 7).placePiece(whitebish);
-        theboard.getSpot(2,7).getAppearance().setImageResource(R.drawable.ni_bishopw);
-        theboard.getSpot(5, 7).placePiece(whitebish2);
-        theboard.getSpot(5,7).getAppearance().setImageResource(R.drawable.ni_bishopw);
-
-
-        theboard.getSpot(0, 7).placePiece(whitetestrook2);
-        theboard.getSpot(0,7).getAppearance().setImageResource(R.drawable.ni_rookw);
-        theboard.getSpot(7, 7).placePiece(whitetestrook3);
-        theboard.getSpot(7,7).getAppearance().setImageResource(R.drawable.ni_rookw);
-
-        theboard.getSpot(7, 0).placePiece(blackrook2);
-        theboard.getSpot(7,0).getAppearance().setImageResource(R.drawable.ni_rook);
-        theboard.getSpot(0, 0).placePiece(blackrook);
-        theboard.getSpot(0,0).getAppearance().setImageResource(R.drawable.ni_rook);
-
-
-
-
-
+//        theboard.getSpot(1, 0).placePiece(testknight);
+//        theboard.getSpot(1,0).getAppearance().setImageResource(R.drawable.ni_bknight);
+//        theboard.getSpot(1, 7).placePiece(whitetestknight);
+//        theboard.getSpot(1,7).getAppearance().setImageResource(R.drawable.ni_wknight);
+//
+//        theboard.getSpot(6, 0).placePiece(blackknight);
+//        theboard.getSpot(6,0).getAppearance().setImageResource(R.drawable.ni_bknight);
+//        theboard.getSpot(6, 7).placePiece(whiteknight);
+//        theboard.getSpot(6,7).getAppearance().setImageResource(R.drawable.ni_wknight);
+//
+//        theboard.getSpot(2, 0).placePiece(blackbish);
+//        theboard.getSpot(2,0).getAppearance().setImageResource(R.drawable.ni_bishop);
+//        theboard.getSpot(5, 0).placePiece(blackbish2);
+//        theboard.getSpot(5,0).getAppearance().setImageResource(R.drawable.ni_bishop);
+//
+//        theboard.getSpot(2, 7).placePiece(whitebish);
+//        theboard.getSpot(2,7).getAppearance().setImageResource(R.drawable.ni_bishopw);
+//        theboard.getSpot(5, 7).placePiece(whitebish2);
+//        theboard.getSpot(5,7).getAppearance().setImageResource(R.drawable.ni_bishopw);
+//
+//
+//        theboard.getSpot(0, 7).placePiece(whitetestrook2);
+//        theboard.getSpot(0,7).getAppearance().setImageResource(R.drawable.ni_rookw);
+//        theboard.getSpot(7, 7).placePiece(whitetestrook3);
+//        theboard.getSpot(7,7).getAppearance().setImageResource(R.drawable.ni_rookw);
+//
+//        theboard.getSpot(7, 0).placePiece(blackrook2);
+//        theboard.getSpot(7,0).getAppearance().setImageResource(R.drawable.ni_rook);
+//        theboard.getSpot(0, 0).placePiece(blackrook);
+//        theboard.getSpot(0,0).getAppearance().setImageResource(R.drawable.ni_rook);
 
 
         Player white = new Player('W');
         Player black = new Player('B');
+
+        Player portals = new Player('P');  //Portals are not actually players... just FYI NPCs
+
+
+
         black.setTurn(true);
+
+
         List<Player> players = new ArrayList<Player>();
-        //For now just the black player will be added
+
         players.add(black);
         players.add(white);
+
         listenspots = ourspots;
         theselector = new Selector(players, ourspots, theboard);
 
