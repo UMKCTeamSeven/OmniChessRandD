@@ -123,6 +123,16 @@ public class GameActivity extends Activity implements OnClickListener
         }
     mainboard = theboard;
 //Pieces
+        //Portals
+        Portal portalA = new Portal(true, 3, 4, 1);
+        Portal portalB = new Portal(true, 5, 4, 1, portalA);
+        portalA.SetRelated(portalB);
+
+        theboard.getSpot(3,4).placePiece(portalA);
+        theboard.getSpot(3,4).getAppearance().setImageResource(R.drawable.ni_portal);
+        theboard.getSpot(5, 4).placePiece(portalB);
+        theboard.getSpot(5, 4).getAppearance().setImageResource(R.drawable.ni_portal);
+        
         //queens
         Queen blackQ = new Queen(true,4,0,1);
         Queen whiteQ = new Queen(true,4,7,1);
