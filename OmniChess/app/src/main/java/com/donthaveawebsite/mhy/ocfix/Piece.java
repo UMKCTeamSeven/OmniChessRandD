@@ -7,6 +7,8 @@ public class Piece {
     private int y;
     private int z; // for board id. Right now only one board.
 
+    private Spot currentlocation;
+
     public IsValid type;
 
     private char color = 'B';
@@ -21,6 +23,16 @@ public class Piece {
         this.z = z;
         this.type = null;
 
+    }
+
+    public void SetCurrentLocation(Spot spot)
+    {
+        this.currentlocation = spot;
+    }
+
+    public Spot getCurrentlocation()
+    {
+        return this.currentlocation;
     }
 
     public void SetRelated(Piece relatedpiece)
