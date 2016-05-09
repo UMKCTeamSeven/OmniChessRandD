@@ -1,4 +1,7 @@
 package com.donthaveawebsite.mhy.ocfix;
+
+import android.support.annotation.Nullable;
+
 /**
  * Created by Matthew on 3/29/2015.
  */
@@ -25,6 +28,9 @@ public class IsValid
 
     public IsValid(piecetype piecetypes)
     {this.piecetypes = piecetypes;}
+
+
+
     //Methods
     public boolean IsMoveValid(Piece piece, Spot Source, Spot Destination, Board theboard)
     {
@@ -52,9 +58,18 @@ public class IsValid
                 case bishop:
                     return BishopLogicCheck(piece, Source, Destination, theboard);
                 case rook:
-                    return RookLogicCheck(piece, Source, Destination, theboard);
+                    try
+                    {
+                        return RookLogicCheck(piece, Source, Destination, theboard);
+                    }
+                    catch (ArrayIndexOutOfBoundsException e)
+                        {}
                 case queen:
-                    return (((BishopLogicCheck(piece,Source,Destination, theboard)) || (RookLogicCheck(piece, Source, Destination, theboard))));
+                    try
+                    {
+                        return (((BishopLogicCheck(piece, Source, Destination, theboard)) || (RookLogicCheck(piece, Source, Destination, theboard))));
+                    }
+                    catch (ArrayIndexOutOfBoundsException e) {}
                 case portal:
                     //portals can be moved to an empty space during your turn, but cost your turn. For testing mainly
                     return portalLogicCheck(piece, Source, Destination, theboard);
@@ -66,7 +81,7 @@ public class IsValid
             return false; //Default returns false, piece type not added, or shouldnt have been selected, off to the debug you go
          }
 
-    public Spot OneN(Spot Source, Board theboard)
+    public Spot OneN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
         if (theboard.getSpot(Source.x, (Source.y + 1)).isOccupied())
         {
@@ -78,7 +93,7 @@ public class IsValid
         //original logic before portals
         return (theboard.getSpot(Source.x, (Source.y + 1)));
     }
-    public Spot OneS(Spot Source, Board theboard)
+    public Spot OneS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
         if (theboard.getSpot(Source.x, (Source.y-1)).isOccupied())
         {
@@ -92,7 +107,7 @@ public class IsValid
         return (theboard.getSpot(Source.x, (Source.y - 1)));
     }
 
-    public Spot OneR(Spot Source, Board theboard)
+    public Spot OneR(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
         if (theboard.getSpot(Source.x + 1, (Source.y)).isOccupied())
         {
@@ -103,7 +118,7 @@ public class IsValid
         //original logic before portals
         return (theboard.getSpot(Source.x + 1, (Source.y)));
     }
-    public Spot OneL(Spot Source, Board theboard)
+    public Spot OneL(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
         if (theboard.getSpot(Source.x-1, (Source.y)).isOccupied())
         {
@@ -184,7 +199,7 @@ public class IsValid
 
     private boolean portalLogicCheck(Piece piece,Spot Source,Spot Destination, Board theboard)
     {
-        if (Destination.isOccupied())
+        if (Destination.isOccupied() || IsEdge(Destination, theboard))
             return false;
         return true;
     }
@@ -195,7 +210,17 @@ public class IsValid
     {
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
             return false;
+        //If portal in path -- portal move logic
+        Spot tracker = Source;
 
+
+
+
+        return rookNoPortal(Source, Destination, theboard);
+    }
+
+
+    private Boolean rookNoPortal(Spot Source, Spot Destination, Board theboard) {
         //H or V
         if (Source.x - Destination.x == 0)//V
         {
@@ -269,9 +294,9 @@ public class IsValid
                 }
             }
         }
-
         return false;
     }
+
     private boolean BishopLogicCheck(Piece piece,Spot Source, Spot Destination, Board theboard)
     {
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
@@ -377,6 +402,8 @@ public class IsValid
         return (    (( (Destination.x +1 == Source.x) || (Destination.x -1)  == Source.x) && ((Destination.y + 2 ==  Source.y) || Destination.y -2 == Source.y)) ||
                 ( (Destination.x + 2 == Source.x) || (Destination.x - 2)  == Source.x) && ((Destination.y + 1 ==  Source.y) || Destination.y - 1 == Source.y));
     }
+
+//todo rewrite for portal
 
     private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
 

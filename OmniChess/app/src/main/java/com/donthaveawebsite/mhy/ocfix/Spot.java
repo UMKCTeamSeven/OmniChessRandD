@@ -40,15 +40,16 @@ public class Spot {
         piece.setX(this.x);
         piece.setZ(this.z);
         this.SpotState = 2;
-
+        this.piece.SetCurrentLocation(this);
     }
 
 
 
-    public void releaseSpot() {//REMOVES A PIECE!!
+    public void releaseSpot() {//REMOVES A PIECE!! Or a pair of portals
+
         this.piece = null;
         this.SpotState = 1;
-        //log in pieces taken later? Treasure chest of fallen pieces?
+
         }
 
     public ImageView getAppearance() {
