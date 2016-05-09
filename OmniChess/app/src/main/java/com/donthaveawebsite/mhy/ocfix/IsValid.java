@@ -52,7 +52,12 @@ public class IsValid
                 case bishop:
                     return BishopLogicCheck(piece, Source, Destination, theboard);
                 case rook:
-                    return RookLogicCheck(piece, Source, Destination, theboard);
+                    try
+                    {
+                        return RookLogicCheck(piece, Source, Destination, theboard);
+                    }
+                    catch (ArrayIndexOutOfBoundsException e)
+                        {}
                 case queen:
                     return (((BishopLogicCheck(piece,Source,Destination, theboard)) || (RookLogicCheck(piece, Source, Destination, theboard))));
                 case portal:
@@ -66,7 +71,7 @@ public class IsValid
             return false; //Default returns false, piece type not added, or shouldnt have been selected, off to the debug you go
          }
 
-    public Spot OneN(Spot Source, Board theboard)
+    public Spot OneN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
         if (theboard.getSpot(Source.x, (Source.y + 1)).isOccupied())
         {
@@ -78,7 +83,7 @@ public class IsValid
         //original logic before portals
         return (theboard.getSpot(Source.x, (Source.y + 1)));
     }
-    public Spot OneS(Spot Source, Board theboard)
+    public Spot OneS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
         if (theboard.getSpot(Source.x, (Source.y-1)).isOccupied())
         {
@@ -92,7 +97,7 @@ public class IsValid
         return (theboard.getSpot(Source.x, (Source.y - 1)));
     }
 
-    public Spot OneR(Spot Source, Board theboard)
+    public Spot OneR(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
         if (theboard.getSpot(Source.x + 1, (Source.y)).isOccupied())
         {
@@ -103,7 +108,7 @@ public class IsValid
         //original logic before portals
         return (theboard.getSpot(Source.x + 1, (Source.y)));
     }
-    public Spot OneL(Spot Source, Board theboard)
+    public Spot OneL(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
         if (theboard.getSpot(Source.x-1, (Source.y)).isOccupied())
         {
@@ -184,7 +189,7 @@ public class IsValid
 
     private boolean portalLogicCheck(Piece piece,Spot Source,Spot Destination, Board theboard)
     {
-        if (Destination.isOccupied())
+        if (Destination.isOccupied() || IsEdge(Destination, theboard))
             return false;
         return true;
     }
