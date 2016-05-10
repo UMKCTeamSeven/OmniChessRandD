@@ -10,7 +10,7 @@ public class Queen extends Piece
 
     public Queen (boolean available, int x, int y, int z)
     {
-        super(available, x, y, z);
+        super(available, x, y, z, R.drawable.ni_queen);
         this.type = new IsValid(IsValid.piecetype.queen);
     }
 
