@@ -44,19 +44,15 @@ public class IsValid
             {
                 case pawn:
                 //Does not have enpasant
-                
-                // If ( lastrow && PawnLogicCheck(piece, Source, Destination, theboard) )
-                                //promotionRoutine()
-                                
-                                return PawnLogic2(piece, Source, Destination, theboard);
-                //return PawnLogicCheck(piece, Source, Destination, theboard);
+                        return PawnLogic(piece, Source, Destination, theboard);
+                //return PawnLogicCheck(piece, Source, Destination, theboard);  //original method before portals
                 case king:
                     //needs logic
                     break;
                 case knight:
-                    return KnightLogicCheck(piece, Source, Destination);
+                        return KnightLogicCheck(piece, Source, Destination);
                 case bishop:
-                    return BishopLogicCheck(piece, Source, Destination, theboard);
+                        return BishopLogicCheck(piece, Source, Destination, theboard);
                 case rook:
                     try
                     {
@@ -403,7 +399,7 @@ public class IsValid
                 ( (Destination.x + 2 == Source.x) || (Destination.x - 2)  == Source.x) && ((Destination.y + 1 ==  Source.y) || Destination.y - 1 == Source.y));
     }
 
-    private boolean PawnLogic2(Piece piece, Spot Source, Spot Destination, Board theboard)//todo enpasant
+    private boolean PawnLogic(Piece piece, Spot Source, Spot Destination, Board theboard)//todo enpasant
     {
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
             return false;
@@ -414,11 +410,10 @@ public class IsValid
             {
                 return true;
             }
-            if ((Destination == OneLN(Source, theboard) || Destination == OneRN(Source, theboard)) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P') ) {
-                return true;
-            } //diagonal attack
+            if (BPawnAttack(Source, Destination, theboard)) return true;
 
-            if (piece.getMC() == 0) {   //Going up the board
+            if (piece.getMC() == 0)
+            {   //Going up the board
                 if (!Destination.isOccupied()) {
                     if (Destination == OneN(OneN(Source, theboard), theboard) && !(OneN(Source, theboard).isOccupied())) {
                         return true;
@@ -433,10 +428,7 @@ public class IsValid
             {
                 return true;
             }
-            if ((Destination == OneLS(Source, theboard) || Destination == OneRS(Source, theboard)) && Destination.isOccupied()  && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
-            {
-                return true;
-            } //diagonal attack
+            if (WPawnAttack(Source, Destination, theboard)) return true;
 
             if (piece.getMC() == 0)
             {   //Going down the board
@@ -451,6 +443,65 @@ public class IsValid
         return false;
     }
 
+    private boolean BPawnAttack(Spot Source, Spot Destination, Board theboard) {
+        if (!(IsEdge(Source, theboard)))
+        {
+            if ((Destination == OneLN(Source, theboard) || Destination == OneRN(Source, theboard)) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P')) {
+
+                return true;
+            } //diagonal attack nonedge
+        }
+        else
+        {
+            //Edge diagonal logic for pawns
+            if (Source.x == 0)
+            {
+                if ( Destination == OneRN(Source, theboard) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
+                {
+                    return true;
+                } //diagonal attack
+            }
+            else
+            {
+                if ( Destination == OneLN(Source, theboard) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
+                {
+                    return true;
+                } //diagonal attack
+
+            }
+        }
+        return false;
+    }
+
+    private boolean WPawnAttack(Spot Source, Spot Destination, Board theboard) {
+        if (!(IsEdge(Source, theboard)))
+        {
+            if ((Destination == OneLS(Source, theboard) || Destination == OneRS(Source, theboard)) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P')) {
+
+                return true;
+            } //diagonal attack nonedge
+        }
+        else
+        {
+            //Edge diagonal logic for pawns
+            if (Source.x == 0)
+            {
+                if ( Destination == OneRS(Source, theboard) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
+                {
+                    return true;
+                } //diagonal attack
+            }
+            else
+            {
+                if ( Destination == OneLS(Source, theboard) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
+                {
+                    return true;
+                } //diagonal attack
+
+            }
+        }
+        return false;
+    }
 
     private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
 
