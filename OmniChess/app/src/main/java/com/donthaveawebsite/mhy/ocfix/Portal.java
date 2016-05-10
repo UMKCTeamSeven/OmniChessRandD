@@ -7,13 +7,13 @@ public class Portal extends Piece
 {
  public Portal(Boolean available, int x, int y, int z)                           //Dead end portal
  {
-     super(available, x, y, z);
+     super(available, x, y, z, R.drawable.ni_portal);
      this.type = new IsValid(IsValid.piecetype.portal);
  }
 
     public Portal(Boolean available, int x, int y, int z, Portal relatedPortal)  //Paired
     {
-        super(available, x, y, z);
+        super(available, x, y, z, R.drawable.ni_portal);
         this.type = new IsValid(IsValid.piecetype.portal);
         this.SetRelated(relatedPortal);
     }

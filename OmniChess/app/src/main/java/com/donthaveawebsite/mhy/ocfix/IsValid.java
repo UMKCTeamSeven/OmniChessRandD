@@ -48,8 +48,8 @@ public class IsValid
                 // If ( lastrow && PawnLogicCheck(piece, Source, Destination, theboard) )
                                 //promotionRoutine()
                                 
-                                
-                return PawnLogicCheck(piece, Source, Destination, theboard);
+                                return PawnLogic2(piece, Source, Destination, theboard);
+                //return PawnLogicCheck(piece, Source, Destination, theboard);
                 case king:
                     //needs logic
                     break;
@@ -403,7 +403,64 @@ public class IsValid
                 ( (Destination.x + 2 == Source.x) || (Destination.x - 2)  == Source.x) && ((Destination.y + 1 ==  Source.y) || Destination.y - 1 == Source.y));
     }
 
-//todo rewrite for portal
+    private boolean PawnLogic2(Piece piece, Spot Source, Spot Destination, Board theboard)//todo enpasant
+    {
+        if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
+            return false;
+
+        if ('B' == piece.getcolor(piece)) {
+            if (piece.getMC() == 0) {   //Going up the board
+                if (Destination.isOccupied()) {
+                    return (OneLN(Destination, theboard) == Destination || OneRN(Destination, theboard) == Destination);
+                } else {
+                    if (Destination == OneN(Source, theboard)) {
+                        return true;
+                    }
+                    if (Destination == OneN(OneN(Source, theboard), theboard) && !(OneN(Source, theboard).isOccupied())) {
+                        return true;
+                    }
+                }
+
+                return false;
+            } else {
+                if (Destination.isOccupied()) {
+                    return (OneLN(Destination, theboard) == Destination || OneRN(Destination, theboard) == Destination);
+                }
+                if (Destination == OneN(Source, theboard)) {
+                    return true;
+                }
+                return false;
+            }
+
+
+        } else { // going down the board
+            if (piece.getMC() == 0) {   //Going up the board  //todo enpasant
+                if (Destination.isOccupied()) {
+                    return (OneLS(Destination, theboard) == Destination || OneRS(Destination, theboard) == Destination);
+                } else {
+                    if (Destination == OneS(Source, theboard)) {
+                        return true;
+                    }
+                    if (Destination == OneS(OneS(Source, theboard), theboard) && !(OneS(Source, theboard).isOccupied())) {
+                        return true;
+                    }
+                    return false;
+                }
+
+
+            } else {
+                if (Destination.isOccupied()) {
+                    return (OneLS(Destination, theboard) == Destination || OneRS(Destination, theboard) == Destination);
+                } else {
+                    if (Destination == OneS(Source, theboard)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+    }
+
 
     private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
 
