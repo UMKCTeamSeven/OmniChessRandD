@@ -1,4 +1,7 @@
 package com.donthaveawebsite.mhy.ocfix;
+
+import android.support.annotation.Nullable;
+
 /**
  * Created by Matthew on 3/29/2015.
  */
@@ -25,6 +28,9 @@ public class IsValid
 
     public IsValid(piecetype piecetypes)
     {this.piecetypes = piecetypes;}
+
+
+
     //Methods
     public boolean IsMoveValid(Piece piece, Spot Source, Spot Destination, Board theboard)
     {
@@ -38,21 +44,31 @@ public class IsValid
             {
                 case pawn:
                 //Does not have enpasant
-                return PawnLogicCheck(piece, Source, Destination, theboard);
+                        return PawnLogic(piece, Source, Destination, theboard);
+                //return PawnLogicCheck(piece, Source, Destination, theboard);  //original method before portals
                 case king:
                     //needs logic
                     break;
                 case knight:
-                    return KnightLogicCheck(piece, Source, Destination);
+                        return KnightLogicCheck(piece, Source, Destination);
                 case bishop:
-                    return BishopLogicCheck(piece, Source, Destination, theboard);
+                        return BishopLogicCheck(piece, Source, Destination, theboard);
                 case rook:
-                    return RookLogicCheck(piece, Source, Destination, theboard);
+                    try
+                    {
+                        return RookLogicCheck(piece, Source, Destination, theboard);
+                    }
+                    catch (ArrayIndexOutOfBoundsException e)
+                        {}
                 case queen:
-                    return (((BishopLogicCheck(piece,Source,Destination, theboard)) || (RookLogicCheck(piece, Source, Destination, theboard))));
+                    try
+                    {
+                        return (((BishopLogicCheck(piece, Source, Destination, theboard)) || (RookLogicCheck(piece, Source, Destination, theboard))));
+                    }
+                    catch (ArrayIndexOutOfBoundsException e) {}
                 case portal:
-                    //Can't move portals, can't select portals either, HOW DID THIS HAPPEN? Go debug right meow
-                    break;
+                    //portals can be moved to an empty space during your turn, but cost your turn. For testing mainly
+                    return portalLogicCheck(piece, Source, Destination, theboard);
                 default:
                     break;
 
@@ -61,40 +77,105 @@ public class IsValid
             return false; //Default returns false, piece type not added, or shouldnt have been selected, off to the debug you go
          }
 
-    public Spot OneN(Spot Source, Board theboard)
+    public Spot OneN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
+        if (theboard.getSpot(Source.x, (Source.y + 1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x, (Source.y + 1)).getpiece().getcolor(theboard.getSpot(Source.x, (Source.y + 1)).getpiece()) == 'P') {
+                return OneN(theboard.getSpot(theboard.getSpot(Source.x, (Source.y + 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x, (Source.y + 1)).getpiece().GetRelated().getY()), theboard);
+            }
+
+        }
+        //original logic before portals
         return (theboard.getSpot(Source.x, (Source.y + 1)));
     }
-    public Spot OneS(Spot Source, Board theboard)
+    public Spot OneS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
+        if (theboard.getSpot(Source.x, (Source.y-1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x, (Source.y - 1)).getpiece().getcolor(theboard.getSpot(Source.x, (Source.y - 1)).getpiece()) == 'P') {
+                return OneS(theboard.getSpot(theboard.getSpot(Source.x, (Source.y - 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x, (Source.y - 1)).getpiece().GetRelated().getY()), theboard);
+            }
+        }
+
+
+        //original logic before portals
         return (theboard.getSpot(Source.x, (Source.y - 1)));
     }
 
-    public Spot OneR(Spot Source, Board theboard)
+    public Spot OneR(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
+        if (theboard.getSpot(Source.x + 1, (Source.y)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x + 1, (Source.y)).getpiece().getcolor(theboard.getSpot(Source.x + 1, (Source.y)).getpiece()) == 'P') {
+                return OneR(theboard.getSpot(theboard.getSpot(Source.x + 1, (Source.y)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x + 1, (Source.y)).getpiece().GetRelated().getY()), theboard);
+            }
+        }
+        //original logic before portals
         return (theboard.getSpot(Source.x + 1, (Source.y)));
     }
-    public Spot OneL(Spot Source, Board theboard)
+    public Spot OneL(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
+        if (theboard.getSpot(Source.x-1, (Source.y)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x - 1, (Source.y)).getpiece().getcolor(theboard.getSpot(Source.x - 1, (Source.y)).getpiece()) == 'P') {
+                return OneL(theboard.getSpot(theboard.getSpot(Source.x - 1, (Source.y)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x - 1, (Source.y)).getpiece().GetRelated().getY()), theboard);
+            }
+        }
+
+        //original logic before portals
         return (theboard.getSpot(Source.x - 1, (Source.y)));
     }
 
 
     public Spot OneLN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
+        if(theboard.getSpot(Source.x - 1, (Source.y + 1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().getcolor(theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece()) == 'P')
+            {
+                return OneLN(theboard.getSpot(theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().GetRelated().getY()), theboard);
+            }
+
+        }
+            //original logic before portals
             return (theboard.getSpot(Source.x - 1, (Source.y + 1)));
     }
-    public Spot OneLS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
-    {
+    public Spot OneLS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
+
+        if(theboard.getSpot(Source.x - 1, (Source.y - 1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().getcolor(theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece()) == 'P')
+            {
+                return OneLS(theboard.getSpot(theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().GetRelated().getY()), theboard);
+            }
+
+        }
+            //original logic before portals
             return (theboard.getSpot(Source.x - 1, (Source.y - 1)));
     }
     public Spot OneRS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
+        if (theboard.getSpot(Source.x + 1, (Source.y  -1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().getcolor(theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece()) == 'P') {
+                return OneRS(theboard.getSpot(theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().GetRelated().getY()), theboard);
+            }
+
+        }
+           //original logic before portals
             return (theboard.getSpot(Source.x + 1, (Source.y - 1)));
     }
 
     public Spot OneRN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException
     {
+        if (theboard.getSpot(Source.x + 1, (Source.y +1)).isOccupied())
+        {
+            if (theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().getcolor(theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece()) == 'P') {
+                return OneRN(theboard.getSpot(theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().GetRelated().getY()), theboard);
+            }
+        }
+        //original logic before portals
         return (theboard.getSpot(Source.x + 1, (Source.y + 1)));
     }
 
@@ -107,13 +188,35 @@ public class IsValid
         return false;
     }
 
+    public boolean IsPortal(Spot spot)
+    {
+        return spot.getpiece().getcolor(spot.getpiece()) == 'P';
+    }
+
+    private boolean portalLogicCheck(Piece piece,Spot Source,Spot Destination, Board theboard)
+    {
+        if (Destination.isOccupied() || IsEdge(Destination, theboard))
+            return false;
+        return true;
+    }
+
 
 
     private boolean RookLogicCheck(Piece piece,Spot Source,Spot Destination, Board theboard)
     {
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
             return false;
+        //If portal in path -- portal move logic
+        Spot tracker = Source;
 
+
+
+
+        return rookNoPortal(Source, Destination, theboard);
+    }
+
+
+    private Boolean rookNoPortal(Spot Source, Spot Destination, Board theboard) {
         //H or V
         if (Source.x - Destination.x == 0)//V
         {
@@ -187,9 +290,9 @@ public class IsValid
                 }
             }
         }
-
         return false;
     }
+
     private boolean BishopLogicCheck(Piece piece,Spot Source, Spot Destination, Board theboard)
     {
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
@@ -294,6 +397,110 @@ public class IsValid
             return false;
         return (    (( (Destination.x +1 == Source.x) || (Destination.x -1)  == Source.x) && ((Destination.y + 2 ==  Source.y) || Destination.y -2 == Source.y)) ||
                 ( (Destination.x + 2 == Source.x) || (Destination.x - 2)  == Source.x) && ((Destination.y + 1 ==  Source.y) || Destination.y - 1 == Source.y));
+    }
+
+    private boolean PawnLogic(Piece piece, Spot Source, Spot Destination, Board theboard)//todo enpasant
+    {
+        if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
+            return false;
+
+        if ('B' == piece.getcolor(piece))
+        {
+            if (Destination == OneN(Source, theboard) && !(Destination.isOccupied())) //No matter what pawns can move forward one empty square
+            {
+                return true;
+            }
+            if (BPawnAttack(Source, Destination, theboard)) return true;
+
+            if (piece.getMC() == 0)
+            {   //Going up the board
+                if (!Destination.isOccupied()) {
+                    if (Destination == OneN(OneN(Source, theboard), theboard) && !(OneN(Source, theboard).isOccupied())) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        if ('W' == piece.getcolor(piece))
+        {
+            if (Destination == OneS(Source, theboard) && !(Destination.isOccupied())) //No matter what pawns can move forward one empty square
+            {
+                return true;
+            }
+            if (WPawnAttack(Source, Destination, theboard)) return true;
+
+            if (piece.getMC() == 0)
+            {   //Going down the board
+                if (!Destination.isOccupied()) {
+                    if (Destination == OneS(OneS(Source, theboard), theboard) && !(OneS(Source, theboard).isOccupied())) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        return false;
+    }
+
+    private boolean BPawnAttack(Spot Source, Spot Destination, Board theboard) {
+        if (!(IsEdge(Source, theboard)))
+        {
+            if ((Destination == OneLN(Source, theboard) || Destination == OneRN(Source, theboard)) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P')) {
+
+                return true;
+            } //diagonal attack nonedge
+        }
+        else
+        {
+            //Edge diagonal logic for pawns
+            if (Source.x == 0)
+            {
+                if ( Destination == OneRN(Source, theboard) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
+                {
+                    return true;
+                } //diagonal attack
+            }
+            else
+            {
+                if ( Destination == OneLN(Source, theboard) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
+                {
+                    return true;
+                } //diagonal attack
+
+            }
+        }
+        return false;
+    }
+
+    private boolean WPawnAttack(Spot Source, Spot Destination, Board theboard) {
+        if (!(IsEdge(Source, theboard)))
+        {
+            if ((Destination == OneLS(Source, theboard) || Destination == OneRS(Source, theboard)) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P')) {
+
+                return true;
+            } //diagonal attack nonedge
+        }
+        else
+        {
+            //Edge diagonal logic for pawns
+            if (Source.x == 0)
+            {
+                if ( Destination == OneRS(Source, theboard) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
+                {
+                    return true;
+                } //diagonal attack
+            }
+            else
+            {
+                if ( Destination == OneLS(Source, theboard) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
+                {
+                    return true;
+                } //diagonal attack
+
+            }
+        }
+        return false;
     }
 
     private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
