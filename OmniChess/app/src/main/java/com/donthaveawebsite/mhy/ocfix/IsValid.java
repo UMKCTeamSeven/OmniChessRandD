@@ -48,8 +48,8 @@ public class IsValid
                 // If ( lastrow && PawnLogicCheck(piece, Source, Destination, theboard) )
                                 //promotionRoutine()
                                 
-                                
-                return PawnLogicCheck(piece, Source, Destination, theboard);
+                                return PawnLogic2(piece, Source, Destination, theboard);
+                //return PawnLogicCheck(piece, Source, Destination, theboard);
                 case king:
                     //needs logic
                     break;
@@ -403,7 +403,54 @@ public class IsValid
                 ( (Destination.x + 2 == Source.x) || (Destination.x - 2)  == Source.x) && ((Destination.y + 1 ==  Source.y) || Destination.y - 1 == Source.y));
     }
 
-//todo rewrite for portal
+    private boolean PawnLogic2(Piece piece, Spot Source, Spot Destination, Board theboard)//todo enpasant
+    {
+        if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
+            return false;
+
+        if ('B' == piece.getcolor(piece))
+        {
+            if (Destination == OneN(Source, theboard) && !(Destination.isOccupied())) //No matter what pawns can move forward one empty square
+            {
+                return true;
+            }
+            if ((Destination == OneLN(Source, theboard) || Destination == OneRN(Source, theboard)) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P') ) {
+                return true;
+            } //diagonal attack
+
+            if (piece.getMC() == 0) {   //Going up the board
+                if (!Destination.isOccupied()) {
+                    if (Destination == OneN(OneN(Source, theboard), theboard) && !(OneN(Source, theboard).isOccupied())) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        if ('W' == piece.getcolor(piece))
+        {
+            if (Destination == OneS(Source, theboard) && !(Destination.isOccupied())) //No matter what pawns can move forward one empty square
+            {
+                return true;
+            }
+            if ((Destination == OneLS(Source, theboard) || Destination == OneRS(Source, theboard)) && Destination.isOccupied()  && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
+            {
+                return true;
+            } //diagonal attack
+
+            if (piece.getMC() == 0)
+            {   //Going down the board
+                if (!Destination.isOccupied()) {
+                    if (Destination == OneS(OneS(Source, theboard), theboard) && !(OneS(Source, theboard).isOccupied())) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        return false;
+    }
+
 
     private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
 

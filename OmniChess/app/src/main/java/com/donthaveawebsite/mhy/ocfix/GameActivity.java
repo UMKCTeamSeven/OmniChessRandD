@@ -142,25 +142,25 @@ public class GameActivity extends Activity implements OnClickListener
         theboard.getSpot(4,0).placePiece(blackQ);
         theboard.getSpot(4,0).getAppearance().setImageResource(R.drawable.ni_queen);
         //white pawns
-        /*Pawn whitepawn1 = new Pawn(true, 0,6,1);
+        Pawn whitepawn1 = new Pawn(true, 0,6,1);
         Pawn whitepawn2 = new Pawn(true, 1,6,1);
         Pawn whitepawn3 = new Pawn(true, 2,6,1);
         Pawn whitepawn4 = new Pawn(true, 3,6,1);
         Pawn whitepawn5 = new Pawn(true, 4,6,1);
         Pawn whitepawn6 = new Pawn(true, 5,6,1);
         Pawn whitepawn7 = new Pawn(true, 6,6,1);
-        Pawn whitepawn8 = new Pawn(true, 7,6,1);*/
+        Pawn whitepawn8 = new Pawn(true, 7,6,1);
 
-       /* whitepawn1.switchcolor();
+        whitepawn1.switchcolor();
         whitepawn2.switchcolor();
         whitepawn3.switchcolor();
         whitepawn4.switchcolor();
         whitepawn5.switchcolor();
         whitepawn6.switchcolor();
         whitepawn7.switchcolor();
-        whitepawn8.switchcolor();*/
+        whitepawn8.switchcolor();
 
-        /*theboard.getSpot(0, 6).placePiece(whitepawn1);
+        theboard.getSpot(0, 6).placePiece(whitepawn1);
         theboard.getSpot(0, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
         theboard.getSpot(1, 6).placePiece(whitepawn2);
         theboard.getSpot(1, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
@@ -175,13 +175,13 @@ public class GameActivity extends Activity implements OnClickListener
         theboard.getSpot(6, 6).placePiece(whitepawn7);
         theboard.getSpot(6, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
         theboard.getSpot(7, 6).placePiece(whitepawn8);
-        theboard.getSpot(7, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);*/
+        theboard.getSpot(7, 6).getAppearance().setImageResource(R.drawable.ni_pawnw);
 
 
         //black pawns
 
 
-       /* Pawn testpawn1 = new Pawn(true,0,1,1);
+        Pawn testpawn1 = new Pawn(true,0,1,1);
         Pawn testpawn2 = new Pawn(true,1,1,1);
         Pawn testpawn3 = new Pawn(true,2,1,1);
         Pawn testpawn4 = new Pawn(true,3,1,1);
@@ -206,7 +206,7 @@ public class GameActivity extends Activity implements OnClickListener
         theboard.getSpot(6, 1).placePiece(testpawn7);
         theboard.getSpot(6,1).getAppearance().setImageResource(R.drawable.ni_pawn);
         theboard.getSpot(7, 1).placePiece(testpawn8);
-        theboard.getSpot(7,1).getAppearance().setImageResource(R.drawable.ni_pawn);*/
+        theboard.getSpot(7,1).getAppearance().setImageResource(R.drawable.ni_pawn);
 
 
         //knights
