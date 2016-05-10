@@ -33,7 +33,6 @@ public class IsValid
         this.piecetypes = piecetypes;
     }
 
-
     //Methods
     public boolean IsMoveValid(Piece piece, Spot Source, Spot Destination, Board theboard) {
         IsValid thetype = new IsValid(piece);
@@ -111,7 +110,6 @@ public class IsValid
         return (theboard.getSpot(Source.x - 1, (Source.y)));
     }
 
-
     public Spot OneLN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
         if (theboard.getSpot(Source.x - 1, (Source.y + 1)).isOccupied()) {
             if (theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().getcolor(theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece()) == 'P') {
@@ -180,7 +178,6 @@ public class IsValid
         return true;
     }
 
-
     private boolean RookLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
             return false;
@@ -188,9 +185,7 @@ public class IsValid
         return rookPortal(Source, Destination, theboard);
     }
 
-
-    private Boolean rookPortal(Spot Source, Spot Destination, Board theboard)
-    {
+    private Boolean rookPortal(Spot Source, Spot Destination, Board theboard)  {
         Spot Sspot = Source;
         while (Sspot.y != 7)
         {
@@ -245,10 +240,6 @@ public class IsValid
         }
         return false;
     }
-
-
-
-
 
     private boolean BishopLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
@@ -338,7 +329,6 @@ public class IsValid
         }
         return false;
     }
-
 
     private boolean KnightLogicCheck(Piece piece, Spot Source, Spot Destination) {
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
