@@ -408,57 +408,47 @@ public class IsValid
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
             return false;
 
-        if ('B' == piece.getcolor(piece)) {
+        if ('B' == piece.getcolor(piece))
+        {
+            if (Destination == OneN(Source, theboard) && !(Destination.isOccupied())) //No matter what pawns can move forward one empty square
+            {
+                return true;
+            }
+            if ((Destination == OneLN(Source, theboard) || Destination == OneRN(Source, theboard)) && Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P') ) {
+                return true;
+            } //diagonal attack
+
             if (piece.getMC() == 0) {   //Going up the board
-                if (Destination.isOccupied()) {
-                    return (OneLN(Destination, theboard) == Destination || OneRN(Destination, theboard) == Destination);
-                } else {
-                    if (Destination == OneN(Source, theboard)) {
-                        return true;
-                    }
+                if (!Destination.isOccupied()) {
                     if (Destination == OneN(OneN(Source, theboard), theboard) && !(OneN(Source, theboard).isOccupied())) {
                         return true;
                     }
                 }
-
-                return false;
-            } else {
-                if (Destination.isOccupied()) {
-                    return (OneLN(Destination, theboard) == Destination || OneRN(Destination, theboard) == Destination);
-                }
-                if (Destination == OneN(Source, theboard)) {
-                    return true;
-                }
-                return false;
             }
+            return false;
+        }
+        if ('W' == piece.getcolor(piece))
+        {
+            if (Destination == OneS(Source, theboard) && !(Destination.isOccupied())) //No matter what pawns can move forward one empty square
+            {
+                return true;
+            }
+            if ((Destination == OneLS(Source, theboard) || Destination == OneRS(Source, theboard)) && Destination.isOccupied()  && (Destination.getpiece().getcolor(Destination.getpiece()) != 'P'))
+            {
+                return true;
+            } //diagonal attack
 
-
-        } else { // going down the board
-            if (piece.getMC() == 0) {   //Going up the board  //todo enpasant
-                if (Destination.isOccupied()) {
-                    return (OneLS(Destination, theboard) == Destination || OneRS(Destination, theboard) == Destination);
-                } else {
-                    if (Destination == OneS(Source, theboard)) {
-                        return true;
-                    }
+            if (piece.getMC() == 0)
+            {   //Going down the board
+                if (!Destination.isOccupied()) {
                     if (Destination == OneS(OneS(Source, theboard), theboard) && !(OneS(Source, theboard).isOccupied())) {
                         return true;
                     }
-                    return false;
                 }
-
-
-            } else {
-                if (Destination.isOccupied()) {
-                    return (OneLS(Destination, theboard) == Destination || OneRS(Destination, theboard) == Destination);
-                } else {
-                    if (Destination == OneS(Source, theboard)) {
-                        return true;
-                    }
-                }
-                return false;
             }
+            return false;
         }
+        return false;
     }
 
 

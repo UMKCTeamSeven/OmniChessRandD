@@ -18,7 +18,8 @@ public class Pawn extends Piece {
     }
 
     public Piece Promote(Piece pawn, int PromotionSelection) {
-        if (PromotionSelection == 0) {
+        if (PromotionSelection == 0)
+        {
             pawn = new Bishop(true, pawn.getX(), pawn.getY(), pawn.getZ());
         } else if (PromotionSelection == 1) {
             pawn = new Rook(true, pawn.getX(), pawn.getY(), pawn.getZ());
@@ -42,20 +43,20 @@ public class Pawn extends Piece {
         Mover theMove = new Mover();
         boolean moved = theMove.TryMove(pawn, source, destination, theboard);
         try {
-            if (moved) {
+            if (moved)
+            {
 
                 pawn.setMC(pawn.getMC() + 1);
-                if (destination.isOccupied()) {
+                if (destination.isOccupied())
+                {
                     destination.releaseSpot();
+                    promotionCheck(pawn, destination);
                     destination.placePiece(pawn);
-                } else if (!destination.isOccupied() && (destination.y == 7 || destination.y == 0)) { //need to check for y-axis for edge of board
-                    pawn = Promote(pawn, 1);
-                    destination.placePiece(pawn);
-                    destination.getAppearance().setImageResource(pawn.getIcon());
-                    if (destination.y ==7) {
-                        pawn.switchcolor();
-                    }
-                } else {
+
+                }
+                else
+                {
+                    promotionCheck(pawn, destination);
                     destination.placePiece(pawn);
                 }
                 //update view.
@@ -65,5 +66,17 @@ public class Pawn extends Piece {
         catch (NullPointerException objectmissing) {
         }
 
+    }
+
+    private void promotionCheck(Piece pawn, Spot destination) {
+        if ((destination.y == 7 || destination.y == 0))
+        {
+            pawn = Promote(pawn, 1);
+            if (destination.y ==7)
+            {
+                pawn.switchcolor();
+            }
+            destination.getAppearance().setImageResource(pawn.getIcon());
+        }
     }
 }
