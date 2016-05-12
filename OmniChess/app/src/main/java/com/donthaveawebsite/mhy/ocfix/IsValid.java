@@ -166,7 +166,7 @@ public class IsValid
     }
 
     private boolean portalLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
-        if (Destination.isOccupied() || IsEdge(Destination, theboard))
+        if (Destination.isOccupied())
             return false;
         return true;
     }
@@ -257,7 +257,7 @@ public class IsValid
             {
                 return true;
             }
-            if (OneN(Sspot, theboard).isOccupied())
+            if (OneN(Sspot, theboard).isOccupied() || IsEdge(OneN(Sspot, theboard), theboard))
             {
                 break;
             }
@@ -271,7 +271,7 @@ public class IsValid
             {
                 return true;
             }
-            if (OneS(Sspot, theboard).isOccupied())
+            if (OneS(Sspot, theboard).isOccupied() || IsEdge(OneS(Sspot, theboard), theboard))
             {
                 break;
             }
@@ -283,7 +283,7 @@ public class IsValid
             {
                 return true;
             }
-            if (OneL(Sspot, theboard).isOccupied())
+            if (OneL(Sspot, theboard).isOccupied() || IsEdge(OneL(Sspot, theboard), theboard))
             {
                 break;
             }
@@ -296,7 +296,7 @@ public class IsValid
             {
                 return true;
             }
-            if (OneR(Sspot, theboard).isOccupied())
+            if (OneR(Sspot, theboard).isOccupied() || IsEdge(OneR(Sspot, theboard), theboard))
             {
                 break;
             }
