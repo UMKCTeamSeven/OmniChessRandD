@@ -128,7 +128,7 @@ public class GameActivity extends Activity implements OnClickListener
         Portal portalB = new Portal(true, 5, 4, 1, portalA);
         portalA.SetRelated(portalB);
 
-        Portal portalC = new Portal(true, 1, 5, 1);
+        Portal portalC = new Portal(true, 1, 3, 1);
         Portal portalD = new Portal(true, 6, 3, 1, portalC);
         portalC.SetRelated(portalD);
 
@@ -137,8 +137,8 @@ public class GameActivity extends Activity implements OnClickListener
         theboard.getSpot(5, 4).placePiece(portalB);
         theboard.getSpot(5, 4).getAppearance().setImageResource(R.drawable.ni_portal);
 
-        theboard.getSpot(1,5).placePiece(portalC);
-        theboard.getSpot(1,5).getAppearance().setImageResource(R.drawable.ni_fractal);
+        theboard.getSpot(1,3).placePiece(portalC);
+        theboard.getSpot(1,3).getAppearance().setImageResource(R.drawable.ni_fractal);
         theboard.getSpot(6, 3).placePiece(portalD);
         theboard.getSpot(6, 3).getAppearance().setImageResource(R.drawable.ni_fractal);
 

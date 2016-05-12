@@ -111,11 +111,9 @@ public class IsValid
     }
 
     public Spot OneLN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
-        if (theboard.getSpot(Source.x - 1, (Source.y + 1)).isOccupied()) {
-            if (theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().getcolor(theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece()) == 'P') {
-                return OneLN(theboard.getSpot(theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().GetRelated().getY()), theboard);
-            }
-
+        if (IsPortal(theboard.getSpot(Source.x - 1, (Source.y + 1))))
+        {
+            return OneLN(theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
         return (theboard.getSpot(Source.x - 1, (Source.y + 1)));
@@ -123,32 +121,27 @@ public class IsValid
 
     public Spot OneLS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
 
-        if (theboard.getSpot(Source.x - 1, (Source.y - 1)).isOccupied()) {
-            if (theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().getcolor(theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece()) == 'P') {
-                return OneLS(theboard.getSpot(theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().GetRelated().getY()), theboard);
-            }
-
+        if (IsPortal(theboard.getSpot(Source.x - 1, (Source.y - 1))))
+        {
+            return OneLS(theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
         return (theboard.getSpot(Source.x - 1, (Source.y - 1)));
     }
 
     public Spot OneRS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
-        if (theboard.getSpot(Source.x + 1, (Source.y - 1)).isOccupied()) {
-            if (theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().getcolor(theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece()) == 'P') {
-                return OneRS(theboard.getSpot(theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().GetRelated().getY()), theboard);
-            }
-
+        if (IsPortal(theboard.getSpot(Source.x + 1, (Source.y - 1))))
+        {
+            return OneRS(theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
         return (theboard.getSpot(Source.x + 1, (Source.y - 1)));
     }
 
     public Spot OneRN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
-        if (theboard.getSpot(Source.x + 1, (Source.y + 1)).isOccupied()) {
-            if (theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().getcolor(theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece()) == 'P') {
-                return OneRN(theboard.getSpot(theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().GetRelated().getX(), theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().GetRelated().getY()), theboard);
-            }
+        if (IsPortal(theboard.getSpot(Source.x + 1, (Source.y + 1))))
+        {
+            return OneRN(theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().GetRelated().getCurrentlocation() , theboard);
         }
         //original logic before portals
         return (theboard.getSpot(Source.x + 1, (Source.y + 1)));
