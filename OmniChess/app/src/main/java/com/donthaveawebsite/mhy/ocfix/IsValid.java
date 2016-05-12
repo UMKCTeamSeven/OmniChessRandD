@@ -2,6 +2,8 @@ package com.donthaveawebsite.mhy.ocfix;
 
 import android.support.annotation.Nullable;
 
+import java.util.SortedMap;
+
 /**
  * Created by Matthew on 3/29/2015.
  */
@@ -77,6 +79,8 @@ public class IsValid
     public Spot OneN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
         if (IsPortal(theboard.getSpot(Source.x, (Source.y + 1))))
         {
+            if(theboard.getSpot(Source.x, (Source.y + 1)).getpiece().GetRelated().getY() == 7 )
+            {return null;}
             return (OneN(theboard.getSpot(Source.x, (Source.y + 1)).getpiece().GetRelated().getCurrentlocation(), theboard));
         }
         //original logic before portals
@@ -86,6 +90,10 @@ public class IsValid
     public Spot OneS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
         if (IsPortal(theboard.getSpot(Source.x, (Source.y - 1))))
         {
+            if(theboard.getSpot(Source.x, (Source.y - 1)).getpiece().GetRelated().getY() == 0)
+            {
+                return null;
+            }
             return (OneS(theboard.getSpot(Source.x, (Source.y - 1)).getpiece().GetRelated().getCurrentlocation(), theboard));
         }
         //original logic before portals
@@ -95,7 +103,9 @@ public class IsValid
     public Spot OneR(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
         if (IsPortal(theboard.getSpot(Source.x + 1, (Source.y))))
         {
-         return OneR(theboard.getSpot(Source.x + 1, (Source.y)).getpiece().GetRelated().getCurrentlocation(), theboard);
+            if(theboard.getSpot(Source.x +1, (Source.y)).getpiece().GetRelated().getX() == 7 )
+            {return null;}
+            return OneR(theboard.getSpot(Source.x + 1, (Source.y)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
         return (theboard.getSpot(Source.x + 1, (Source.y)));
@@ -104,15 +114,16 @@ public class IsValid
     public Spot OneL(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
         if (IsPortal(theboard.getSpot(Source.x - 1, (Source.y))))
         {
-          return OneL(theboard.getSpot(Source.x - 1, (Source.y)).getpiece().GetRelated().getCurrentlocation(), theboard);
+            if(theboard.getSpot(Source.x -1, (Source.y)).getpiece().GetRelated().getX() == 0 )
+            {return null;}
+            return OneL(theboard.getSpot(Source.x - 1, (Source.y)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
         return (theboard.getSpot(Source.x - 1, (Source.y)));
     }
 
     public Spot OneLN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
-        if (IsPortal(theboard.getSpot(Source.x - 1, (Source.y + 1))))
-        {
+        if (IsPortal(theboard.getSpot(Source.x - 1, (Source.y + 1)))) {
             return OneLN(theboard.getSpot(Source.x - 1, (Source.y + 1)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
@@ -121,8 +132,7 @@ public class IsValid
 
     public Spot OneLS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
 
-        if (IsPortal(theboard.getSpot(Source.x - 1, (Source.y - 1))))
-        {
+        if (IsPortal(theboard.getSpot(Source.x - 1, (Source.y - 1)))) {
             return OneLS(theboard.getSpot(Source.x - 1, (Source.y - 1)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
@@ -132,6 +142,8 @@ public class IsValid
     public Spot OneRS(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
         if (IsPortal(theboard.getSpot(Source.x + 1, (Source.y - 1))))
         {
+            if(theboard.getSpot(Source.x +1 , (Source.y - 1)).getpiece().GetRelated().getY() == 0 || theboard.getSpot(Source.x+1, (Source.y - 1)).getpiece().GetRelated().getX() == 7  )
+            {return null;}
             return OneRS(theboard.getSpot(Source.x + 1, (Source.y - 1)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
@@ -141,6 +153,8 @@ public class IsValid
     public Spot OneRN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
         if (IsPortal(theboard.getSpot(Source.x + 1, (Source.y + 1))))
         {
+            if(theboard.getSpot(Source.x +1 , (Source.y + 1)).getpiece().GetRelated().getY() == 7 || theboard.getSpot(Source.x+1, (Source.y + 1)).getpiece().GetRelated().getX() == 7  )
+            {return null;}
             return OneRN(theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
@@ -202,6 +216,10 @@ public class IsValid
         {
             while (true) {
 
+                if (OneRS(Sspot, theboard) == null)
+                {
+                    break;
+                }
                 if (OneRS(Sspot, theboard) == Destination) {
                     return true;
                 }
@@ -218,6 +236,10 @@ public class IsValid
         {
             while (true) {
 
+                if (OneRN(Sspot, theboard) == null)
+                {
+                    break;
+                }
                 if (OneRN(Sspot, theboard) == Destination) {
                     return true;
                 }
@@ -251,56 +273,77 @@ public class IsValid
 
     private Boolean rookPortal(Spot Source, Spot Destination, Board theboard)  {
         Spot Sspot = Source;
-        while (Sspot.y != 7)
+        if (Source.y != 7)
         {
-            if (OneN(Sspot, theboard) == Destination)
+            while (true)
             {
-                return true;
+                if (OneN(Sspot, theboard) == null)
+                {
+                    break;
+                }
+                if (OneN(Sspot, theboard) == Destination) {
+                    return true;
+                }
+                if (OneN(Sspot, theboard).isOccupied() || OneN(Sspot, theboard).y == 7) {
+                    break;
+                }
+                Sspot = OneN(Sspot, theboard);
             }
-            if (OneN(Sspot, theboard).isOccupied() || IsEdge(OneN(Sspot, theboard), theboard))
-            {
-                break;
-            }
-            Sspot = OneN(Sspot, theboard);
         }
 
         Sspot = Source;
-        while (Sspot.y != 0)
+        if (Source.y != 0)
         {
-            if (OneS(Sspot, theboard) == Destination)
+            while(true)
             {
-                return true;
+                if (OneS(Sspot, theboard) == null)
+                {
+                    break;
+                }
+                if (OneS(Sspot, theboard) == Destination) {
+                    return true;
+                }
+                if (OneS(Sspot, theboard).isOccupied() || OneS(Sspot, theboard).y == 0) {
+                    break;
+                }
+                Sspot = OneS(Sspot, theboard);
             }
-            if (OneS(Sspot, theboard).isOccupied() || IsEdge(OneS(Sspot, theboard), theboard))
-            {
-                break;
-            }
-            Sspot = OneS(Sspot, theboard);
         }
         Sspot = Source;
-        while (Sspot.x != 0) {
-            if (OneL(Sspot, theboard) == Destination)
+        if (Source.x != 0)
+        {
+            while(true)
             {
-                return true;
+                if(OneL(Sspot, theboard)== null)
+                {
+                    break;
+                }
+                if (OneL(Sspot, theboard) == Destination) {
+                    return true;
+                }
+                if (OneL(Sspot, theboard).isOccupied() || OneL(Sspot, theboard).x == 0) {
+                    break;
+                }
+                Sspot = OneL(Sspot, theboard);
             }
-            if (OneL(Sspot, theboard).isOccupied() || IsEdge(OneL(Sspot, theboard), theboard))
-            {
-                break;
-            }
-            Sspot = OneL(Sspot, theboard);
         }
         Sspot = Source;
-        while (Sspot.x != 7)
+        if (Source.x != 7)
         {
-            if (OneR(Sspot, theboard) == Destination)
+            while(true)
             {
-                return true;
+                if (OneR(Sspot, theboard) == null)
+                {
+                    break;
+                }
+                if (OneR(Sspot, theboard) == Destination) {
+                    return true;
+                }
+                if (OneR(Sspot, theboard).isOccupied() || OneR(Sspot, theboard).x == 7) {
+                    break;
+                }
+                Sspot = OneR(Sspot, theboard);
             }
-            if (OneR(Sspot, theboard).isOccupied() || IsEdge(OneR(Sspot, theboard), theboard))
-            {
-                break;
-            }
-            Sspot = OneR(Sspot, theboard);
         }
         return false;
     }
