@@ -104,7 +104,7 @@ public class IsValid
     public Spot OneL(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
         if (IsPortal(theboard.getSpot(Source.x - 1, (Source.y))))
         {
-          return OneL(theboard.getSpot(Source.x - 1, (Source.y)).getpiece().GetRelated().getCurrentlocation() , theboard);
+          return OneL(theboard.getSpot(Source.x - 1, (Source.y)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
         return (theboard.getSpot(Source.x - 1, (Source.y)));
@@ -141,7 +141,7 @@ public class IsValid
     public Spot OneRN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
         if (IsPortal(theboard.getSpot(Source.x + 1, (Source.y + 1))))
         {
-            return OneRN(theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().GetRelated().getCurrentlocation() , theboard);
+            return OneRN(theboard.getSpot(Source.x + 1, (Source.y + 1)).getpiece().GetRelated().getCurrentlocation(), theboard);
         }
         //original logic before portals
         return (theboard.getSpot(Source.x + 1, (Source.y + 1)));
@@ -176,6 +176,77 @@ public class IsValid
             return false;
 
         return rookPortal(Source, Destination, theboard);
+    }
+
+
+    private Boolean bishopPortal(Spot Source, Spot Destination, Board theboard)
+    {
+        Spot Sspot = Source;
+        if (Source.x != 0 && Source.y != 7)
+        {
+            while (true) {
+
+                if (OneLN(Sspot, theboard) == Destination) {
+                    return true;
+                }
+                if (OneLN(Sspot, theboard).isOccupied()  || IsEdge(OneLN(Sspot, theboard), theboard)  )
+                {
+                    break;
+                }
+                Sspot = OneLN(Sspot, theboard);
+            }
+        }
+
+        Sspot = Source;
+        if (Source.x != 7 && Source.y != 0)
+        {
+            while (true) {
+
+                if (OneRS(Sspot, theboard) == Destination) {
+                    return true;
+                }
+                if (OneRS(Sspot, theboard).isOccupied()  || IsEdge(OneRS(Sspot, theboard), theboard))
+                {
+                    break;
+                }
+                Sspot = OneRS(Sspot, theboard);
+            }
+        }
+
+        Sspot = Source;
+        if (Source.x != 7 && Source.y != 7)
+        {
+            while (true) {
+
+                if (OneRN(Sspot, theboard) == Destination) {
+                    return true;
+                }
+                if (OneRN(Sspot, theboard).isOccupied() || IsEdge(OneRN(Sspot, theboard), theboard))
+                {
+                    break;
+                }
+                Sspot = OneRN(Sspot, theboard);
+            }
+        }
+        Sspot = Source;
+        if (Source.x != 0 && Source.y != 0)
+        {
+            while (true) {
+
+                if (OneLS(Sspot, theboard) == Destination) {
+                    return true;
+                }
+                if (OneLS(Sspot, theboard).isOccupied() || IsEdge(OneLS(Sspot, theboard), theboard)) {
+                    break;
+                }
+                Sspot = OneLS(Sspot, theboard);
+            }
+        }
+
+
+
+
+        return false;
     }
 
     private Boolean rookPortal(Spot Source, Spot Destination, Board theboard)  {
@@ -239,89 +310,13 @@ public class IsValid
             return false;
 
         try {
-            return InBishopPath(Source, Destination, theboard);
+            return bishopPortal(Source, Destination, theboard);
         } catch (ArrayIndexOutOfBoundsException e) {
 
         }
         return false;
     }
 
-    private Boolean InBishopPath(Spot Source, Spot Destination, Board theboard) {
-        if (Source.y - Destination.y < 0) {
-            //NR or NL
-            if (Source.x - Destination.x < 0) //going NR
-            {
-                Spot Sspot = Source;
-                while (Sspot != Destination) {
-                    if (IsEdge(Sspot, theboard) && Sspot != Source)
-                        return false;
-                    if (OneRN(Sspot, theboard).isOccupied()) {
-                        if (OneRN(Sspot, theboard) == Destination) {
-                            return true;
-                        }
-                        return false;
-                    }
-                    Sspot = OneRN(Sspot, theboard);
-                }
-                return true;
-            }
-            if (Source.x - Destination.x > 0) //going NL
-            {
-                Spot Sspot = Source;
-
-                while (Sspot != Destination) {
-                    if (IsEdge(Sspot, theboard) && Sspot != Source)
-                        return false;
-                    if (OneLN(Sspot, theboard).isOccupied()) {
-                        if (OneLN(Sspot, theboard) == Destination) {
-                            return true;
-                        }
-                        return false;
-                    }
-                    Sspot = OneLN(Sspot, theboard);
-                }
-                return true;
-            }
-        }
-        if (Source.y - Destination.y > 0) {
-            //SR or SL
-            if (Source.x - Destination.x < 0) //going SR
-            {
-                Spot Sspot = Source;
-
-                while (Sspot != Destination) {
-                    if (IsEdge(Sspot, theboard) && Sspot != Source)
-                        return false;
-                    if (OneRS(Sspot, theboard).isOccupied()) {
-                        if (OneRS(Sspot, theboard) == Destination) {
-                            return true;
-                        }
-                        return false;
-                    }
-                    Sspot = OneRS(Sspot, theboard);
-                }
-                return true;
-            }
-            if (Source.x - Destination.x > 0) {
-                Spot Sspot = Source;
-
-                while (Sspot != Destination) {
-                    if (IsEdge(Sspot, theboard) && Sspot != Source)
-                        return false;
-                    if (OneLS(Sspot, theboard).isOccupied()) {
-                        if (OneLS(Sspot, theboard) == Destination) {
-                            return true;
-                        }
-                        return false;
-                    }
-                    Sspot = OneLS(Sspot, theboard);
-                }
-                return true;
-            }
-
-        }
-        return false;
-    }
 
     private boolean KnightLogicCheck(Piece piece, Spot Source, Spot Destination) {
         if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
@@ -414,42 +409,3 @@ public class IsValid
         return false;
     }}
 
-   /* private boolean PawnLogicCheck(Piece piece, Spot Source, Spot Destination, Board theboard) {
-
-        if (Destination.isOccupied() && (Destination.getpiece().getcolor(Destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
-            return false;
-        if ('B' == piece.getcolor(piece)) {
-            if (piece.getMC() == 0) {   //Going up the board
-                if (!Destination.isOccupied())
-                    return ((((Destination.y - 2) == Source.y) || ((Destination.y - 1) == Source.y)) && Destination.x == Source.x && !Destination.isOccupied() && (!((theboard.getSpot(Source.x, (Source.y +1))).isOccupied())));
-                else
-                    return ((Destination.x - 1 == Source.x || Destination.x + 1 == Source.x) && ((Destination.y - 1) == Source.y));
-            }   //above line is a diagonal attack
-
-            else {
-                if (!Destination.isOccupied())
-                    return ((Destination.y - 1 == Source.y) && Destination.x == Source.x && !Destination.isOccupied());
-
-
-                return ((Destination.y - 1 == Source.y) && ((Destination.x - 1 == Source.x || Destination.x + 1 == Source.x)));
-            }
-        }
-        else //If ever 3+ colors make into switch
-        {
-            if (piece.getMC() == 0) {   //Going down the board
-                if (!Destination.isOccupied())
-                    return ((((Destination.y + 2) == Source.y) || ((Destination.y + 1) == Source.y)) && Destination.x == Source.x && !Destination.isOccupied() && (!((theboard.getSpot(Source.x, (Source.y -1))).isOccupied())));
-                else
-                    return ((Destination.x - 1 == Source.x || Destination.x + 1 == Source.x) && ((Destination.y + 1) == Source.y));
-            }   //above line is a diagonal attack
-
-            else {
-                if (!Destination.isOccupied())
-                    return ((Destination.y + 1 == Source.y) && Destination.x == Source.x);
-                return ((Destination.y + 1 == Source.y) && ((Destination.x - 1 == Source.x || Destination.x + 1 == Source.x)));
-        }
-    }
-
-
-}}
-*/
