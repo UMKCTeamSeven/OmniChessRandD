@@ -21,19 +21,18 @@ public class Knight extends Piece
         }
         Mover theMove = new Mover();
         boolean moved = theMove.TryMove(knight, source, destination, theboard);
-        Spot Dest = destination;
         try
         {
             if (moved)
             {
 
 
-                if (destination.isOccupied()) {
-
-                    if (destination.piece.GetRelated().getcolor(destination.piece.GetRelated()) == 'P')
+                if (destination.isOccupied())
+                {
+                    if (destination.piece.getcolor(destination.piece) == 'P')
                     {
-                        Dest.piece.GetRelated().getCurrentlocation().releaseSpot();
-                        Dest.piece.GetRelated().getCurrentlocation().getAppearance().setImageResource(R.drawable.ni_tsquare);
+                        destination.piece.GetRelated().getCurrentlocation().releaseSpot();
+                        destination.piece.GetRelated().getCurrentlocation().getAppearance().setImageResource(R.drawable.ni_tsquare);
                     }
                     destination.releaseSpot();
                     destination.placePiece(knight);
