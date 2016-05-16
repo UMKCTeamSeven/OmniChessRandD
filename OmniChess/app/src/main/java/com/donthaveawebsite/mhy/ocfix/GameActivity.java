@@ -3,6 +3,9 @@ package com.donthaveawebsite.mhy.ocfix;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.view.View.OnClickListener;
@@ -10,9 +13,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class GameActivity extends Activity implements OnClickListener
+public class GameActivity extends FragmentActivity implements OnClickListener
 
 {
+    MyPageAdapter pageadapter;
+
+    private List<Fragment> getFragments()
+    {
+        List<Fragment> fList = new ArrayList<Fragment>();
+        fList.add(MyFragment.newInstance("Fragment 1"));
+        fList.add(MyFragment.newInstance("Fragment 2"));
+        fList.add(MyFragment.newInstance("Fragment 3"));
+        return fList;
+    }
+
+
     Selector theselector;
     List<Spot> listenspots;
     Spot selectedpiecespot;
@@ -87,6 +102,29 @@ public class GameActivity extends Activity implements OnClickListener
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        List<Fragment> fragments = getFragments();
+        pageadapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
+        ViewPager pager =
+                (ViewPager)findViewById(R.id.viewpager);
+        pager.setAdapter(pageadapter);
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         List<Spot> ourspots = new ArrayList<Spot>();
         Board theboard = new Board(1, ourspots);
