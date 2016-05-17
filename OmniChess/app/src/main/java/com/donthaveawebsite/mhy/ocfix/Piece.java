@@ -75,10 +75,12 @@ public class Piece {
     public void setZ(int z) {
         this.z = z;
     }
-    public void switchcolor() {if (this.color == 'W') this.color ='B'; else this.color='W';}
+
     public char getcolor(Piece piece) {return this.color;}
     public int getIcon() { return icon; }
     public void setIcon(int icon) { this.icon = icon; }
+
+    public void switchcolor() {if (this.color == 'W') this.color ='B'; else this.color='W';}
 
     public void OnMove(Piece piece, Spot source, Spot destination, Board theboard)
     {

@@ -161,26 +161,19 @@ public class GameActivity extends FragmentActivity implements OnClickListener
         }
     mainboard = theboard;
 //Pieces
-        //Portals
-        Portal portalA = new Portal(true, 3, 4, 1);
-        Portal portalB = new Portal(true, 5, 4, 1, portalA);
-        portalA.SetRelated(portalB);
+        //KINGS
+        King whiteking = new King(true, 3,7,1);
+        King blackking = new King(true, 3,0,1);
 
-        Portal portalC = new Portal(true, 1, 3, 1);
-        Portal portalD = new Portal(true, 6, 3, 1, portalC);
-        portalC.SetRelated(portalD);
+        whiteking.switchcolor();
 
-        theboard.getSpot(3,4).placePiece(portalA);
-        theboard.getSpot(3,4).getAppearance().setImageResource(R.drawable.ni_portal);
-        theboard.getSpot(5, 4).placePiece(portalB);
-        theboard.getSpot(5, 4).getAppearance().setImageResource(R.drawable.ni_portal);
+        theboard.getSpot(3,7).placePiece(whiteking);
+        theboard.getSpot(3,0).placePiece(blackking);
 
-        theboard.getSpot(1,3).placePiece(portalC);
-        theboard.getSpot(1,3).getAppearance().setImageResource(R.drawable.ni_fractal);
-        theboard.getSpot(6, 3).placePiece(portalD);
-        theboard.getSpot(6, 3).getAppearance().setImageResource(R.drawable.ni_fractal);
+        theboard.getSpot(3,0).getAppearance().setImageResource(R.drawable.ni_bking);
+        theboard.getSpot(3,7).getAppearance().setImageResource(R.drawable.ni_wking);
 
-        
+
         //queens
         Queen blackQ = new Queen(true,4,0,1);
         Queen whiteQ = new Queen(true,4,7,1);
