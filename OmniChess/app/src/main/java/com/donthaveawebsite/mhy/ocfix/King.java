@@ -13,18 +13,15 @@ public class King extends Piece
         this.type = new IsValid(IsValid.piecetype.king);
     }
 
-    @Override
-    public void switchcolor()
+
+    public void switchicon()
     {
         if (kingcolor == 'W')
         {
-            kingcolor = 'B';
             this.setIcon(R.drawable.ni_bking);
-
         }
         else
         {
-            kingcolor ='W';
             this.setIcon(R.drawable.ni_wking);
         }
 

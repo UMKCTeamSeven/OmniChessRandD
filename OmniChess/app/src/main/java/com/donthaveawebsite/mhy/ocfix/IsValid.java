@@ -48,8 +48,8 @@ public class IsValid
                 return PawnLogic(piece, Source, Destination, theboard);
             //return PawnLogicCheck(piece, Source, Destination, theboard);  //original method before portals
             case king:
-                //needs logic
-                break;
+                return KingMe(piece, Source, Destination, theboard);
+
             case knight:
                 return KnightLogicCheck(piece, Source, Destination);
             case bishop:
@@ -75,6 +75,60 @@ public class IsValid
 
         return false; //Default returns false, piece type not added, or shouldnt have been selected, off to the debug you go
     }
+
+    private boolean KingMe(Piece piece, Spot source, Spot destination, Board theboard)
+    {
+        if (destination.isOccupied() && (destination.getpiece().getcolor(destination.getpiece()) == piece.getcolor(piece))) //pieces are same color
+            return false;
+
+        if  (source.y != 7)
+        {
+            if (OneN(source, theboard) == destination)
+                    return true;
+            if (source.x != 0 && (OneLN(source, theboard) == destination))
+                    return true;
+            if (source.x != 7 && (OneRN(source, theboard) == destination))
+                    return true;
+        }
+            if (source.y != 0)
+            {
+                if ((OneS(source, theboard) == destination))
+                    return true;
+
+                if (source.x != 0 && (OneLS(source, theboard) == destination))
+                    return true;
+
+                if (source.x != 7 && (OneRS(source, theboard) == destination))
+                    return true;
+            }
+
+            if (source.x != 7) {
+                if (OneR(source, theboard) == destination)
+                    return true;
+                if (source.y != 0 && (OneRS(source, theboard) == destination))
+                    return true;
+
+                if (source.y != 7 && (OneRN(source, theboard) == destination))
+                    return true;
+
+            }
+
+            if (source.x != 0) {
+                if (OneL(source, theboard) == destination)
+                    return true;
+                if (source.y != 0 && (OneLS(source, theboard) == destination))
+                    return true;
+
+                if (source.y != 7 && (OneLN(source, theboard) == destination))
+                    return true;
+
+            }
+    return false;
+    }
+
+
+
+
 
     public Spot OneN(Spot Source, Board theboard) throws ArrayIndexOutOfBoundsException {
         if (IsPortal(theboard.getSpot(Source.x, (Source.y + 1))))
