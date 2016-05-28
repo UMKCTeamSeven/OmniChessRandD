@@ -22,35 +22,35 @@ var pics = {
 function makeMoves(r, c, dist, direc){
   let moves = []
   if(direc=="n"){
-    for(let i=0;i<dist;i++){
+    for(let i=1;i<=dist;i++){
       moves.push({r: r-i, c: c})
     }
   }else if(direc=="s"){
-    for(let i=0;i<dist;i++){
+    for(let i=1;i<=dist;i++){
       moves.push({r: r+i, c: c})
     }
   }else if(direc=="e"){
-    for(let i=0;i<dist;i++){
+    for(let i=1;i<=dist;i++){
       moves.push({r: r, c: c+i})
     }
   }else if(direc=="w"){
-    for(let i=0;i<dist;i++){
+    for(let i=1;i<=dist;i++){
       moves.push({r: r, c: c-i})
     }
   }else if(direc=="ne"){
-    for(let i=0;i<dist;i++){
+    for(let i=1;i<=dist;i++){
       moves.push({r: r-i, c: c+i})
     }
   }else if(direc=="se"){
-    for(let i=0;i<dist;i++){
+    for(let i=1;i<=dist;i++){
       moves.push({r: r+i, c: c+i})
     }
   }else if(direc=="nw"){
-    for(let i=0;i<dist;i++){
+    for(let i=1;i<=dist;i++){
       moves.push({r: r-i, c: c-i})
     }
   }else if(direc=="sw"){
-    for(let i=0;i<dist;i++){
+    for(let i=1;i<=dist;i++){
       moves.push({r: r+i, c: c-i})
     }
   }
@@ -59,20 +59,21 @@ function makeMoves(r, c, dist, direc){
 }
 var moves = {
     pawn(r, c){
-      let d = (this.props.player=="white") ? 's' : 'n'
+      let d = (this.props.player=="white") ? 1 : -1
 
       if(this.state.moves.length == 0){
-        return makeMoves(r, c, 3, d)
+        return [{r: r+d*1, c: c},{r: r+d*2, c: c}]
       }else{
-        return makeMoves(r, c, 2, d)
+        return [{r: r+d*1, c: c}]
       }
     },
     rook(r, c){
+      //return ["n", "s", "e", "w"]
       return [].concat(
-        makeMoves(r, c, r, "n"),
-        makeMoves(r, c, 7-r, "s"),
-        makeMoves(r, c, 7-c, "e"),
-        makeMoves(r, c, c, "w")
+        makeMoves(r, c, 8, "n"),
+        makeMoves(r, c, 8, "s"),
+        makeMoves(r, c, 8, "e"),
+        makeMoves(r, c, 8, "w")
       )
     },
     knight(r, c){
@@ -107,7 +108,7 @@ var moves = {
         makeMoves(r, c, 1, "ne"),
         makeMoves(r, c, 1, "sw"),
         makeMoves(r, c, 1, "nw"),
-        makeMoves(r, c, 1, "sw")
+        makeMoves(r, c, 1, "se")
       )
     },
     queen(r, c){
@@ -119,7 +120,7 @@ var moves = {
         makeMoves(r, c, 8, "ne"),
         makeMoves(r, c, 8, "sw"),
         makeMoves(r, c, 8, "nw"),
-        makeMoves(r, c, 8, "sw")
+        makeMoves(r, c, 8, "se")
       )
     },
 }

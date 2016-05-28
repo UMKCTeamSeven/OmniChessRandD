@@ -1,5 +1,6 @@
 import _ from 'lodash'
 
+var Player = require('./Player');
 var Piece = require('./Piece');
 var Cell = require('./Cell');
 
@@ -7,6 +8,8 @@ class Board {
   constructor(props) {
     this.props = props
     this.board = []
+    this.players = []
+
 
     this.init.call(this)
   }
@@ -44,8 +47,14 @@ class Board {
 
     this.makePawns.call(this, 6, "black")
     this.makeNoble.call(this, 7, "black")
+
+    //Setup Players
+    this.players.push( new Player({player: "white"}) )
+    this.players.push( new Player({player: "black"}) )
   }
-  getBoard(){ return this.board }
+  getBoard(){
+    return this.board
+  }
   toggleCellActive(coords){
     this.resetCellStates.call(this)
 
@@ -54,6 +63,15 @@ class Board {
     this.showCanMoveTo.call(this, coords)
 
     this.props.game.setState({})
+  }
+  getCellActive(){
+    for(let i=0;i<8;i++){
+      for(let j=0;j<8;j++){
+        if(this.board[i][j].cellState.isActive){
+          return {r: i, c: j}
+        }
+      }
+    }
   }
   resetCellStates(){
     for(let i=0;i<8;i++){
@@ -80,31 +98,20 @@ class Board {
     })
   }
   moveCell(coords){
-    for(let i=0;i<8;i++){
-      for(let j=0;j<8;j++){
-        if(this.board[i][j].cellState.isActive){//this is piece were moving
-          this.board[coords.r][coords.c].piece = this.board[i][j].piece
-          this.board[coords.r][coords.c].piece.move(coords.r, coords.c)
-          delete this.board[i][j].piece
-        }
-      }
-    }
+    let {r, c} = this.getCellActive()
+
+    this.board[coords.r][coords.c].piece = this.board[r][c].piece
+    this.board[coords.r][coords.c].piece.move(coords.r, coords.c)
+    delete this.board[r][c].piece
+
     this.resetCellStates.call(this)
     this.props.game.setState({})
   }
   takeCell(coords){
-    for(let i=0;i<8;i++){
-      for(let j=0;j<8;j++){
-        if(this.board[i][j].cellState.isActive){//this is piece were moving
-          Object.assign(this.board[coords.r][coords.c].piece, this.board[i][j].piece)
-          Object.assign(this.board[coords.r][coords.c], this.board[i][j])
-          delete this.board[i][j].piece
-        }
-      }
-    }
+    delete this.board[coords.r][coords.c].piece
+    this.moveCell(coords)
 
     this.toggleCellActive.call(this, coords)
-    this.resetCellStates.call(this)
     this.props.game.setState({})
   }
 }

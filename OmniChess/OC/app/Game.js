@@ -21,7 +21,7 @@ class Game extends Component {
     return (
       <View style={{ backgroundColor:'black', marginTop: 18, flex: 1, flexDirection: 'column'}}>
       	<BoardUI board={this.state.board}/>
-      	<Controls />
+      	<Controls board={this.state.board} />
       </View>
     );
   }

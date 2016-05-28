@@ -14,6 +14,9 @@ class Square extends Component {
     this.state = {
     }
   }
+  shouldComponentUpdate(){
+    return true
+  }
   render() {
     return this.showBorderHighlight.call(this)
   }
@@ -35,13 +38,13 @@ class Square extends Component {
     let {cellState} = this.props.square
 
     if(cellState.isActive){
-      w = 2;
+      w = 3;
       color = 'blue';
     }else if(cellState.canMove){
-      w = 2;
-      color = 'lightgreen';
+      w = 3;
+      color = 'green';
     }else if(cellState.canTake){
-      w = 2;
+      w = 3;
       color = 'red';
     }else{
       w = 1;
