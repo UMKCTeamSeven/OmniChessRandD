@@ -23,7 +23,7 @@ class Square extends Component {
   cellAction(){
     let {cellState, piece, board} = this.props.square
 
-    if( (_.isEmpty(cellState) && !piece) || cellState.isActive){
+    if( (_.isEmpty(cellState) && !piece)){
       //do nothing
     }else if(cellState.canMove){
       board.moveCell.call(board, this.props.coords)
