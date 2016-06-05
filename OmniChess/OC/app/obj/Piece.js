@@ -18,114 +18,48 @@ var pics = {
     queen: require("../drawable-xxhdpi/ni_queen.png")
   }
 }
+var moves = {
+  pawn(){
+    let d = (this.props.player=="white") ? -1 : 1
+    let moves = {direction:{},attack:{ne: d, nw: d, se: -d, sw: -d}}
 
-function makeMoves(r, c, dist, direc){
-  let moves = []
-  if(direc=="n"){
-    for(let i=1;i<=dist;i++){
-      moves.push({r: r-i, c: c})
+    if(this.state.moves.length == 0){
+      moves.direction = {n: 2*d, s: 2*-d}
+    }else{
+      moves.direction = {n: d, s: -d}
     }
-  }else if(direc=="s"){
-    for(let i=1;i<=dist;i++){
-      moves.push({r: r+i, c: c})
+    return moves
+  },
+  rook(){
+    return{
+      direction: {n: 8, s: 8, e: 8, w: 8},
+      attack: {n: 8, s: 8, e: 8, w: 8}
     }
-  }else if(direc=="e"){
-    for(let i=1;i<=dist;i++){
-      moves.push({r: r, c: c+i})
+  },
+  knight(){
+    return{
+      direction: {nne:1, nnw:1, sse:1, ssw:1, een:1, ees:1, wwn:1, wws:1},
+      attack: {nne:1, nnw:1, sse:1, ssw:1, een:1, ees:1, wwn:1, wws:1}
     }
-  }else if(direc=="w"){
-    for(let i=1;i<=dist;i++){
-      moves.push({r: r, c: c-i})
+  },
+  bishop(){
+    return{
+      direction: {ne: 8, se: 8, nw: 8, sw: 8},
+      attack: {ne: 8, se: 8, nw: 8, sw: 8}
     }
-  }else if(direc=="ne"){
-    for(let i=1;i<=dist;i++){
-      moves.push({r: r-i, c: c+i})
+  },
+  king(){
+    return{
+      direction: {n: 1, s: 1, e: 1, w: 1, ne: 1, se: 1, nw: 1, sw: 1},
+      attack: {n: 1, s: 1, e: 1, w: 1, ne: 1, se: 1, nw: 1, sw: 1}
     }
-  }else if(direc=="se"){
-    for(let i=1;i<=dist;i++){
-      moves.push({r: r+i, c: c+i})
-    }
-  }else if(direc=="nw"){
-    for(let i=1;i<=dist;i++){
-      moves.push({r: r-i, c: c-i})
-    }
-  }else if(direc=="sw"){
-    for(let i=1;i<=dist;i++){
-      moves.push({r: r+i, c: c-i})
+  },
+  queen(){
+    return{
+      direction: {n: 8, s: 8, e: 8, w: 8, ne: 8, se: 8, nw: 8, sw: 8},
+      attack: {n: 8, s: 8, e: 8, w: 8, ne: 8, se: 8, nw: 8, sw: 8}
     }
   }
-  
-  return moves
-}
-var moves = {
-    pawn(r, c){
-      let d = (this.props.player=="white") ? 1 : -1
-
-      if(this.state.moves.length == 0){
-        return [{r: r+d*1, c: c},{r: r+d*2, c: c}]
-      }else{
-        return [{r: r+d*1, c: c}]
-      }
-    },
-    rook(r, c){
-      let moves = {
-        direction: {n: 8, s: 8, e: 8, w: 8},
-        attack: {n: 8, s: 8, e: 8, w: 8}
-      }
-      return [].concat(
-        makeMoves(r, c, 8, "n"),
-        makeMoves(r, c, 8, "s"),
-        makeMoves(r, c, 8, "e"),
-        makeMoves(r, c, 8, "w")
-      )
-    },
-    knight(r, c){
-      let moves = []
-        moves.push({r: r-2, c: c+1})
-        moves.push({r: r-2, c: c-1})
-
-        moves.push({r: r-1, c: c+2})
-        moves.push({r: r-1, c: c-2})
-
-        moves.push({r: r+1, c: c+2})
-        moves.push({r: r+1, c: c-2})
-
-        moves.push({r: r+2, c: c+1})
-        moves.push({r: r+2, c: c-1})
-        return moves
-    },
-    bishop(r, c){
-      return [].concat(
-        makeMoves(r, c, 8, "ne"),
-        makeMoves(r, c, 8, "sw"),
-        makeMoves(r, c, 8, "nw"),
-        makeMoves(r, c, 8, "se")
-      )
-    },
-    king(r, c){
-      return [].concat(
-        makeMoves(r, c, 1, "n"),
-        makeMoves(r, c, 1, "s"),
-        makeMoves(r, c, 1, "e"),
-        makeMoves(r, c, 1, "w"),
-        makeMoves(r, c, 1, "ne"),
-        makeMoves(r, c, 1, "sw"),
-        makeMoves(r, c, 1, "nw"),
-        makeMoves(r, c, 1, "se")
-      )
-    },
-    queen(r, c){
-      return [].concat(
-        makeMoves(r, c, 8, "n"),
-        makeMoves(r, c, 8, "s"),
-        makeMoves(r, c, 8, "e"),
-        makeMoves(r, c, 8, "w"),
-        makeMoves(r, c, 8, "ne"),
-        makeMoves(r, c, 8, "sw"),
-        makeMoves(r, c, 8, "nw"),
-        makeMoves(r, c, 8, "se")
-      )
-    },
 }
 
 
