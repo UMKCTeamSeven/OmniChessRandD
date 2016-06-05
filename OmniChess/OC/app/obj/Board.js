@@ -51,11 +51,27 @@ class Board {
     //Setup Players
     this.players.push( new Player({player: "white"}) )
     this.players.push( new Player({player: "black"}) )
+    this.players[0].toggleTurn()
   }
   getBoard(){
     return this.board
   }
+  getPlayers(){
+    return this.players
+  }
+  currentPlayerTurn(){
+    return this.players[0].isActiveTurn() ? 0 : 1
+  }
+  togglePlayersTurn(){
+    this.players[0].toggleTurn()
+    this.players[1].toggleTurn()
+  }
   toggleCellActive(coords){
+    if(this.board[coords.r][coords.c].cellState.isActive)
+      return
+    if(this.board[coords.r][coords.c].piece.getPlayer() != 
+        this.players[this.currentPlayerTurn.call(this)].getPlayer())
+      return
     this.resetCellStates.call(this)
 
     this.board[coords.r][coords.c].cellState = {isActive: true}
@@ -105,9 +121,13 @@ class Board {
     delete this.board[r][c].piece
 
     this.resetCellStates.call(this)
+    this.togglePlayersTurn.call(this)
     this.props.game.setState({})
   }
   takeCell(coords){
+    this.players[this.currentPlayerTurn.call(this)]
+        .addTaken(this.board[coords.r][coords.c].piece)
+    
     delete this.board[coords.r][coords.c].piece
     this.moveCell(coords)
 

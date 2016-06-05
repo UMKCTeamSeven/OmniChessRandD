@@ -68,7 +68,10 @@ var moves = {
       }
     },
     rook(r, c){
-      //return ["n", "s", "e", "w"]
+      let moves = {
+        direction: {n: 8, s: 8, e: 8, w: 8},
+        attack: {n: 8, s: 8, e: 8, w: 8}
+      }
       return [].concat(
         makeMoves(r, c, 8, "n"),
         makeMoves(r, c, 8, "s"),
