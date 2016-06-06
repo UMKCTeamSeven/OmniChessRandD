@@ -76,7 +76,7 @@ class Board {
 
     this.board[coords.r][coords.c].cellState = {isActive: true}
 
-    this.showCanMoveTo.call(this, coords)
+    this.showPossibleMoves.call(this, coords)
 
     this.props.game.setState({})
   }
@@ -96,28 +96,79 @@ class Board {
       }
     }
   }
-  showCanMoveTo(coords){
+  buildMoves(origin, coords, direction, length){
+    let {r, c} = coords
+    let rDirec = r, cDirec = c
+      // let moves = {
+      //   direction: {n: 8, s: 8, e: 8, w: 8},
+      //   attack: {n: 8, s: 8, e: 8, w: 8}
+      // }
+    if(length > 0){ //we have possible spaces to travel
+      for(direc of direction ){
+        switch(direc){ //compute moves coords
+          case "n": rDirec--; break;
+          case "s": rDirec++; break;
+          case "e": cDirec++; break;
+          case "w": cDirec--; break;
+        }
+      }
+      //only within board bounds
+      if( -1 < rDirec && rDirec < 8 &&
+          -1 < cDirec && cDirec < 8){
+        if(!this.board[rDirec][cDirec].piece){
+          this.board[rDirec][cDirec].cellState.canMove = true
+          this.buildMoves.call(this, origin, {r:rDirec, c:cDirec}, direction, length-1)
+        }
+      }
+    }
+  }
+  buildAttacks(origin, coords, direction, length){
+    let {r, c} = coords
+    let rDirec = r, cDirec = c
+      // let moves = {
+      //   direction: {n: 8, s: 8, e: 8, w: 8},
+      //   attack: {n: 8, s: 8, e: 8, w: 8}
+      // }
+    if(length > 0){ //we have possible spaces to travel
+      for(direc of direction ){
+        switch(direc){ //compute moves coords
+          case "n": rDirec--; break;
+          case "s": rDirec++; break;
+          case "e": cDirec++; break;
+          case "w": cDirec--; break;
+        }
+      }
+      //only within board bounds
+      if( -1 < rDirec && rDirec < 8 &&
+          -1 < cDirec && cDirec < 8){
+        if(this.board[rDirec][cDirec].piece &&
+            this.board[origin.r][origin.c].piece.getPlayer() !=
+            this.board[rDirec][cDirec].piece.getPlayer() ){
+          this.board[rDirec][cDirec].cellState.canTake = true
+        }else{
+          this.buildAttacks.call(this, origin, {r:rDirec, c:cDirec}, direction, length-1)
+        }
+      }
+    }
+  }
+  showPossibleMoves(coords){
     let {r, c} = coords
     let {piece} = this.board[r][c]
     let moves = piece.getMoves(r, c)
 
-    //show where piece can move
-    moves.forEach((move)=>{
-      //only within board bounds
-      if( -1 < move.r && move.r <8 && -1 < move.c && move.c <8 ){
-        if(!this.board[move.r][move.c].piece){
-          this.board[move.r][move.c].cellState.canMove = true
-        }else if( piece.getPlayer() != this.board[move.r][move.c].piece.getPlayer() ){
-          this.board[move.r][move.c].cellState.canTake = true
-        }
-      }
-    })
+    for(let direc in moves.direction){ //go through each move
+      this.buildMoves.call(this, coords, coords, direc, moves.direction[direc])
+    }
+    for(let direc in moves.attack){ //go through each attack
+      this.buildAttacks.call(this, coords, coords, direc, moves.attack[direc])
+    }
   }
   moveCell(coords){
     let {r, c} = this.getCellActive()
 
     this.board[coords.r][coords.c].piece = this.board[r][c].piece
     this.board[coords.r][coords.c].piece.move(coords.r, coords.c)
+    
     delete this.board[r][c].piece
 
     this.resetCellStates.call(this)
@@ -125,14 +176,12 @@ class Board {
     this.props.game.setState({})
   }
   takeCell(coords){
+    let {r, c} = this.getCellActive()
     this.players[this.currentPlayerTurn.call(this)]
         .addTaken(this.board[coords.r][coords.c].piece)
     
     delete this.board[coords.r][coords.c].piece
     this.moveCell(coords)
-
-    this.toggleCellActive.call(this, coords)
-    this.props.game.setState({})
   }
 }
 
