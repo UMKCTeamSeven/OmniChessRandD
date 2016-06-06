@@ -22,6 +22,8 @@ class Square extends Component {
 
     if( (_.isEmpty(cellState) && !piece)){
       //do nothing
+    }else if(cellState.canPromote){
+      board.promoteCell.call(board, this.props.coords)
     }else if(cellState.canMove){
       board.moveCell.call(board, this.props.coords)
     }else if(cellState.canTake){
@@ -43,6 +45,9 @@ class Square extends Component {
     }else if(cellState.canTake){
       w = 3;
       color = 'red';
+    }else if(cellState.canPromote){
+      w = 3;
+      color = 'orange';
     }else{
       w = 1;
       color = 'lightgray';

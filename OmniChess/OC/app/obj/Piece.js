@@ -78,6 +78,9 @@ class Piece {
   getPic(){
     return pics[this.props.player][this.props.type]
   }
+  getType(){
+    return this.props.type
+  }
   getPlayer(){
     return this.props.player
   }

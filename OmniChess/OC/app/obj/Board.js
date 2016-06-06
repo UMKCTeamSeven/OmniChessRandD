@@ -9,7 +9,7 @@ class Board {
     this.props = props
     this.board = []
     this.players = []
-
+    this.promotionScreen = false
 
     this.init.call(this)
   }
@@ -53,6 +53,23 @@ class Board {
     this.players.push( new Player({player: "black"}) )
     this.players[0].toggleTurn()
   }
+  setPromotedPiece(piece){
+    let {r, c} = this.getCellPromoted.call(this)
+
+    delete this.board[r][c].piece
+    this.board[r][c].piece = piece
+
+    this.promotionScreen = false
+    this.resetCellStates.call(this)
+    this.togglePlayersTurn.call(this)
+    this.props.game.setState({})
+  }
+  getScreen(){
+    if(this.promotionScreen)
+      return "promotionScreen"
+    else
+      return "gameBoard"
+  }
   getBoard(){
     return this.board
   }
@@ -84,6 +101,15 @@ class Board {
     for(let i=0;i<8;i++){
       for(let j=0;j<8;j++){
         if(this.board[i][j].cellState.isActive){
+          return {r: i, c: j}
+        }
+      }
+    }
+  }
+  getCellPromoted(){
+    for(let i=0;i<8;i++){
+      for(let j=0;j<8;j++){
+        if(this.board[i][j].cellState.canPromote){
           return {r: i, c: j}
         }
       }
@@ -163,6 +189,16 @@ class Board {
       this.buildAttacks.call(this, coords, coords, direc, moves.attack[direc])
     }
   }
+  promotePiece(coords){
+    let {r, c} = coords
+    if(this.board[coords.r][coords.c].piece.getType() != "pawn")
+      return false
+    if(this.players[this.currentPlayerTurn.call(this)].getPlayer() == "white"){
+      return r==7
+    }else{
+      return r==0
+    }
+  }
   moveCell(coords){
     let {r, c} = this.getCellActive()
 
@@ -172,7 +208,12 @@ class Board {
     delete this.board[r][c].piece
 
     this.resetCellStates.call(this)
-    this.togglePlayersTurn.call(this)
+    if(this.promotePiece(coords)){
+      this.board[coords.r][coords.c].cellState.canPromote = true
+      this.promotionScreen = true
+    }else{
+      this.togglePlayersTurn.call(this)
+    }
     this.props.game.setState({})
   }
   takeCell(coords){

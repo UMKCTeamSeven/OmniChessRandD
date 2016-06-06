@@ -8,6 +8,7 @@ import _ from 'lodash';
 
 var {width} = Dimensions.get('window');
 var Square = require('./Square');
+var PromotionScreen = require('./PromotionScreen');
 
 class Board extends Component {
   /*
@@ -20,6 +21,12 @@ class Board extends Component {
     }
   }
   render() {
+    if(this.props.board.getScreen() == "promotionScreen")
+      return (<PromotionScreen board={this.props.board}></PromotionScreen>)
+    else
+      return this.gameBoard.call(this)
+  }
+  gameBoard(){
     return (
       <View style={{height: width, flexDirection: 'column', margin: 3 }}>
         { _.map(this.props.board.getBoard(), this.makeRows.bind(this)) }
