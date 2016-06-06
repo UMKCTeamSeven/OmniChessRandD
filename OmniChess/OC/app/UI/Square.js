@@ -14,9 +14,6 @@ class Square extends Component {
     this.state = {
     }
   }
-  shouldComponentUpdate(){
-    return true
-  }
   render() {
     return this.showBorderHighlight.call(this)
   }
@@ -78,13 +75,12 @@ class Square extends Component {
   }
   showPiece(){
     if(this.props.square.piece){
-      let {piece} = this.props.square
-
       return(
           <Image
+            key={this.props.square.piece.getPic()}
             resizeMode="cover"
             style={{ flex:1, width: null, height: null }}
-            source={ piece.getPic() } />
+            source={ this.props.square.piece.getPic() } />
       )
     }
   }

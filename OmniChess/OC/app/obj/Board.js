@@ -168,6 +168,7 @@ class Board {
 
     this.board[coords.r][coords.c].piece = this.board[r][c].piece
     this.board[coords.r][coords.c].piece.move(coords.r, coords.c)
+    
     delete this.board[r][c].piece
 
     this.resetCellStates.call(this)
@@ -175,14 +176,12 @@ class Board {
     this.props.game.setState({})
   }
   takeCell(coords){
+    let {r, c} = this.getCellActive()
     this.players[this.currentPlayerTurn.call(this)]
         .addTaken(this.board[coords.r][coords.c].piece)
     
     delete this.board[coords.r][coords.c].piece
     this.moveCell(coords)
-
-    this.toggleCellActive.call(this, coords)
-    this.props.game.setState({})
   }
 }
 
