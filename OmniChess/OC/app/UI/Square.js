@@ -18,15 +18,24 @@ class Square extends Component {
     return this.showBorderHighlight.call(this)
   }
   cellAction(){
-    let {cellState, piece, board} = this.props.square
+    let {cellState, piece, board, portal} = this.props.square
 
-    if( (_.isEmpty(cellState) && !piece)){
+    if( _.isEmpty(cellState) && !(piece || portal) ){
       //do nothing
+    }
+    else if(cellState.canPromote){
+      board.promoteCell.call(board, this.props.coords)
     }else if(cellState.canMove){
       board.moveCell.call(board, this.props.coords)
     }else if(cellState.canTake){
       board.takeCell.call(board, this.props.coords)
-    }else{
+    }else if(cellState.canMovePortal){
+      board.movePortal.call(board, this.props.coords)
+    }
+    else if(portal){
+      board.togglePortalActive.call(board, this.props.coords)
+    }
+    else{
       board.toggleCellActive.call(board, this.props.coords)
     }
   }
@@ -37,12 +46,15 @@ class Square extends Component {
     if(cellState.isActive){
       w = 3;
       color = 'blue';
-    }else if(cellState.canMove){
+    }else if(cellState.canMove || cellState.canMovePortal){
       w = 3;
       color = 'green';
     }else if(cellState.canTake){
       w = 3;
       color = 'red';
+    }else if(cellState.canPromote){
+      w = 3;
+      color = 'orange';
     }else{
       w = 1;
       color = 'lightgray';
@@ -67,13 +79,13 @@ class Square extends Component {
       <View style={{backgroundColor: color, flex: 1, alignItems: 'stretch'}}>
         <TouchableOpacity style={{flex: 1}} onPress={this.cellAction.bind(this)}>
           <View style={{flex: 1}}>
-            { this.showPiece.call(this) }
+            { this.showOccupant.call(this) }
           </View>
         </TouchableOpacity>
       </View>
     )
   }
-  showPiece(){
+  showOccupant(){
     if(this.props.square.piece){
       return(
           <Image
@@ -81,6 +93,14 @@ class Square extends Component {
             resizeMode="cover"
             style={{ flex:1, width: null, height: null }}
             source={ this.props.square.piece.getPic() } />
+      )
+    }else if(this.props.square.portal){
+      return(
+          <Image
+            key={this.props.square.portal.getPic()}
+            resizeMode="cover"
+            style={{ flex:1, width: null, height: null }}
+            source={ this.props.square.portal.getPic() } />
       )
     }
   }
