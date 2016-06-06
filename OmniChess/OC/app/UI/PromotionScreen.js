@@ -52,9 +52,10 @@ class PromotionScreen extends Component {
   }
   showPiece(piece, indx){
   	return(
-      <TouchableOpacity style={{flex: 1}} onPress={ this.promote.bind(this, piece)}>
-		  	<Image
+      <TouchableOpacity 
 		  		key={indx}
+		  		style={{flex: 1}} onPress={ this.promote.bind(this, piece)}>
+		  	<Image
 		      resizeMode="cover"
 		      style={{ width: 50, height: 50 }}
 		      source={ piece.getPic() } />

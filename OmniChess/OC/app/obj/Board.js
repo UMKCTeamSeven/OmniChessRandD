@@ -2,6 +2,7 @@ import _ from 'lodash'
 
 var Player = require('./Player');
 var Piece = require('./Piece');
+var Portal = require('./Portal');
 var Cell = require('./Cell');
 
 class Board {
@@ -52,6 +53,12 @@ class Board {
     this.players.push( new Player({player: "white"}) )
     this.players.push( new Player({player: "black"}) )
     this.players[0].toggleTurn()
+
+    //Add Portals
+    this.board[3][0].portal = new Portal({ type: "black",
+                                            coords: [{r:3,c:0}, {r:5,c:6}]
+                                          })
+    this.board[5][6].portal = this.board[3][0].portal
   }
   setPromotedPiece(piece){
     let {r, c} = this.getCellPromoted.call(this)
@@ -122,28 +129,42 @@ class Board {
       }
     }
   }
+
   buildMoves(origin, coords, direction, length){
     let {r, c} = coords
-    let rDirec = r, cDirec = c
+    let gotoCoords = {r: r, c: c}
       // let moves = {
       //   direction: {n: 8, s: 8, e: 8, w: 8},
       //   attack: {n: 8, s: 8, e: 8, w: 8}
       // }
+
     if(length > 0){ //we have possible spaces to travel
       for(direc of direction ){
         switch(direc){ //compute moves coords
-          case "n": rDirec--; break;
-          case "s": rDirec++; break;
-          case "e": cDirec++; break;
-          case "w": cDirec--; break;
+          case "n": gotoCoords.r--; break;
+          case "s": gotoCoords.r++; break;
+          case "e": gotoCoords.c++; break;
+          case "w": gotoCoords.c--; break;
         }
       }
       //only within board bounds
-      if( -1 < rDirec && rDirec < 8 &&
-          -1 < cDirec && cDirec < 8){
-        if(!this.board[rDirec][cDirec].piece){
-          this.board[rDirec][cDirec].cellState.canMove = true
-          this.buildMoves.call(this, origin, {r:rDirec, c:cDirec}, direction, length-1)
+      if( -1 < gotoCoords.r && gotoCoords.r < 8 &&
+          -1 < gotoCoords.c && gotoCoords.c < 8){
+        if(!this.board[gotoCoords.r][gotoCoords.c].piece && // has no piece
+            !this.board[gotoCoords.r][gotoCoords.c].portal){ // has no portal
+          this.board[gotoCoords.r][gotoCoords.c].cellState.canMove = true
+          this.buildMoves.call(this, origin, {r:gotoCoords.r, c:gotoCoords.c}, direction, length-1)
+        }else if(this.board[gotoCoords.r][gotoCoords.c].portal){// go through portal
+          let portalCoords = this.board[gotoCoords.r][gotoCoords.c].portal.getCoords()
+          let portalJumpIndx = 0
+
+          if(portalCoords[1] == gotoCoords){
+            portalJumpIndx = 1
+          }
+
+          this.buildMoves.call(this, origin,
+                              portalCoords[portalJumpIndx],
+                              direction, length)
         }
       }
     }
@@ -167,10 +188,13 @@ class Board {
       //only within board bounds
       if( -1 < rDirec && rDirec < 8 &&
           -1 < cDirec && cDirec < 8){
-        if(this.board[rDirec][cDirec].piece &&
-            this.board[origin.r][origin.c].piece.getPlayer() !=
-            this.board[rDirec][cDirec].piece.getPlayer() ){
-          this.board[rDirec][cDirec].cellState.canTake = true
+        if(this.board[rDirec][cDirec].piece){ //has a piece
+          if(this.board[origin.r][origin.c].piece.getPlayer() !=
+              this.board[rDirec][cDirec].piece.getPlayer()){ //other player piece
+            this.board[rDirec][cDirec].cellState.canTake = true
+          }else{
+            return //my piece
+          }
         }else{
           this.buildAttacks.call(this, origin, {r:rDirec, c:cDirec}, direction, length-1)
         }

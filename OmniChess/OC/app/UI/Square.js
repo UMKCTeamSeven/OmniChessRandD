@@ -72,13 +72,13 @@ class Square extends Component {
       <View style={{backgroundColor: color, flex: 1, alignItems: 'stretch'}}>
         <TouchableOpacity style={{flex: 1}} onPress={this.cellAction.bind(this)}>
           <View style={{flex: 1}}>
-            { this.showPiece.call(this) }
+            { this.showOccupant.call(this) }
           </View>
         </TouchableOpacity>
       </View>
     )
   }
-  showPiece(){
+  showOccupant(){
     if(this.props.square.piece){
       return(
           <Image
@@ -86,6 +86,14 @@ class Square extends Component {
             resizeMode="cover"
             style={{ flex:1, width: null, height: null }}
             source={ this.props.square.piece.getPic() } />
+      )
+    }else if(this.props.square.portal){
+      return(
+          <Image
+            key={this.props.square.portal.getPic()}
+            resizeMode="cover"
+            style={{ flex:1, width: null, height: null }}
+            source={ this.props.square.portal.getPic() } />
       )
     }
   }
