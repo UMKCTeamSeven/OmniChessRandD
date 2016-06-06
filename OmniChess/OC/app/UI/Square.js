@@ -18,17 +18,24 @@ class Square extends Component {
     return this.showBorderHighlight.call(this)
   }
   cellAction(){
-    let {cellState, piece, board} = this.props.square
+    let {cellState, piece, board, portal} = this.props.square
 
-    if( (_.isEmpty(cellState) && !piece)){
+    if( _.isEmpty(cellState) && !(piece || portal) ){
       //do nothing
-    }else if(cellState.canPromote){
+    }
+    else if(cellState.canPromote){
       board.promoteCell.call(board, this.props.coords)
     }else if(cellState.canMove){
       board.moveCell.call(board, this.props.coords)
     }else if(cellState.canTake){
       board.takeCell.call(board, this.props.coords)
-    }else{
+    }else if(cellState.canMovePortal){
+      board.movePortal.call(board, this.props.coords)
+    }
+    else if(portal){
+      board.togglePortalActive.call(board, this.props.coords)
+    }
+    else{
       board.toggleCellActive.call(board, this.props.coords)
     }
   }
@@ -39,7 +46,7 @@ class Square extends Component {
     if(cellState.isActive){
       w = 3;
       color = 'blue';
-    }else if(cellState.canMove){
+    }else if(cellState.canMove || cellState.canMovePortal){
       w = 3;
       color = 'green';
     }else if(cellState.canTake){

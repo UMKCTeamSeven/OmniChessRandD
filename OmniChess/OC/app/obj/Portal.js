@@ -18,6 +18,16 @@ class Portal {
   getCoords(){
     return this.props.coords
   }
+  updateCoords(from, to){
+    let portalCoords = this.getCoords()
+    let portalJumpIndx = 0
+
+    if(portalCoords[0].r == from.r &&
+        portalCoords[0].c == from.c){
+      portalJumpIndx = 1
+    }
+    this.props.coords[portalJumpIndx] = to
+  }
   getPic(){
     return pics[this.props.type]
   }
