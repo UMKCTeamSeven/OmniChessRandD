@@ -58,7 +58,10 @@ public class MyFragment extends Fragment implements View.OnClickListener
             String ps = "P"+ dest.toString();
             String ss = "S"+ dest.toString();
 
+            int piecelayertier    = getResources().getIdentifier(ps,"id", BuildConfig.APPLICATION_ID);
+            int selectorlayertier = getResources().getIdentifier(ss,"id", BuildConfig.APPLICATION_ID);
 
+            ImageView test =(ImageView)getView().findViewById(piecelayertier);
 
             spot.TieAppearance((ImageView)getView().findViewById(piecelayertier));
             spot.TieSelector((ImageView)getView().findViewById(selectorlayertier));
@@ -67,6 +70,7 @@ public class MyFragment extends Fragment implements View.OnClickListener
             spot.getSelector().setOnClickListener(this);
 
             spot.getAppearance().setImageResource(R.drawable.ni_tsquare);
+             String text = spot.getAppearance().toString() + " " + spot.getSelector().toString();
 
         }
 
