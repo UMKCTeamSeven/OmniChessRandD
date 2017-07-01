@@ -1,96 +1,96 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:2:1-41:12
+ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:2:1-41:12
 	package
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:3:5-45
-		INJECTED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:3:5-45
+		INJECTED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:5:5-39:19
-MERGED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-v4:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-compat:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-media-compat:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-utils:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-ui:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-fragment:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-vector-drawable:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.0\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.0\AndroidManifest.xml:22:5-20
+ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:5:5-39:19
+MERGED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Matthew\.android\build-cache\589709fce4b5ac86700ee5eb076bfae5e9488965\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:25.0.0] C:\Users\Matthew\.android\build-cache\0e2a96591b4e2b5db636d1da3738cd33be8a2495\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.0.0] C:\Users\Matthew\.android\build-cache\413570a318767789285aa6b32849ebbfc5a92d24\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.0.0] C:\Users\Matthew\.android\build-cache\a4f0d945059ef189f0571fc8f391ab4e0fa2673f\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.0.0] C:\Users\Matthew\.android\build-cache\d4d0f0c55a04759253907ba8ae827d6907efec3a\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.0.0] C:\Users\Matthew\.android\build-cache\01e069735e67de490ef385a88974d4899f95a9f9\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.0.0] C:\Users\Matthew\.android\build-cache\81dceab9b4f855fd4d148527746f6253df9a5505\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:25.0.0] C:\Users\Matthew\.android\build-cache\7fff2f53515e3282689dd4d3e1cda10a95ea3f3f\output\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-compat:25.0.0] C:\Users\Matthew\.android\build-cache\9dad09a4c5f86f67bf4c97c1095ecb17555b7d49\output\AndroidManifest.xml:25:5-20
 	android:allowBackup
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:6:9-35
 	android:icon
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:7:9-43
 	android:theme
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:8:9-40
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:8:9-40
 activity#com.donthaveawebsite.mhy.ocfix.MainActivity
-ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:9:9-17:20
+ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:9:9-17:20
 	android:label
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:11:13-45
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:11:13-45
 	android:name
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:10:13-41
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:10:13-41
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:12:13-16:29
+ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:12:13-16:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:13:17-69
+ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:13:17-69
 	android:name
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:13:25-66
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:13:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:15:17-77
+ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:15:17-77
 	android:name
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:15:27-74
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:15:27-74
 activity#com.donthaveawebsite.mhy.ocfix.AboutOmniChess
-ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:18:9-25:20
+ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:18:9-25:20
 	android:label
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:20:13-68
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:20:13-68
 	android:parentActivityName
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:21:13-55
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:21:13-55
 	android:name
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:19:13-43
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:19:13-43
 meta-data#android.support.PARENT_ACTIVITY
-ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:22:13-24:79
+ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:22:13-24:79
 	android:value
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:24:17-76
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:24:17-76
 	android:name
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:23:17-63
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:23:17-63
 activity#com.donthaveawebsite.mhy.ocfix.GameActivity
-ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:26:9-32:20
+ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:26:9-32:20
 	android:screenOrientation
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:28:13-49
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:28:13-49
 	android:label
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:27:13-42
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:27:13-42
 	android:parentActivityName
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:29:13-55
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:29:13-55
 	android:name
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:26:19-47
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:26:19-47
 activity#com.donthaveawebsite.mhy.ocfix.AchievementsActivity
-ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:34:9-38:20
+ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:34:9-38:20
 	android:label
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:35:13-50
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:35:13-50
 	android:parentActivityName
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:36:13-55
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:36:13-55
 	android:name
-		ADDED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:34:19-55
+		ADDED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml:34:19-55
 uses-sdk
-INJECTED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.0\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:support-v4:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.0\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-compat:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-media-compat:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-utils:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-ui:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-fragment:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-vector-drawable:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.0\AndroidManifest.xml:21:5-43
-MERGED from [com.android.support:animated-vector-drawable:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.0\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Matthew\.android\build-cache\589709fce4b5ac86700ee5eb076bfae5e9488965\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:25.0.0] C:\Users\Matthew\.android\build-cache\0e2a96591b4e2b5db636d1da3738cd33be8a2495\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.0.0] C:\Users\Matthew\.android\build-cache\413570a318767789285aa6b32849ebbfc5a92d24\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.0.0] C:\Users\Matthew\.android\build-cache\a4f0d945059ef189f0571fc8f391ab4e0fa2673f\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.0.0] C:\Users\Matthew\.android\build-cache\d4d0f0c55a04759253907ba8ae827d6907efec3a\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.0.0] C:\Users\Matthew\.android\build-cache\01e069735e67de490ef385a88974d4899f95a9f9\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:25.0.0] C:\Users\Matthew\.android\build-cache\81dceab9b4f855fd4d148527746f6253df9a5505\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.0.0] C:\Users\Matthew\.android\build-cache\7fff2f53515e3282689dd4d3e1cda10a95ea3f3f\output\AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-compat:25.0.0] C:\Users\Matthew\.android\build-cache\9dad09a4c5f86f67bf4c97c1095ecb17555b7d49\output\AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
-		ADDED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.0\AndroidManifest.xml:23:9-75
+		ADDED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Matthew\.android\build-cache\589709fce4b5ac86700ee5eb076bfae5e9488965\output\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
-		INJECTED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Matthew\Documents\GitHub\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Matthew\Desktop\OmniChessRandD\OmniChess\app\src\main\AndroidManifest.xml
